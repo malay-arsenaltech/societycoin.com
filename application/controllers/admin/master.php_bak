@@ -1,0 +1,461 @@
+	<?php 
+
+	
+
+		class Master extends CI_Controller {
+
+		
+
+		public function __construct()
+
+		{
+
+		parent::__construct();
+
+		$this->
+
+		load->model('admin/master_model');
+
+		
+
+		}
+
+		
+
+		public function index()
+
+		{
+
+		
+
+		
+
+		if($this->session->userdata('userid')==NULL || $this->session->userdata('utype')==3)
+
+		{
+
+		$this->load->view('admin/login');
+
+		}else
+
+		{
+
+		
+
+		$data['allcountry']= $this->master_model->allcountry();
+
+		$this->load->view('admin/addcity',$data);
+
+		}
+
+		
+
+		}
+
+		
+
+		public function getstate()
+
+		{
+
+		$data['state']= $this->master_model->getstate($_POST);
+
+		
+
+		}
+
+		
+
+		public function getcity()
+
+		{
+
+		
+
+		$data['city']= $this->master_model->getcity($_POST);
+
+		}
+
+		
+
+		
+
+		public function getarea()
+
+		{
+
+		
+
+		$data['area']= $this->master_model->getarea($_POST);
+
+		}
+
+		
+
+		public function getsociety()
+
+		{
+
+		
+
+		$data['society']= $this->master_model->getsociety($_POST);
+
+		}
+
+		
+
+		public function getaddress()
+
+		{
+
+		
+
+		$data['address']= $this->master_model->getaddress($_POST);
+
+		}
+
+		
+
+		
+
+		public function getaddress1()
+
+		{
+
+		
+
+		$data['address']= $this->master_model->getaddress1($_POST);
+
+		}
+
+        public function propertystatus()
+
+		 {
+
+ 		$data['proadd']= $this->master_model->propertystatus($_POST);
+
+			 
+
+		 }
+
+			 
+
+			 
+
+		
+
+		public function getaddressbyid()
+
+		{
+
+		
+
+		$data['address']= $this->master_model->getaddressbyid($_POST);
+
+		}
+
+		
+
+		public function getchargehead()
+
+		{
+
+		
+
+		$data['getchargehead']= $this->master_model->getchargehead($_POST);
+
+		}
+
+		
+
+		public function getbill()
+
+		{
+
+		
+
+		$data['getchargehead']= $this->master_model->getbill($_POST);
+
+		}
+
+		
+
+		public function getaddressforguest()
+
+		  {
+
+			  
+
+ 		$data['getchargehead']= $this->master_model->getaddressforguest($_POST);
+
+			  }
+
+			  
+
+		public function getbillamountguest()
+
+		  {
+
+			  
+
+ 		$data['getchargehead']= $this->master_model->getbillamountguest($_POST);
+
+			  }	  
+
+		
+
+		
+
+		
+
+		public function addcity()
+
+		{
+
+		$data['city']= $this->master_model->addcity();
+
+		redirect(base_url().'admin?msg=1');
+
+		
+
+		
+
+		}
+
+		
+
+		
+
+		public function submitarea()
+
+		{
+		$data['city']= $this->master_model->submitarea();
+		redirect(base_url().'admin?msg=1');
+		}
+
+		
+
+		
+
+		
+
+		public function addarea()
+
+		{
+		$data['allcountry']= $this->master_model->allcountry();
+		$this->load->view('admin/addarea',$data);
+		}
+
+		
+
+		
+
+		public function addbill()
+
+		{
+
+		$this->load->view('admin/addbill');
+
+		
+
+		}
+
+		
+
+		public function newbill()
+
+		{
+
+		
+
+		$result= $this->master_model->newbill();
+
+		
+
+		if($result>0)
+
+		{
+
+		
+
+		redirect(base_url().'admin/allsociety?msg=Added Charge Head !!');
+
+		}else
+
+		{
+
+		redirect(base_url().'admin/allsociety?msg=2');
+
+		
+
+		}
+
+		
+
+		}
+
+		public function allbill()
+
+		{
+
+		
+
+		$data['data']= $this->master_model->allbill();
+
+		
+
+		//			  print_r($this->master_model->allbill()); exit();
+
+		
+
+		$this->load->view('admin/allbill',$data);
+
+		
+
+		}
+
+		public function editbill()
+
+		{
+
+		$id=$_REQUEST['bid'];
+
+		$data['data']= $this->master_model->allbill($id);
+
+		$this->load->view('admin/editbill',$data);
+
+		
+
+		}
+
+		
+
+		public function updatebill()
+
+		 {
+
+		$result= $this->master_model->updatebill();
+
+		
+
+		if($result>0)
+
+		{
+
+		
+
+		redirect(base_url().'admin/master/allbill?msg=1');
+
+		}else
+
+		{
+
+		redirect(base_url().'admin/master/allbill?msg=2');
+
+		
+
+		}
+
+		
+
+			 
+
+		 }
+
+		
+
+		public function publishedbill()
+
+		 {
+
+		$result= $this->master_model->publishedbill();
+
+		
+
+		if($result>0)
+
+		{
+
+		
+
+		redirect(base_url().'admin/master/allbill?msg=1');
+
+		}else
+
+		{
+
+		redirect(base_url().'admin/master/allbill?msg=2');
+
+		
+
+		}
+
+		
+
+		 }
+
+		
+
+		public function unpublishedbill()
+
+		 {
+
+		$result= $this->master_model->unpublishedbill();
+
+		
+
+		if($result>0)
+
+		{
+
+		
+
+		redirect(base_url().'admin/master/allbill?msg=1');
+
+		}else
+
+		{
+
+		redirect(base_url().'admin/master/allbill?msg=2');
+
+		
+
+		}
+
+
+
+		
+
+			 
+
+			 } 
+
+		
+
+		public function autocompleteaddress()
+
+		  {
+
+			  
+
+		$result= $this->master_model->autocompleteaddress($_POST);
+
+			  
+
+			  }
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		}

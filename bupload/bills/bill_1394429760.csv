@@ -1,0 +1,33 @@
+SocietyName,society_id,PropertyAddress,property_id,sdate,edate,billname,bill_id,amount,totalamount,addbyid,status
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,Water,1,100,100,13,1
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,Telephone,2,100,100,13,1
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,Electricity,4,100,100,13,1
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,House Rent,5,100,100,13,1
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,Gas,6,100,100,13,1
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,Security,7,100,100,13,1
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,Car Parking,8,100,100,13,1
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,Building Maintenance,9,100,100,13,1
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,Play Ground Maintenance,10,100,100,13,1
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,Sub Charge,22,100,100,13,1
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,Sub Charge1,23,100,100,13,1
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,Sub Charge3,24,100,100,13,1
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,Sub Charge5,25,100,100,13,1
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,Water,26,100,100,13,1
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,Electricity,27,100,100,13,1
+IFS Apartments,18,"Tower 1, Ground Floor, GF-1",88,1/2/2014,28/2/2014,Water,28,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,Water,1,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,Telephone,2,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,Electricity,4,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,House Rent,5,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,Gas,6,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,Security,7,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,Car Parking,8,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,Building Maintenance,9,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,Play Ground Maintenance,10,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,Sub Charge,22,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,Sub Charge1,23,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,Sub Charge3,24,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,Sub Charge5,25,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,Water,26,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,Electricity,27,100,100,13,1
+IFS Apartments,18,"Tower 2, 2nd Floor, T2-2F301",89,1/2/2014,28/2/2014,Water,28,100,100,13,1

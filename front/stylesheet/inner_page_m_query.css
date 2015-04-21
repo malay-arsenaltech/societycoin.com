@@ -1,0 +1,1821 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+@media screen and (max-width:900px)
+{
+/*comingsoon*/
+
+	.side-button-nav
+	{
+		margin-top: 0px;
+		float: none;
+		margin: 0px auto;
+	}
+/*mytransaction_mob page*/
+
+	#mytransaction_mob
+	{
+		max-width: 746px !important;
+		width: 90% !important;
+	}
+
+	#product-table
+	{
+		width: 100%!important;
+	}
+	
+/*3rd_part_text*/
+
+	#part_text
+	{
+		display: none!important;
+	}
+
+	#party_payment_form
+	{
+		float: none !important;
+		margin: 50px auto !important;
+	}
+	
+/*contact page*/
+
+	#contact_form_mob
+	{
+		float: none !important;
+		margin: 120px auto !important;
+		width: 90% !important;
+	}
+
+	#contactustex_mob
+	{
+		display: none;
+	}
+/*faq*/	
+	.faq
+	{
+		margin: 0px auto;
+		/*max-width: 458px;*/
+		width: 100%;
+		height: auto!important;
+		padding-bottom: 20px;
+		padding-top: 20px;
+		background: none repeat scroll 0 0 #FFFFFF;
+	}
+
+	.box-faq
+	{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 2px solid #FFFFFF;
+    border-radius: 8px;
+    cursor: pointer;
+    float: left;
+    height: 343px;
+    margin-top: 15px !important;
+    width: 230px;
+	}
+
+	#no-1
+	{
+		/*margin-left: auto !important;
+		margin-right: auto !important;*/
+	}
+
+	#no-2
+	{
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	#no-3
+	{
+		margin: 0px auto;
+	}
+
+	#tab-right
+	{
+		max-width: 720px!important;
+		width: 100%;
+	}
+
+	.accordion
+	{
+		float: left;
+		left: 240px;
+		margin-top: 134px!important;
+		position: absolute!important;
+	}
+
+	#tab-right
+	{
+		float: none;
+		height: auto !important;
+		margin-top: 345px;
+		max-width: 720px;
+		width: 100%!important;
+	}
+	
+	
+}
+@media screen and (max-width:800px)
+{
+/*email page*/
+	.tab_wrap
+	{
+		margin-left: 13px;
+		height: auto;
+	}
+
+	#guest
+	{
+		display: block;
+		float: left;
+		width: 250px;
+	}
+
+	#payloginu
+	{
+		display: block;
+		float: right;
+		width: 250px;
+	}
+
+	.containerpay_mob
+	{
+		height: auto !important;
+		margin: 70px auto;
+	}
+/*contact page*/
+
+	#contact_form_mob
+	{
+		float: none !important;
+		margin: 120px auto !important;
+		width: 90% !important;
+	}
+
+	#contactustex_mob
+	{
+		display: none;
+	}
+/*faq*/	
+	.faq
+	{
+		margin: 120px auto;
+		max-width: 458px;
+		width: 80%;
+		height: auto!important;
+		padding-bottom: 20px;
+		padding-top: 20px;
+	}
+
+	.box-faq
+	{
+		float: none!important;
+	}
+
+	#no-1
+	{
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	#no-2
+	{
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	#no-3
+	{
+		margin: 0px auto;
+	}
+
+	#tab-right
+	{
+		max-width: 720px!important;
+		width: 100%;
+	}
+
+	.accordion
+	{
+		float: left;
+		left: 240px;
+		margin-top: 134px!important;
+		position: absolute!important;
+	}
+
+	#tab-right
+	{
+		float: none;
+		height: auto !important;
+		margin-top: 345px;
+		max-width: 720px;
+		width: 100%!important;
+	}
+	
+/*3rd_part_text*/
+
+	#part_text
+	{
+		display: none!important;
+	}
+
+	#party_payment_form
+	{
+		float: none !important;
+		margin: 50px auto !important;
+	}
+	
+/*comingsoon*/
+
+	.side-button-nav
+	{
+		margin-top: 0px;
+		float: none;
+		margin: 0px auto;
+	}
+
+/*mytransaction_mob page*/
+
+	#mytransaction_mob
+	{
+		max-width: 746px !important;
+		width: 90% !important;
+	}
+
+	#product-table
+	{
+		width: 100%!important;
+	}
+
+/*my prop*/
+
+	.right > div#vertical_container .accordion_toggle
+	{
+		width: 600px;
+		margin: 0px auto;
+	}
+
+	.right > div#vertical_container .accordion_toggle
+	{
+		width: 600px;
+		margin: 0px auto;
+	}
+}
+
+@media screen and (max-width:768px)
+{
+/*email page*/
+
+	.tab_wrap
+	{
+		margin-left: 13px;
+		height: auto;
+	}
+
+	#guest
+	{
+		display: block;
+		float: left;
+		width: 250px;
+	}
+
+	#payloginu
+	{
+		display: block;
+		float: right;
+		width: 250px;
+	}
+/*orderpage*/
+
+	.containerpay_mob
+	{
+		height: auto !important;
+		margin: 70px auto;
+	}
+
+	.payment_mob
+	{
+		width: 70%!important;
+		margin: 0px auto!important;
+	}
+/*login*/
+
+/*	.main-form input[type="password"]{ width:255px;}
+.login-close{ width:250px;}
+.login-close1{ right:18px; top:8px;}
+
+.main-form input[type="password"]{}
+*/
+
+	#u_login_mob
+	{
+		margin-left: 30px !important;
+		margin-top: -8px !important;
+	}
+
+/*contact page*/
+
+
+	#contact_form_mob
+	{
+		float: none !important;
+		margin: 120px auto !important;
+		width: 90% !important;
+	}
+
+	#contactustex_mob
+	{
+		display: none;
+	}
+	
+/*faq*/
+
+	.faq
+	{
+		margin: 120px auto;
+		max-width: 458px;
+		width: 80%;
+		height: auto!important;
+		padding-bottom: 20px;
+		padding-top: 20px;
+	}
+
+	.box-faq
+	{
+		float: none!important;
+	}
+
+	#no-1
+	{
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	#no-2
+	{
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	#no-3
+	{
+		margin: 0px auto;
+	}
+
+	#tab-right
+	{
+		max-width: 720px!important;
+		width: 100%;
+	}
+
+	.accordion
+	{
+		float: left;
+		left: 240px;
+		margin-top: 134px!important;
+		position: absolute!important;
+	}
+
+	#tab-right
+	{
+		float: none;
+		height: auto !important;
+		margin-top: 345px;
+		max-width: 720px;
+		width: 100%!important;
+	}
+	
+
+/*3rd_part_text*/
+
+	#part_text
+	{
+		display: none!important;
+	}
+
+
+
+
+
+/*comingsoon*/
+
+	.side-button-nav
+	{
+		margin-top: 0px;
+		float: none;
+		margin: 0px auto;
+	}
+
+/*mytransaction_mob page*/
+
+	#mytransaction_mob
+	{
+		max-width: 746px !important;
+		width: 99% !important;
+	}
+
+	#mytransaction_mob ul.tranctiondata
+	{
+		font-size: 12px;
+	}
+
+	#mytransaction_mob ul tranctionlabel
+	{
+		font-size: 11px;
+	}
+
+	#product-table
+	{
+		width: 98%!important;
+	}
+
+/*report*/
+
+	.img_frame
+	{
+		width: 100%!important;
+		margin-left: 0px!important;
+	}
+
+	#imageget
+	{
+		width: 100%;
+	}
+
+	.styled-select
+	{
+		width: 100%!important;
+	}
+
+	#chart_div !img
+	{
+		width: 89%!important;
+	}
+
+
+/*my prop*/
+
+	.accordion_content.acc_my_pro
+	{
+		width: 620px;
+		margin: 0px auto!important;
+	}
+
+	.accordion_content.acc_my_pro >div
+	{
+		width: 100%!important;
+	}
+
+
+}
+
+@media screen and (max-width: 640px)
+{
+	
+/*email page*/
+
+	.tab_wrap
+	{
+		margin-left: 13px;
+		height: auto;
+	}
+
+	#guest
+	{
+		display: block;
+		float: left;
+		width: 250px;
+	}
+
+	#payloginu
+	{
+		display: block;
+		float: right;
+		width: 250px;
+	}
+
+	.containerpay_mob
+	{
+		height: auto !important;
+		margin: 70px auto;
+		padding: 0;
+		width: 92% !important;
+	}
+	
+/*contact page*/
+
+
+	#u_login_mob
+	{
+		float: none !important;
+		width: 90% !important;
+		margin-top: -8px !important;
+	}
+
+
+/*faq*/	
+
+	.faq
+	{
+		margin: 120px auto;
+		max-width: 458px;
+		width: 80%;
+		height: auto!important;
+		padding-bottom: 20px;
+		padding-top: 20px;
+	}
+
+	.box-faq
+	{
+		float: none!important;
+	}
+
+	#no-1
+	{
+		margin-leauto !important;
+		margin-right: auto !important;
+	}
+
+	#no-2
+	{
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	#no-3
+	{
+		margin: 0px auto;
+	}
+
+	#tab-right
+	{
+		max-width: 720px!important;
+		width: 100%;
+	}
+
+	.accordion
+	{
+		float: left;
+		left: 197px;
+		margin-top: 134px!important;
+		position: absolute!important;
+	}
+
+	#tab-right
+	{
+		float: none;
+		height: auto !important;
+		margin-top: 345px;
+		max-width: 720px;
+		width: 100%!important;
+	}
+
+/*comingsoon*/
+
+	.side-button-nav
+	{
+		margin-top: 0px;
+		float: none;
+		margin: 0px auto;
+	}
+
+	.payment_mob
+	{
+		width: 88%!important;
+		margin: 0px auto!important;
+	}
+/*user*/
+	.user-pannel
+	{
+		width: 555px;
+	}
+
+	.user-pannel ul li
+	{
+		width: 234px;
+	}
+
+	.user-pannel ul li.m_rpt
+	{
+		margin-left133px!important;
+	}
+	
+/*my-acc*/
+
+	.profile
+	{
+		width: 400px!important;
+	}
+
+	#container
+	{
+		max-width: 620px;
+		width: 100%!important;
+	}
+
+	#vertical_container
+	{
+		width: 100%!important;
+	}
+
+	.accordion_toggle
+	{
+		width: auto!important;
+	}
+
+	.accordion_content
+	{
+		width: 100%!important;
+	}
+
+	.col1
+	{
+		float: none!important;
+		width: 75%!important;
+		margin: 0px auto;
+	}
+
+	.col1.table1
+	{
+		width: 100%!important;
+	}
+
+	.col2
+	{
+		float: none!important;
+		width: 75%!important;
+		margin: 0px auto;
+	}
+
+	.col2 .table2
+	{
+		width: 100%!important;
+		margin-top: 0px!important;
+	}
+
+	.col2 .table2 td.tdwidth_formob
+	{
+		width: 25%!important;
+	}
+
+/*3rd_part_text*/	
+	#part_text
+	{
+		display: none!important;
+	}
+
+	#party_payment_form
+	{
+		float: none !important;
+		margin: 50px auto !important;
+	}
+
+/*mytransaction_mob page*/
+
+	#mytransaction_mob
+	{
+		max-width: 746px !important;
+		width: 99% !important;
+	}
+
+	#mytransaction_mob ul.tranctiondata li
+	{
+		font-size: 12px;
+		width: 99px;
+	}
+
+	#mytransaction_mob ul.tranctionlabel
+	{
+		font-size: 11px;
+	}
+
+	#product-table
+	{
+		width: 98%!important;
+	}
+
+	.accordion_content > div
+	{
+		width: 100%!important;
+	}
+
+/*report*/
+
+	.img_frame
+	{
+		width: 100%!important;
+		margin-left: 0px!important;
+	}
+
+	#imageget
+	{
+		width: 100%;
+	}
+
+	.styled-select
+	{
+		width: 100%!important;
+		padding-left: 3px;
+	}
+
+	#chart_div !img
+	{
+		width: 95%!important;
+	}
+/*pro*/
+
+	.right > div#vertical_container .accordion_toggle
+	{
+		width: 600px;
+		margin: 0px auto;
+	}
+
+	.right > div#vertical_container .accordion_toggle
+	{
+		width: 600px;
+		margin: 0px auto;
+	}
+}
+@media screen and (max-width: 600px){
+/*faq*/	
+
+	.faq
+	{
+		margin: 120px auto;
+		width: 80%;
+		height: auto!important;
+		padding-bottom: 20px;
+		padding-top: 20px;
+	}
+
+	.box-faq
+	{
+		float: none!important;
+	}
+
+	#no-1
+	{
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	#no-2
+	{
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	#no-3
+	{
+		margin: 0px auto;
+	}
+
+	#tab-right
+	{
+		max-width: 720px!important;
+		width: 100%;
+	}
+
+	.accordion
+	{
+		float: left;
+		left: 124px;
+		margin-top: 134px!important;
+		position: absolute!important;
+	}
+
+	#tab-right
+	{
+		float: none;
+		height: auto !important;
+		margin-top: 345px;
+		max-width: 720px;
+		width: 100%!important;
+	}
+	
+	/*user*/
+	
+		.user-pannel
+	{
+		width: 304px;
+	}
+
+	.dashboard_mob-1
+	{
+		float: none!important;
+	}
+
+	.dashboard_mob-2
+	{
+		float: none!important;
+	}
+
+	.user-pannel ul li.m_rpt
+	{
+		margin-left: 0px!important;
+		width: 77%!important;
+	}
+	
+	/*mytransaction_mob page*/
+
+	#mytransaction_mob
+	{
+		max-width: 746px !important;
+		width: 99% !important;
+	}
+
+	#mytransaction_mob ul.tranctiondata li
+	{
+		font-size: 12px;
+		width: 92px;
+	}
+
+	#mytransaction_mob ul.tranctionlabel
+	{
+		font-size: 11px;
+	}
+
+	#product-table				
+	{
+		width: 98%!important;
+	}
+
+	.accordion_content > div
+	{
+		width: 100%!important;
+	}
+
+	/**/
+	#autoaddpro_mob{ width:100%;}	
+}
+@media screen and (max-width: 480px)
+{
+	/*email page*/
+	.tab_wrap
+	{
+		margin-left: 0px;
+		height: auto;
+	}
+
+	#guest
+	{
+		display: block;
+		float: none;
+		margin: 0 auto;
+		width: 250px;
+	}
+
+	#payloginu
+	{
+		display: block;
+		float: none;
+		margin: 0 auto;
+		width: 250px;
+	}
+
+	.containerpay_mob
+	{
+		height: auto !important;
+		margin: 47px auto;
+		padding: 0;
+		width: 57% !important;
+	}
+	
+/*contact page*/
+
+	#contact_form_mob
+	{
+		float: none !important;
+		width: 90% !important;
+	}
+
+	#contact_form_mob #message
+	{
+		max-width: 260px!important;
+		width: 76%!important;
+	}
+
+	#contact_form_mob input.msgsend
+	{
+		width: 257px !important;
+	}
+
+/*faq*/	
+
+	.faq
+	{
+		margin: 120px auto;
+		width: 80%;
+		height: auto!important;
+		padding-bottom: 20px;
+		padding-top: 20px;
+	}
+
+	.box-faq
+	{
+		float: none!important;
+	}
+
+	#no-1
+	{
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	#no-2
+	{
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	#no-3
+	{
+		margin: 0px auto;
+	}
+
+	#tab-right
+	{
+		max-width: 720px!important;
+		width: 100%;
+	}
+
+	.accordion
+	{
+		float: left;
+		left: 124px;
+		margin-top: 134px!important;
+		position: absolute!important;
+	}
+
+	#tab-right
+	{
+		float: none;
+		height: auto !important;
+		margin-top: 345px;
+		max-width: 720px;
+		width: 100%!important;
+	}
+/*comingsoon*/
+	.side-button-nav
+	{
+		margin-top: 0px;
+		float: none;
+		margin: 0px auto;
+	}
+	
+/*user*/
+
+	.user-pannel
+	{
+		width: 304px;
+	}
+
+	.dashboard_mob-1
+	{
+		float: none!important;
+	}
+
+	.dashboard_mob-2
+	{
+		float: none!important;
+	}
+
+	.user-pannel ul li.m_rpt
+	{
+		margin-left: 0px!important;
+		width: 77%!important;
+	}
+
+	.payordertable input
+	{
+		width: 150px;
+	}
+
+	.payordertable td
+	{
+		width: 0px;
+	}
+/*my-acc*/
+	.profile
+	{
+		width: 400px!important;
+	}
+
+	#container
+	{
+		max-width: 620px;
+		width: 100%!important;
+	}
+
+	#vertical_container
+	{
+		width: 100%!important;
+	}
+
+	.accordion_toggle
+	{
+		width: auto!important;
+	}
+
+	.accordion_content
+	{
+		width: 100%!important;
+	}
+
+	.col1
+	{
+		float: none!important;
+		width: 75%!important;
+		margin: 0px auto;
+	}
+
+	.col1 .table1
+	{
+		width: 100%!important;
+	}
+
+	.col2
+	{
+		float: none!important;
+		width: 75%!important;
+		margin: 0px auto;
+	}
+
+	.col2 .table2
+	{
+		width: 100%!important;
+		margin-top: 0px!important;
+	}
+
+	.col2 .table2 td.tdwidth_formob
+	{
+		width: 25%!important;
+	}
+
+/*mytransaction_mob page*/
+
+	#mytransaction_mob
+	{
+		max-width: 746px !important;
+		width: 99% !important;
+	}
+
+	#mytransaction_mob ul.tranctiondata li
+	{
+		font-size: 12px;
+		width: 69px;
+	}
+
+	#mytransaction_mob ul.tranctionlabel
+	{
+		font-size: 11px;
+		font-weight: normal;
+	}
+
+	#product-table
+	{
+		width: 98%!important;
+	}
+
+/*property*/
+
+	#vertical_con_Pro
+	{
+		margin-top: 30px;
+	}
+/*3rd_part_text*/
+
+	#part_text
+	{
+		display: none!important;
+	}
+
+	#party_payment_form .msgsend
+	{
+		width: 258px!important;
+	}
+
+	#party_payment_form
+	{
+		float: none !important;
+		margin: 50px auto !important;
+	}
+
+
+/*report*/
+
+	.img_frame
+	{
+		width: 100%!important;
+		margin-left: 0px!important;
+	}
+
+	#imageget
+	{
+		width: 100%;
+	}
+
+	.styled-select
+	{
+		width: 100%!important;
+	}
+
+	#chart_div !img
+	{
+		width: 89%!important;
+	}
+	
+/*pro*/
+
+
+#addpro
+	{
+		width: 73%;
+	}
+
+	-->
+.right > div#vertical_container .accordion_toggle
+	{
+		width: 600px;
+		margin: 0px auto;
+	}
+
+	.right > div#vertical_container .accordion_toggle
+	{
+		width: 600px;
+		margin: 0px auto;
+	}
+	
+	/**/
+	#autoaddpro_mob{ width:100%;}	
+}
+
+@media screen and (max-width: 360px)
+{
+	
+/*email page*/
+
+	.tab_wrap
+	{
+		margin-left: 0px;
+		height: auto;
+	}
+
+	#guest
+	{
+		display: block;
+		float: none;
+		margin: 0 auto;
+		width: 250px;
+	}
+
+	#payloginu
+	{
+		display: block;
+		float: none;
+		margin: 0 auto;
+		width: 250px;
+	}
+
+	.containerpay_mob
+	{
+		height: auto !important;
+		margin: 47px auto;
+		padding: 0;
+		width: 78% !important;
+	}
+	
+/*contact page*/
+
+	#contact_form_mob
+	{
+		float: none !important;
+		margin: 120px auto !important;
+		width: 90% !important;
+	}
+
+	#contactustex_mob
+	{
+		display: none;
+	}
+
+	#contact_form_mob #message
+	{
+		max-width: 260px!important;
+		width: 76%!important;
+	}
+
+	#contact_form_mob input.msgsend
+	{
+		width: 237px!important;
+	}
+	
+/*faq*/	
+
+	.faq
+	{
+		margin: 120px auto;
+		width: 80%;
+		height: auto!important;
+		padding-bottom: 20px;
+		padding-top: 20px;
+	}
+
+	.box-faq
+	{
+		float: none!important;
+	}
+
+	#no-1
+	{
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	#no-2
+	{
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+	#no-3
+	{
+		margin: 0px auto;
+	}
+
+	#tab-right
+	{
+		max-width: 720px!important;
+		width: 100%;
+	}
+
+	.accordion
+	{
+		float: left;
+		left: 50px;
+		top: 502px;
+		margin-top: 134px!important;
+		position: absolute!important;
+	}
+
+	#tab-right
+	{
+		float: none!important;
+		height: auto !important;
+		margin-top: 472px;
+		max-width: 720px;
+		width: 100%!important;
+	}
+
+
+/*login-user*/
+
+	#u_login_mob .login-close
+	{
+		width: 211px !important;
+	}
+
+/*comingsoon*/
+
+	.side-button-nav
+	{
+		margin-top: 0px;
+		float: none;
+		margin: 0px auto;
+	}
+
+	.payordertable input
+	{
+		width: 80px;
+	}
+
+	.payordertable td
+	{
+		width: 0px;
+	}
+
+/*user*/
+
+	.user-pannel
+	{
+		width: 223px;
+	}
+
+	.dashboard_mob-1
+	{
+		float: none!important;
+	}
+
+	.dashboard_mob-2
+	{
+		float: none!important;
+	}
+
+	.user-pannel ul li
+	{
+		padding: 0px;
+		width: 221px;
+	}
+
+	.user-pannel ul li.m_rpt
+	{
+		width: 98%!important;
+	}
+
+/*my-acc*/
+
+	.profile
+	{
+		width: 260px!important;
+	}
+
+	#container
+	{
+		max-width: 620px;
+		width: 100%!important;
+	}
+
+	#vertical_container
+	{
+		width: 100%!important;
+	}
+
+	.accordion_toggle
+	{
+		width: auto!important;
+	}
+
+	.accordion_content
+	{
+		width: 100%!important;
+	}
+
+	.col1
+	{
+		float: none!important;
+		width: 100%!important;
+	}
+
+	.col1 .table1
+	{
+		width: 100%!important;
+	}
+
+	.col2
+	{
+		float: none!important;
+		width: 100%!important;
+	}
+
+	.col2 .table2
+	{
+		width: 100%!important;
+		margin-top: 0px!important;
+	}
+
+	.col2 .table2 td.tdwidth_formob
+	{
+		width: 25%!important;
+	}
+
+/*3rd_part_text*/
+
+	#part_text
+	{
+		display: none!important;
+	}
+
+	#party_payment_form .msgsend
+	{
+		width: 230px!important;
+	}
+
+	#party_payment_form
+	{
+		float: none !important;
+		margin: 118px auto !important;
+	}
+
+/*mytransaction_mob page*/
+
+	#mytransaction_mob
+	{
+		max-width: 746px !important;
+		width: 99% !important;
+	}
+
+	#mytransaction_mob ul.tranctiondata li
+	{
+		font-size: 11px;
+		width: 52px;
+	}
+
+	#mytransaction_mob ul.tranctionlabel
+	{
+		font-size: 11px;
+		font-weight: normal;
+	}
+
+	#mytransaction_mob ul.tranctionlabel li.tranctionlabel
+	{
+		width: 15%;
+		font-size: 11px;
+		font-weight: normal;
+	}
+
+	#product-table
+	{
+		width: 98%!important;
+	}
+/*report*/
+
+	.img_frame
+	{
+		width: 100%!important;
+		margin-left: 0px!important;
+	}
+
+	#imageget
+	{
+		width: 100%;
+	}
+
+	.styled-select
+	{
+		width: 100%!important;
+	}
+
+	#chart_div !img
+	{
+		width: 89%!important;
+	}
+
+
+	/*my-prp*/
+	
+	.vert_my_pro
+	{
+		margin-top: 120px;
+	}
+
+	.prow0
+	{
+		font-size: 11px;
+	}
+
+	.prow1
+	{
+		font-size: 11px;
+	}
+	/*pro*/
+	
+	.right > div#vertical_container .accordion_toggle
+	{
+		width: 600px;
+		margin: 0px auto;
+	}
+
+	.right > div#vertical_container .accordion_toggle
+	{
+		width: 600px;
+		margin: 0px auto;
+	}
+	
+	/**/
+	#autoaddpro_mob{ width:100%;}	
+
+}
+
+@media screen and (max-width: 320px)
+{
+/*email page*/
+
+	.tab_wrap
+	{
+		margin-left: 0px;
+		height: auto;
+	}
+
+	.containerpay_mob
+	{
+		height: auto !important;
+		margin: 47px auto;
+		padding: 0;
+		width: 90% !important;
+	}
+/*order-summery*/
+		
+	.payment
+	{
+		margin-left: 0px;
+	}
+
+	.payment table tr td
+	{
+		font-size: 13px;
+	}
+
+/*contact page*/
+
+	#contact_form_mob
+	{
+		float: none !important;
+		margin: 120px auto !important;
+		width: 90% !important;
+	}
+
+	#contact_form_mob #message
+	{
+		max-width: 260px!important;
+		width: 76%!important;
+	}
+
+	#contact_form_mob input.msgsend
+	{
+		width: 208px !important;
+	}
+
+	#contactustex_mob
+	{
+		display: none;
+	}
+	
+/*faq*/	
+
+	.faq
+	{
+		margin: 120px auto;
+		max-width: 458px;
+		width: 91%;
+		height: auto!important;
+		padding-bottom: 20px;
+		padding-top: 20px;
+	}
+
+	.box-faq
+	{
+		float: none!important;
+	}
+
+	#no-1
+	{
+		margin: 0px auto;
+	}
+
+	#no-2
+	{
+		margin: 0px auto;
+	}
+
+	#no-3
+	{
+		margin: 0px auto;
+	}
+
+	#tab-right
+	{
+		max-width: 720px!important;
+		width: 100%;
+	}
+
+	.accordion
+	{
+		float: left;
+		left: 35px;
+		top: 502px;
+		margin-top: 134px!important;
+		position: absolute!important;
+	}
+
+	#tab-right
+	{
+		float: none!important;
+		height: auto !important;
+		margin-top: 472px;
+		max-width: 720px;
+		width: 100%!important;
+	}
+		
+/*comingsoon*/
+
+	.side-button-nav
+	{
+		margin-top: 0px;
+		float: none;
+		margin: 0px auto;
+	}
+	
+/*user*/
+
+	.user-pannel
+	{
+		width: 223px;
+	}
+
+	.dashboard_mob-1
+	{
+		float: none!important;
+	}
+
+	.dashboard_mob-2
+	{
+		float: none!important;
+	}
+
+	.user-pannel ul li
+	{
+		padding: 0px;
+		width: 221px;
+	}
+
+	.user-pannel ul li.m_rpt
+	{
+		width: 99%!important;
+	}
+
+
+/*my-acc*/
+
+	.profile
+	{
+		width: 260px!important;
+	}
+
+	#container
+	{
+		max-width: 620px;
+		width: 100%!important;
+	}
+
+	#container #vertical_container
+	{
+		width: 100%!important;
+	}
+
+	#container .accordion_toggle
+	{
+		width: auto!important;
+	}
+
+	#container .accordion_content
+	{
+		width: 100%!important;
+	}
+
+	.col1
+	{
+		float: none!important;
+		width: 100%!important;
+	}
+
+	.col1 .table1
+	{
+		width: 100%!important;
+	}
+
+	.col2
+	{
+		float: none!important;
+		width: 100%!important;
+	}
+
+	.col2 .table2
+	{
+		width: 100%!important;
+		margin-top: 0px!important;
+	}
+
+	.col2 .table2 td.tdwidth_formob
+	{
+		width: 25%!important;
+	}
+
+	updateprofile #email
+	{
+		border-radius: 0px!important;
+		border: 2px solid #D7EB9C!important;
+		box-shadow: none!important;
+		height: 20px !important;
+		vertical-align: middle!important;
+		width: 165px !important;
+	}
+
+	.prow0
+	{
+		font-size: 10px;
+	}
+
+	.table-header-options a, .table-header-repeat a
+	{
+		font-size: 10px;
+		font-weight: normal;
+	}
+	
+/*3rd_part_text*/
+
+	#part_text
+	{
+		display: none!important;
+	}
+
+	#party_payment_form .msgsend
+	{
+		width: 200px!important;
+	}
+
+	#party_payment_form
+	{
+		float: none !important;
+		margin: 118px auto !important;
+	}
+	
+/*mytransaction_mob page*/
+
+	#mytransaction_mob
+	{
+		max-width: 746px !important;
+		width: 99% !important;
+	}
+
+	#mytransaction_mob ul.tranctiondata li
+	{
+		font-size: 11px;
+		width: 46px;
+	}
+
+	#mytransaction_mob ul.tranctionlabel
+	{
+		font-size: 11px;
+		font-weight: normal;
+	}
+
+	#product-table
+	{
+		width: 98%!important;
+	}
+/*report*/
+
+	.img_frame
+	{
+		width: 100%!important;
+		margin-left: 0px!important;
+	}
+
+	#imageget
+	{
+		width: 100%;
+	}
+
+	.styled-select
+	{
+		width: 100%!important;
+	}
+
+	#chart_div !img
+	{
+		width: 89%!important;
+	}
+	
+	/*my-prp*/
+	
+	.vert_my_pro
+	{
+		margin-top: 120px;
+	}
+
+	.prow0
+	{
+		font-size: 11px;
+	}
+
+	.prow1
+	{
+		font-size: 11px;
+	}
+
+	#addpro .form_my_pr-o
+	{
+		margin: 0px auto;
+		width: 260px;
+	}
+
+	#addpro .form_my_pr-o select
+	{
+		width: 216px;
+	}
+
+	#addpro .form_my_pr-o input[type="text"]
+	{
+		width: 216px;
+	}
+
+	#addpro .form_my_pr-o input[type="submit"]
+	{
+		width: 216px!important;
+	}
+	/**/
+	#autoaddpro_mob{ width:100%;}	
+
+}

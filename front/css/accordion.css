@@ -1,0 +1,318 @@
+/*********************************************************************************************
+
+
+
+How to Create CSS3 Content Accordion [Tutorial]
+
+"How to Create CSS3 Content Accordion" that was specially made for DesignModo by our friend Valeriu Timbuc.
+
+
+
+Links: 
+
+http://vtimbuc.net/
+
+http://codecanyon.net/user/downv/portfolio?ref=downv
+
+https://twitter.com/vtimbuc
+
+http://designmodo.com/futurico
+
+http://vladimirkudinov.com
+
+http://rockablethemes.com
+
+
+
+ * ********************************************************************************************/
+
+ .vert_my_pro{ max-width:621px; width:100%; margin:0px auto;}
+
+ .clr{ clear:both;}
+
+.faq{height:auto; margin:0px auto; }
+
+.accordion,.accordion div,.accordion h1,.accordion p,.accordion a,.accordion img,.accordion span,.accordion em,.accordion ul,.accordion li {
+
+	margin: 0;
+
+	padding: 0;
+
+	border: none;
+
+}
+
+
+
+/* Accordion Layout Styles */
+
+
+
+.accordion {
+
+    border: 1px solid #DEDEDE;
+
+    border-radius: 3px;
+
+    box-shadow: 0 7px 3px -5px #383838;
+
+    margin-left: 12px;
+
+    padding: 20px 0;
+
+    width: 228px;
+
+}
+
+.accordion h3 {
+
+	font-family:Arial, Helvetica, sans-serif; font-size:22px; color:#090; padding:0px; margin:0px; padding-left:20px; margin-bottom:20px;
+
+}
+
+
+
+.accordion .tab {
+
+	display: block;
+
+	height: 28px;
+
+	margin-top: 4px;
+
+	padding-left: 20px;
+
+	font-size:12px; font-weight:bold; font-family:Arial, Helvetica, sans-serif;
+
+	text-decoration: none;
+
+	color: #fff;
+
+	border-bottom:1px dotted #fff;
+
+}
+
+
+
+.accordion .tab:hover,
+
+.accordion div:target .tab {
+
+}
+
+.accordion div .content {
+
+	display: none;
+
+	margin: 5px 0;
+
+}
+
+.accordion div:target .content {
+
+	display: block;
+
+}
+
+.accordion > div {
+
+	/*height: 40px;
+
+	overflow: hidden; */
+
+}
+
+
+
+.accordion > div:target {
+
+	height: auto;
+
+}
+
+/* Accordion Content Styles */
+
+.accordion .content em.bullet {
+
+}
+
+.accordion .content ul  {
+
+	text-align:left;
+
+	padding-left:40px;
+
+
+
+
+
+}.accordion .content ul li {
+
+	list-style: none;
+
+	margin: 5px 10px 5px 0;
+
+	cursor:pointer;
+
+	font-family:Arial, Helvetica, sans-serif;
+
+	font-size:13px; color:#fff;
+
+	 line-height:24px;
+
+}
+
+.accordion .content ul li a {
+
+	font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#fff; text-decoration:none;
+
+	list-style: none;
+
+	margin: 5px 10px 5px 0;
+
+}
+
+
+
+#tab-right{ width:720px; float:left; height:auto;}
+
+.view-content h4{ font-family:Arial, Helvetica, sans-serif; font-size:17px; font-weight:bold; color:#FFFFFF; border-bottom:1px solid #CCC; line-height:43px; padding-left:8px; margin:0px; }
+
+.view-content p{ font-size:12px; font-weight:lighter; letter-spacing:1px; color:#FFFFFF;  margin:0px; padding:0px; line-height:26px; padding-left:15px; font-weight:bold; border:1px solid;}
+
+.view-content p.bold{ font-family:Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; color:#FFFFFF; text-transform:uppercase;  margin:10px; padding:0px; border:0px;}
+
+
+
+.view-content span{color:#000; font-size:16px;}
+
+.view-content {
+
+	display: none;
+
+}
+
+.tab-right div:target #view-content {
+
+	display: block;
+
+}
+
+
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+/**
+
+ * 	CSS3 Only Horizontal and Vertical acco_rdion 
+
+ * 	Author: Paul Underwood for Hongkiat.com
+
+ *  Website: www.paulund.co.uk
+
+ *  Date: 27/11/11
+
+ *  Version: 1.0
+
+ */
+
+
+
+ 
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
+
+audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+
+audio:not([controls]) { display: none; }
+
+[hidden] { display: none; }
+
+html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+
+
+
+
+/*Define acco_rdion  box*/
+
+.acco_rdion  {/* width:100%;*/ /*overflow:hidden;*//* margin:10px auto; */color:#474747;/* background:#414141;*/ /*padding:10px; */}
+
+
+
+/*General acco_rdion ****************************************************************************/
+
+/*Set style of open slide*/
+
+.acco_rdion  section:target { padding:10px;}
+
+.acco_rdion  section:target:hover {  }
+
+.acco_rdion  section:target h2 {width:100%;}
+
+.acco_rdion  section:target h2 a{ color:#EE8309; padding:0;}
+
+.acco_rdion  section:target p {display:block;}
+
+.acco_rdion  section h2 a{padding:0px 10px;display:block; margin:0px 0px; font-size:13px; letter-spacing:1px; font-weight:lighter;color:#fff; text-decoration:none; font-weight:bold; }
+
+.acco_rdion  section h2 a:hover{color:#EE8309}
+
+
+
+/*set style of closed slide*/
+
+.acco_rdion  section{ float:left;	overflow:hidden; color:#000; cursor:pointer; background:#; }
+
+.acco_rdion  section:hover {background:#}
+
+.acco_rdion  section p { display:none; }
+
+.acco_rdion  section:after{position:relative;font-size:0px;color:#000;font-weight:bold;}
+
+.acco_rdion  section:nth-child(1):after{content:'';}
+
+.acco_rdion  section:nth-child(2):after{content:'';}
+
+.acco_rdion  section:nth-child(3):after{content:'';}
+
+.acco_rdion  section:nth-child(4):after{content:'';}
+
+.acco_rdion  section:nth-child(5):after{content:'';}
+
+/*End General acco_rdion ****************************************************************************/
+
+
+
+/*Vertical acco_rdion  *************************************************************************/
+
+.vertical section{ width:100%; height:auto;
+
+	-webkit-transition:height 0.2s ease-out;
+
+	-moz-transition:height 0.2s ease-out;
+
+  	-o-transition:height 0.2s ease-out;
+
+	-ms-transition:height 0.2s ease-out;
+
+  	transition:height 0.2s ease-out;
+
+}
+
+/*Set height of the slide*/
+
+.vertical :target{ height:auto; padding-bottom:15px;}
+
+
+
+.vertical section h2 { position:relative; /*eft:0; top:-15px; */margin:0px; padding:0px;}
+
+
+
+/*Set position of the number on the slide*/
+
+.vertical section:after{ top:-60px;left:810px;}
+
+.vertical section:target:after{ left:-9999px;}
+

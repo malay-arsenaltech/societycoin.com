@@ -1,0 +1,27 @@
+SocietyName,society_id,PropertyAddress,property_id,sdate,edate,billname,bill_id,amount,totalamount,addbyid,status
+Mayur Vihar Society Phase-1,5,Flat Number-5647,10,,,Water,1,,,,
+Mayur Vihar Society Phase-1,5,Flat Number-5647,10,,,Telephone,2,,,,
+Mayur Vihar Society Phase-1,5,Flat Number-5647,10,,,Electricity,4,,,,
+Mayur Vihar Society Phase-1,5,Flat Number-5647,10,,,House Rent,5,,,,
+Mayur Vihar Society Phase-1,5,Flat Number-5647,10,,,Gas,6,,,,
+Mayur Vihar Society Phase-1,5,Flat Number-5647,10,,,Security,7,,,,
+Mayur Vihar Society Phase-1,5,Flat Number-5647,10,,,Car Parking,8,,,,
+Mayur Vihar Society Phase-1,5,Flat Number-5647,10,,,Building Maintenance,9,,,,
+Mayur Vihar Society Phase-1,5,Flat Number-5647,10,,,Play Ground Maintenance,10,,,,
+Mayur Vihar Society Phase-1,5,Flat Number-5647,10,,,Sub Charge,22,,,,
+Mayur Vihar Society Phase-1,5,Flat Number-5647,10,,,Sub Charge1,23,,,,
+Mayur Vihar Society Phase-1,5,Flat Number-5647,10,,,Sub Charge3,24,,,,
+Mayur Vihar Society Phase-1,5,Flat Number-5647,10,,,Sub Charge5,25,,,,
+Mayur Vihar Society Phase-1,5,Hyper Tower Flat No-125,9,,,Water,1,,,,
+Mayur Vihar Society Phase-1,5,Hyper Tower Flat No-125,9,,,Telephone,2,,,,
+Mayur Vihar Society Phase-1,5,Hyper Tower Flat No-125,9,,,Electricity,4
+Mayur Vihar Society Phase-1,5,Hyper Tower Flat No-125,9,,,House Rent,5
+Mayur Vihar Society Phase-1,5,Hyper Tower Flat No-125,9,,,Gas,6
+Mayur Vihar Society Phase-1,5,Hyper Tower Flat No-125,9,,,Security,7
+Mayur Vihar Society Phase-1,5,Hyper Tower Flat No-125,9,,,Car Parking,8
+Mayur Vihar Society Phase-1,5,Hyper Tower Flat No-125,9,,,Building Maintenance,9
+Mayur Vihar Society Phase-1,5,Hyper Tower Flat No-125,9,,,Play Ground Maintenance,10
+Mayur Vihar Society Phase-1,5,Hyper Tower Flat No-125,9,,,Sub Charge,22
+Mayur Vihar Society Phase-1,5,Hyper Tower Flat No-125,9,,,Sub Charge1,23
+Mayur Vihar Society Phase-1,5,Hyper Tower Flat No-125,9,,,Sub Charge3,24
+Mayur Vihar Society Phase-1,5,Hyper Tower Flat No-125,9,,,Sub Charge5,25
