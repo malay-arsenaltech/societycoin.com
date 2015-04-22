@@ -33,8 +33,12 @@ class Allflats extends CI_Controller {
 
             while ($post_data = fgetcsv($handle, 1000, ",", "'")) {
                 $post_data = array_map("trim", $post_data);
+                
 //                if ($i <= 2)
 //                    continue;
+                if($post_data[0] == "" && $post_data[1] == "" && $post_data[2] == ""){
+                    continue;
+                }
                 if ($post_data[0] != "" && $post_data[1] != "" && $post_data[2] != "" && valid_email($post_data[1]) && !in_array($post_data[1], $validate_email)) {
                     $success_record[] = array("address" => $post_data[0], "email_address" => $post_data[1], "name" => $post_data[2]);
                     $validate_email[] = $post_data[1];

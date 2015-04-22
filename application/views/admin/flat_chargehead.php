@@ -25,18 +25,22 @@
         $(".charge_head_form").slideToggle("slow").find("input").val("");
 
     }
-    $(".add_charge_head").live("click", function(e) { 
+    $(".add_charge_head").live("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
         if ($(".charge_head_form").find("[name='custom_charge_head']").val() == "") {
             return false;
         } else {
-            $.post("<?php echo base_url(); ?>admin/allchargehead/addchargehead", {"charge_head_name":$(".charge_head_form").find("[name='custom_charge_head']").val()}, function(result) {
+            $.post("<?php echo base_url(); ?>admin/allchargehead/addchargehead", {"charge_head_name": $(".charge_head_form").find("[name='custom_charge_head']").val()}, function(result) {
                 result = $.parseJSON(result);
                 if (result != "0") {
                     var html = '<tr><td colspan="2"><input type="checkbox" name="charge_head[]" id="' + result.id + '" value="' + result.id + '"><b><label class="checkbox_label" for="' + result.id + '">' + result.name + '</label></b></td></tr>'
-                    $(html).insertAfter($(".checkbox:last"));
+                    if ($(".checkbox:last").length > 0)
+                        $(html).insertAfter($(".checkbox:last"));
+                    else
+                        $(html).insertAfter($(".chargehead_title"));
                     $(".charge_head_form").find("[name='custom_charge_head']").val("");
+                    $(".chargehead_or").show();
                 }
             })
         }
@@ -72,13 +76,11 @@
                     <form id="mainform" method='post' action="<?php echo base_url(); ?>admin/allflats/process">
                         <table id="id-form" class="table table-bordered">
                             <thead>
-                                <tr>    
+                                <tr class="chargehead_title">    
                                     <td colspan="2"><h2>CHARGE HEADS</h2></td>
                                 </tr>
-                                <?php 
-                           //      print_r($charge_head);
-                                 foreach ($charge_head as $val) { 
-                                   
+                                <?php
+                                foreach ($charge_head as $val) {
                                     ?>
                                     <tr class="checkbox">    
                                         <td colspan="2">
@@ -86,7 +88,7 @@
                                         </td>
                                     </tr>
                                 <?php } ?>
-                                <tr>
+                                <tr class="chargehead_or" style="<?php echo empty($charge_head) ? 'display:none;' : ''?>">
                                     <td colspan="2"><h2><center>OR</center></h2></td>
                                 </tr>
                                 <tr>
