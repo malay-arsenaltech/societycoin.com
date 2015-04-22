@@ -24,7 +24,7 @@
 </style>
 <script>
     function add_flat() {
-        window.location = "<?php echo base_url();?>admin/allflats/addflat";
+        window.location = "<?php echo base_url(); ?>admin/allflats/addflat";
     }
 </script>
 
@@ -58,12 +58,26 @@
                         <table id="id-form" class="table table-bordered">
                             <thead>
                                 <tr>    
-                                    <td colspan="2">Total <b><?php echo count($success_record); ?></b> flat owner(s) will be added successfully out of <b><?php echo count($success_record) + count($failure_data); ?></b> flat owner(s).</td>
+                                    <td colspan="2">
+                                        <div id="message-green">
+                                            <table  cellspacing="0" cellpadding="0" border="0">
+                                                <tbody><tr>
+                                                        <td class="green-left">Total <b><?php echo count($success_record); ?></b> flat owner(s) will be added successfully out of <b><?php echo count($success_record) + count($failure_data); ?></b> flat owner(s).</td>
+                                                    </tr>
+                                                </tbody></table>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <?php if (!empty($failure_data)) { ?>
                                     <tr>    
                                         <td colspan="2">
-                                            Total <b><?php echo count($failure_data); ?></b> flat owner(s) will not be added out of <b><?php echo count($success_record) + count($failure_data); ?></b> flat owner(s) as they contains error. Following is the list of the flat owner(s) which will not be added.
+                                            <div id="message-red">
+                                                <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                                    <tbody><tr>
+                                                            <td class="red-left">Total <b><?php echo count($failure_data); ?></b> flat owner(s) will not be added out of <b><?php echo count($success_record) + count($failure_data); ?></b> flat owner(s) as they contains error. Following is the list of the flat owner(s) which will not be added.</td>
+                                                        </tr>
+                                                    </tbody></table>
+                                            </div>
                                             <table border="0" width="96%" cellpadding="0" cellspacing="0" class="reference" id="product-table">
                                                 <tr>
                                                     <th class="table-header-repeat line-left minwidth-1"><span>Flat Address</span>	</th>
@@ -87,19 +101,20 @@
                                 </tr>
 
                                 <tr>
-                                    <td width="35%"></td>
-                                    <td>
-                                        <input type="hidden" name="success_record" value='<?php echo json_encode($success_record)?>'>
-                                        <input type="hidden" name="failure_record" value='<?php echo json_encode($failure_data)?>'>
-                                        <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" >
-                                        <?php if(!empty($success_record)){?>
-                                        <input type="submit" class="form-proceed" value="Yes">
-                                        <?php } ?>
-                                        <input class="form-back" type="reset" value="No" onclick="add_flat()" >&nbsp;
-                                        
-                                        
-                                    </td>
-                                </tr>
+                                    <td colspan="2">
+                            <center>
+                                <input type="hidden" name="success_record" value='<?php echo json_encode($success_record) ?>'>
+                                <input type="hidden" name="failure_record" value='<?php echo json_encode($failure_data) ?>'>
+                                <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" >
+
+                                <?php if (!empty($success_record)) { ?>
+                                    <input type="submit" class="form-proceed" value="Yes">
+                                <?php } ?>
+                                <input class="form-back" type="reset" value="No" onclick="add_flat()" >&nbsp;
+                            </center>
+
+                            </td>
+                            </tr>
                             </thead>
                         </table>
                     </form>

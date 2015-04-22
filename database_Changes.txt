@@ -1,0 +1,7 @@
+CREATE TABLE `ci_chargehead` (  `id` int(11) NOT NULL AUTO_INCREMENT,  `charge_head_name` varchar(255) DEFAULT NULL,  `added_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  `updated_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',  PRIMARY KEY (`id`)) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `ci_society_chargehead` (  `id` int(11) NOT NULL AUTO_INCREMENT,  `society_id` int(11) DEFAULT NULL,  `chargehead_id` int(11) DEFAULT NULL,  `added_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  `status` enum('0','1') DEFAULT '1',  PRIMARY KEY (`id`)) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+
+ALTER TABLE `ci_society_chargehead`   
+  ADD COLUMN `status` ENUM('0','1') DEFAULT '1'   NULL AFTER `added_on`;

@@ -30,6 +30,41 @@
         <!--  start page-heading -->
         <div id="page-heading">
             <h1>Add Flats</h1><br>
+            <?php
+            $msg_error = $this->session->flashdata('msg_error');
+
+            if ($msg_error != '') {
+                ?>             
+                <div id="message-green">
+                    <table  cellspacing="0" cellpadding="0" border="0">
+
+                        <tbody><tr>
+
+                                <td class="green-left"><?php echo $msg_error; ?></td>
+
+                                <td class="green-right"><a class="close-green"><img alt="" src="<?php echo AdminThemeUrl; ?>images/table/icon_close_green.gif"></a></td>
+
+                            </tr>
+
+                        </tbody></table>
+                </div>
+            <?php } ?>
+
+            <?php
+            $msg_error_red = $this->session->flashdata('msg_error_red');
+
+            if ($msg_error_red != '') {
+                ?> 
+                <div id="message-red">
+                    <table border="0" width="35%" cellpadding="0" cellspacing="0">
+                        <tbody><tr>
+                                <td class="red-left"><?php echo $msg_error_red; ?> </td>
+                                <td class="red-right"><a class="close-red"><img src="<?php echo AdminThemeUrl; ?>images/table/icon_close_red.gif" alt=""></a></td>
+                            </tr>
+                        </tbody></table>
+                </div>
+
+            <?php } ?>
         </div>
         <!-- end page-heading -->
         <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">

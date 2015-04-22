@@ -75,10 +75,14 @@
                                 <tr>    
                                     <td colspan="2"><h2>CHARGE HEADS</h2></td>
                                 </tr>
-                                <?php foreach ($charge_head as $val) { ?>
+                                <?php 
+                           //      print_r($charge_head);
+                                 foreach ($charge_head as $val) { 
+                                   
+                                    ?>
                                     <tr class="checkbox">    
                                         <td colspan="2">
-                                            <input type="checkbox" class="no-checkbox" name="charge_head[]" id="<?php echo $val->id; ?>" value="<?php echo $val->id; ?>"><b><label class="checkbox_label" for="<?php echo $val->id; ?>"><?php echo $val->charge_head_name; ?></label></b>
+                                            <input type="checkbox" class="no-checkbox" name="charge_head[]" id="<?php echo $val->chargehead_id; ?>" value="<?php echo $val->chargehead_id; ?>" checked='checked'><b><label class="checkbox_label" for="<?php echo $val->chargehead_id; ?>"><?php echo $val->charge_head_name; ?></label></b>
                                         </td>
                                     </tr>
                                 <?php } ?>
