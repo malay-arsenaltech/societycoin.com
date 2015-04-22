@@ -33,10 +33,13 @@ class Allflats extends CI_Controller {
 
             while ($post_data = fgetcsv($handle, 1000, ",", "'")) {
                 $post_data = array_map("trim", $post_data);
-                
-//                if ($i <= 2)
-//                    continue;
-                if($post_data[0] == "" && $post_data[1] == "" && $post_data[2] == ""){
+
+                if ($i < 1) {
+                    $i++;
+                    continue;
+                }
+
+                if ($post_data[0] == "" && $post_data[1] == "" && $post_data[2] == "") {
                     continue;
                 }
                 if ($post_data[0] != "" && $post_data[1] != "" && $post_data[2] != "" && valid_email($post_data[1]) && !in_array($post_data[1], $validate_email)) {
@@ -81,7 +84,7 @@ class Allflats extends CI_Controller {
         if ($this->input->post('success_record')) {
             $success_record = json_decode($this->input->post("success_record"));
             $charge_head = $this->input->post("charge_head");
-            $society_data = $this->db->select("ci_society.*,ci_country.countryname,ci_states.state,ci_city.cityname")->join("ci_country","ci_country.id = ci_society.countryid")->join("ci_states","ci_states.id = ci_society.stateid")->join("ci_city","ci_city.id = ci_society.cityid")->where("society_user_id", $this->session->userdata('admin_id'))->get("ci_society")->result();
+            $society_data = $this->db->select("ci_society.*,ci_country.countryname,ci_states.state,ci_city.cityname")->join("ci_country", "ci_country.id = ci_society.countryid")->join("ci_states", "ci_states.id = ci_society.stateid")->join("ci_city", "ci_city.id = ci_society.cityid")->where("society_user_id", $this->session->userdata('admin_id'))->get("ci_society")->result();
             $society_id = $society_data[0]->id;
             foreach ($success_record as $val) {
                 $name = explode(" ", $val->name);
@@ -98,7 +101,7 @@ class Allflats extends CI_Controller {
                     "country" => $society_data[0]->countryname,
                     "state" => $society_data[0]->state,
                     "city" => $society_data[0]->cityname,
-                    "ip"=>$this->input->post('ip'),
+                    "ip" => $this->input->post('ip'),
                     "status" => "1",
                     "username" => $username
                 );
@@ -145,7 +148,7 @@ class Allflats extends CI_Controller {
             foreach ($charge_head as $val) {
                 $active_data[] = $val;
                 if (!in_array($val, $current_charge_head)) {
-                    
+
                     $insert_batch_charge_head[] = array(
                         "society_id" => $society_id,
                         "chargehead_id" => $val,
@@ -153,9 +156,9 @@ class Allflats extends CI_Controller {
                     );
                 }
             }
-              $this->db->insert_batch("ci_society_chargehead", $insert_batch_charge_head);
+            $this->db->insert_batch("ci_society_chargehead", $insert_batch_charge_head);
             $this->db->where("society_id", $society_id)->where_not_in("chargehead_id", $active_data)->update("ci_society_chargehead", array("status" => "0"));
-          
+
             redirect("admin/allusers");
         }
     }
