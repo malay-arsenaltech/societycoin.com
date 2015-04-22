@@ -2150,3 +2150,6 @@ form table tr td input[type="checkbox"] {
   text-decoration: none;
 }
  
+.fleft {float:left}
+.mr-r-10{margin-right: 10px;}
+label.error{font-size:13px;}

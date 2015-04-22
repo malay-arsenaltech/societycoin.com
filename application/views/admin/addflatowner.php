@@ -79,7 +79,7 @@
                 <td id="tbl-border-left"></td>
                 <td style="float:left;" >
                     <!--  start content-table-inner ...................................................................... START -->
-                    <form enctype="multipart/form-data" id="addnewflat" name="addnewflat" method="post" onsubmit="return $('#addnewflat').valid()"  action="<?php echo base_url(); ?>admin/allflats/upload" >
+                    <form enctype="multipart/form-data" id="addnewflat" name="addnewflat" method="post" onsubmit="return $('#addnewflat').valid()"  action="<?php echo base_url(); ?>admin/allflatowner/upload" >
                         <table id="id-form" class="table table-bordered">
                             <thead>
                                 <tr>    

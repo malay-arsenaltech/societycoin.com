@@ -19,7 +19,7 @@
 </style>
 <script>
     function add_flat() {
-        window.location = "<?php echo base_url(); ?>admin/allflats/addflat";
+        window.location = "<?php echo base_url(); ?>admin/allflatowner/addflatowner";
     }
     function display_charge_head_form() {
         $(".charge_head_form").slideToggle("slow").find("input").val("");
@@ -31,7 +31,7 @@
         if ($(".charge_head_form").find("[name='custom_charge_head']").val() == "") {
             return false;
         } else {
-            $.post("<?php echo base_url(); ?>admin/allchargehead/addchargehead", {"charge_head_name": $(".charge_head_form").find("[name='custom_charge_head']").val()}, function(result) {
+            $.post("<?php echo base_url(); ?>admin/allchargehead/addchargehead", {"is_ajax":"1",charge_head_name": $(".charge_head_form").find("[name='custom_charge_head']").val()}, function(result) {
                 result = $.parseJSON(result);
                 if (result != "0") {
                     var html = '<tr><td colspan="2"><input type="checkbox" name="charge_head[]" id="' + result.id + '" value="' + result.id + '"><b><label class="checkbox_label" for="' + result.id + '">' + result.name + '</label></b></td></tr>'
@@ -73,7 +73,7 @@
                 <td id="tbl-border-left"></td>
 
                 <td style="float:left;" id="table-content" >
-                    <form id="mainform" method='post' action="<?php echo base_url(); ?>admin/allflats/process">
+                    <form id="mainform" method='post' action="<?php echo base_url(); ?>admin/allflatowner/process">
                         <table id="id-form" class="table table-bordered">
                             <thead>
                                 <tr class="chargehead_title">    

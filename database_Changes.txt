@@ -5,3 +5,6 @@ CREATE TABLE `ci_society_chargehead` (  `id` int(11) NOT NULL AUTO_INCREMENT, 
 
 ALTER TABLE `ci_society_chargehead`   
   ADD COLUMN `status` ENUM('0','1') DEFAULT '1'   NULL AFTER `added_on`;
+
+ALTER TABLE `ci_chargehead`   
+  ADD COLUMN `ip` VARCHAR(255) NULL AFTER `updated_on`;

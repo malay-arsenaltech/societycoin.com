@@ -73,17 +73,7 @@ class User_model extends CI_Model {
             }
             $alls = implode(',', $soid);
         }
-        //   $all_society_u = $this->db->query("SELECT u.* FROM ci_users u inner join ci_transaction tr on tr.userid=u.id WHERE u.utype = 3 and  tr.society_id in ($alls) $where group by u.id limit  $limit,$start");
-        $this->db->select("u.*");
-        $this->db->join("ci_transaction tr", " tr.userid=u.id", "left");
-        $this->db->join("ci_userpropertys up", " up.userid = u.id", "left");
-        $this->db->where("u.utype", "3");
-        $this->db->where("tr.society_id IN ($alls)  OR up.societyid IN($alls)");
-        if (!empty($where))
-            $this->db->where($where);
-        $this->db->group_by("u.id");
-        $this->db->limit($start, $limit);
-        $all_society_u = $this->db->get("ci_users u");
+        $all_society_u = $this->db->query("SELECT u.* FROM ci_users u inner join ci_transaction tr on tr.userid=u.id WHERE u.utype = 3 and  tr.society_id in ($alls) $where group by u.id limit  $limit,$start");
         if ($all_society_u->num_rows() > 0) {
             return $all_society_u->result_array();
         }
@@ -324,17 +314,6 @@ class User_model extends CI_Model {
         $this->db->where('id', $this->session->userdata('admin_id'));
         $this->db->update('ci_users', $data1);
         $this->session->sess_destroy();
-    }
-
-    function activity($act) {
-        $data = array(
-            'userid' => $this->session->userdata('admin_id'),
-            'username' => $this->session->userdata('admin_fname'),
-            'utype' => $this->session->userdata('utype'),
-            'activity' => $act,
-            'status' => '1'
-        );
-        $query = $this->db->insert('ci_logs', $data);
     }
 
     function getCountlog() {

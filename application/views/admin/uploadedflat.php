@@ -24,7 +24,7 @@
 </style>
 <script>
     function add_flat() {
-        window.location = "<?php echo base_url(); ?>admin/allflats/addflat";
+        window.location = "<?php echo base_url(); ?>admin/allflatowner/addflatowner";
     }
 </script>
 
@@ -54,7 +54,7 @@
                 <td id="tbl-border-left"></td>
 
                 <td style="float:left;" id="table-content" >
-                    <form id="mainform" method='post' action="<?php echo base_url(); ?>admin/allflats/chargehead">
+                    <form id="mainform" method='post' action="<?php echo base_url(); ?>admin/allflatowner/chargehead">
                         <table id="id-form" class="table table-bordered">
                             <thead>
                                 <tr>    

@@ -1,6 +1,6 @@
 <?php
 
-class Allflats extends CI_Controller {
+class Allflatowner extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -11,8 +11,8 @@ class Allflats extends CI_Controller {
         check_in();
     }
 
-    public function addflat() {
-        $this->load->view('admin/addflat', $data);
+    public function addflatowner() {
+        $this->load->view('admin/addflatowner', $data);
     }
 
     public function upload() {
@@ -76,7 +76,7 @@ class Allflats extends CI_Controller {
             $data['charge_head'] = $this->chargehead_model->get_selected_data($society_id);
             $this->load->view('admin/flat_chargehead', $data);
         } else {
-            redirect("admin/allflats/addflat");
+            redirect("admin/allflats/addflatowner");
         }
     }
 
