@@ -535,25 +535,25 @@ $url = $url[0];
 
 
 
-                            <!--<ul class="<?php //if($this->uri->segment(2) == "society_user") echo "current" ; else echo "select" ;   ?> dropdown"><li><a href="#nogo"><b>Society Admin</b></a>
+                                <!--<ul class="<?php //if($this->uri->segment(2) == "society_user") echo "current" ; else echo "select" ;    ?> dropdown"><li><a href="#nogo"><b>Society Admin</b></a>
 
-                            <div class="select_sub show">
+                                <div class="select_sub show">
 
-                                    <ul class="sub">
-            <li class="<?php //$murl=@trim($url[1]); if($murl=='addsociety'){ echo "sub_show";}    ?>"  ><a href="<?php // echo base_url();   ?>admin/society_user/add">Add Society Admin</a></li>	
-                                            <li class="<?php //$murl=@trim($url[1]); if($murl==''){ echo "sub_show";}    ?>"  ><a href="<?php //echo base_url();   ?>admin/society_user" >View all societies Admin</a></li>
+                                        <ul class="sub">
+                <li class="<?php //$murl=@trim($url[1]); if($murl=='addsociety'){ echo "sub_show";}     ?>"  ><a href="<?php // echo base_url();    ?>admin/society_user/add">Add Society Admin</a></li>	
+                                                <li class="<?php //$murl=@trim($url[1]); if($murl==''){ echo "sub_show";}     ?>"  ><a href="<?php //echo base_url();    ?>admin/society_user" >View all societies Admin</a></li>
 
-                                                                    
+                                                                        
 
-                                    </ul>
+                                        </ul>
 
-                            </div>
+                                </div>
 
-                            
+                                
 
-                            </li>
+                                </li>
 
-                            </ul>-->
+                                </ul>-->
 
 
 
@@ -603,11 +603,11 @@ $url = $url[0];
 
 
                                         <ul class="<?php
-                                            if ($this->uri->segment(2) == "allusers" || $this->uri->segment(2) == 'allpropertys')
-                                                echo "current";
-                                            else
-                                                echo "select";
-                                            ?> dropdown"><li><a href="#nogo"><b>Sub Admin</b></a>
+                                        if ($this->uri->segment(2) == "allusers" || $this->uri->segment(2) == 'allpropertys')
+                                            echo "current";
+                                        else
+                                            echo "select";
+                                        ?> dropdown"><li><a href="#nogo"><b>Sub Admin</b></a>
 
 
 
@@ -618,11 +618,11 @@ $url = $url[0];
 
 
                                                         <li><a class="<?php
-                                                               $murl = @trim($url[1]);
-                                                               if ($murl == 'adduser') {
-                                                                   echo "sub_show";
-                                                               }
-                                                               ?>"  href="<?php echo base_url(); ?>admin/allusers/adduser">Add New Sub Admin</a></li>
+                                                            $murl = @trim($url[1]);
+                                                            if ($murl == 'adduser') {
+                                                                echo "sub_show";
+                                                            }
+                                                            ?>"  href="<?php echo base_url(); ?>admin/allusers/adduser">Add New Sub Admin</a></li>
                                                         <li><a class="<?php
                                                             $murl = @trim($url[0]);
                                                             $murl_1 = @trim($url[1]);
@@ -631,18 +631,18 @@ $url = $url[0];
                                                             }
                                                             ?>"   href="<?php echo base_url(); ?>admin/allusers" >View All Sub Admins</a></li>
                                                         <li><a class="<?php
-                                                               $murl = @trim($url[1]);
-                                                               if ($murl == 'assignsociety') {
-                                                                   echo "sub_show";
-                                                               }
-                                                               ?>"  href="<?php echo base_url(); ?>admin/allusers/assignsociety	">Assign Society</a></li>
+                                                            $murl = @trim($url[1]);
+                                                            if ($murl == 'assignsociety') {
+                                                                echo "sub_show";
+                                                            }
+                                                            ?>"  href="<?php echo base_url(); ?>admin/allusers/assignsociety	">Assign Society</a></li>
 
                                                         <li><a class="<?php
-                                                               $murl = @trim($url[1]);
-                                                               if ($murl == 'addproperty') {
-                                                                   echo "sub_show";
-                                                               }
-                                                               ?>"  href="<?php echo base_url(); ?>admin/allpropertys/addproperty" >Add New properties</a></li>
+                                                            $murl = @trim($url[1]);
+                                                            if ($murl == 'addproperty') {
+                                                                echo "sub_show";
+                                                            }
+                                                            ?>"  href="<?php echo base_url(); ?>admin/allpropertys/addproperty" >Add New properties</a></li>
 
                                                         <li><a class="<?php
                                                             $murl = @trim($url[0]);
@@ -690,27 +690,27 @@ $url = $url[0];
 
 
                                         <ul class="<?php
-                                                            if ($this->uri->segment(2) == "customers")
-                                                                echo "current";
-                                                            else
-                                                                echo "select";
-                                                            ?> dropdown"><li><a href="#nogo"><b>Customer</b></a>
+                                        if ($this->uri->segment(2) == "customers")
+                                            echo "current";
+                                        else
+                                            echo "select";
+                                        ?> dropdown"><li><a href="#nogo"><b>Customer</b></a>
 
                                                 <div class="select_sub show">
 
                                                     <ul class="sub">
                                                         <li class="<?php
-                                                            $murl = @trim($url[1]);
-                                                            if ($murl == 'addsociety') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>"  ><a href="<?php echo base_url(); ?>admin/customers/add">Add Customer</a></li>
+                                                        $murl = @trim($url[1]);
+                                                        if ($murl == 'addsociety') {
+                                                            echo "sub_show";
+                                                        }
+                                                        ?>"  ><a href="<?php echo base_url(); ?>admin/customers/add">Add Customer</a></li>
                                                         <li class="<?php
-                                                    $murl = @trim($url[1]);
-                                                    if ($murl == '') {
-                                                        echo "sub_show";
-                                                    }
-                                                    ?>"  ><a href="<?php echo base_url(); ?>admin/customers" >View all Customers</a></li>
+                                                        $murl = @trim($url[1]);
+                                                        if ($murl == '') {
+                                                            echo "sub_show";
+                                                        }
+                                                        ?>"  ><a href="<?php echo base_url(); ?>admin/customers" >View all Customers</a></li>
 
 
 
@@ -730,11 +730,11 @@ $url = $url[0];
 
 
                                         <ul class="<?php
-                                                    if ($this->uri->segment(2) == "allcmspages")
-                                                        echo "current";
-                                                    else
-                                                        echo "select";
-                                                    ?> dropdown"><li><a href="#nogo"><b>Static Pages</b></a>
+                                        if ($this->uri->segment(2) == "allcmspages")
+                                            echo "current";
+                                        else
+                                            echo "select";
+                                        ?> dropdown"><li><a href="#nogo"><b>Static Pages</b></a>
 
 
 
@@ -749,11 +749,11 @@ $url = $url[0];
                                                             }
                                                             ?>"  href="<?php echo base_url(); ?>admin/allcmspages/addcmspage">Add New Static Page</a></li>
                                                         <li><a class="<?php
-                                                           $murl = @trim($url[1]);
-                                                           if ($murl == '') {
-                                                               echo "sub_show";
-                                                           }
-                                                           ?>"  href="<?php echo base_url(); ?>admin/allcmspages">View All Static Pages</a></li>
+                                                            $murl = @trim($url[1]);
+                                                            if ($murl == '') {
+                                                                echo "sub_show";
+                                                            }
+                                                            ?>"  href="<?php echo base_url(); ?>admin/allcmspages">View All Static Pages</a></li>
 
 
                                                     </ul>
@@ -767,11 +767,11 @@ $url = $url[0];
                                         <div class="nav-divider">&nbsp;</div>
 
                                         <ul class="<?php
-                                                           if ($this->uri->segment(2) == "allfaq")
-                                                               echo "current";
-                                                           else
-                                                               echo "select";
-                                                            ?>  dropdown">
+                                        if ($this->uri->segment(2) == "allfaq")
+                                            echo "current";
+                                        else
+                                            echo "select";
+                                        ?>  dropdown">
                                             <li><a href="#nogo"><b>FAQS</b></a>
 
                                                 <div class="select_sub show">
@@ -803,19 +803,19 @@ $url = $url[0];
 
                                 </div>
 
-                                    <?php } else if ($this->session->userdata('utype') == 2) {
-                                        ?>                  
+                            <?php } else if ($this->session->userdata('utype') == 2) {
+                                ?>                  
 
                                 <div class="nav">
 
                                     <div class="table">
 
                                         <ul class="select <?php
-                                    if ($this->uri->segment(2) == "")
-                                        echo "current";
-                                    else
-                                        echo "select";
-                                    ?>"><li class="sub_show" ><a href="<?php echo base_url(); ?>admin/login/dashboard"><b>Dashboard</b></a>
+                                        if ($this->uri->segment(2) == "")
+                                            echo "current";
+                                        else
+                                            echo "select";
+                                        ?>"><li class="sub_show" ><a href="<?php echo base_url(); ?>admin/login/dashboard"><b>Dashboard</b></a>
 
 
                                             </li>
@@ -825,29 +825,29 @@ $url = $url[0];
                                         <div class="nav-divider">&nbsp;</div>
 
                                         <ul class="select <?php
-                                    if ($this->uri->segment(2) == "allsociety")
-                                        echo "current";
-                                    else
-                                        echo "select";
+                                        if ($this->uri->segment(2) == "allsociety")
+                                            echo "current";
+                                        else
+                                            echo "select";
                                         ?>  dropdown"><li><a href="#nogo"><b>Society</b></a>
                                                 <div class="select_sub show">
 
                                                     <ul class="sub">
 
                                                         <li><a class="<?php
-                                                        $murl = @trim($url[1]);
-                                                        if ($murl == '') {
-                                                            echo "sub_show";
-                                                        }
-                                                        ?>" href="<?php echo base_url(); ?>admin/allsociety" >View all societies</a></li>
+                                                            $murl = @trim($url[1]);
+                                                            if ($murl == '') {
+                                                                echo "sub_show";
+                                                            }
+                                                            ?>" href="<?php echo base_url(); ?>admin/allsociety" >View all societies</a></li>
 
 
                                                         <!--<li><a class="<?php
-                                                            $murl = @trim($url[1]);
-                                                            if ($murl == 'allcharge') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>" href="<?php echo base_url(); ?>admin/allsociety/allcharge" >View/mass upload bills</a></li>-->
+                                                        $murl = @trim($url[1]);
+                                                        if ($murl == 'allcharge') {
+                                                            echo "sub_show";
+                                                        }
+                                                        ?>" href="<?php echo base_url(); ?>admin/allsociety/allcharge" >View/mass upload bills</a></li>-->
 
                                                         <li><a class="<?php
                                                             $murl = @trim($url[0]);
@@ -870,11 +870,11 @@ $url = $url[0];
 
 
                                         <ul class="select <?php
-                                                            if ($this->uri->segment(2) == "allpropertys")
-                                                                echo "current";
-                                                            else
-                                                                echo "select";
-                                                            ?> dropdown"><li><a href="#nogo"><b>Property</b></a>
+                                        if ($this->uri->segment(2) == "allpropertys")
+                                            echo "current";
+                                        else
+                                            echo "select";
+                                        ?> dropdown"><li><a href="#nogo"><b>Property</b></a>
 
 
 
@@ -916,9 +916,9 @@ $url = $url[0];
 
                                 </div>
 
-                                        <?php
-                                    } else if ($this->session->userdata('utype') == 4) {
-                                        ?>                  
+                                <?php
+                            } else if ($this->session->userdata('utype') == 4) {
+                                ?>                  
 
                                 <div class="nav">
 
@@ -927,11 +927,11 @@ $url = $url[0];
 
 
                                         <ul class="select <?php
-                                    if ($this->uri->segment(2) == "")
-                                        echo "current";
-                                    else
-                                        echo "select";
-                                    ?>"><li class="sub_show" ><a href="<?php echo base_url(); ?>admin/login/dashboard"><b>Dashboard</b></a>
+                                        if ($this->uri->segment(2) == "")
+                                            echo "current";
+                                        else
+                                            echo "select";
+                                        ?>"><li class="sub_show" ><a href="<?php echo base_url(); ?>admin/login/dashboard"><b>Dashboard</b></a>
 
 
 
@@ -942,7 +942,7 @@ $url = $url[0];
                                         <div class="nav-divider">&nbsp;</div>
 
 
-                                        
+
                                         <!--                                        <ul class="select <?php
                                         if ($this->uri->segment(2) == "society_property")
                                             echo "current";
@@ -978,14 +978,14 @@ $url = $url[0];
                                                                                     </li>
                                         
                                                                                 </ul>-->
-                                        
-                                       
+
+
                                         <ul class="select  dropdown">
                                             <li><a href="<?php echo base_url(); ?>admin/allresidence"><b>Residence Directory</b></a></li>
                                         </ul>
-                                         <div class="nav-divider">&nbsp;</div>
-                                         <ul class="select  dropdown">
-                                            <li><a href="<?php echo base_url(); ?>admin/allflatowner"><b>Charge Heads</b></a>
+                                        <div class="nav-divider">&nbsp;</div>
+                                        <ul class="select  dropdown">
+                                            <li><a href="javascript:void(0);"><b>Charge Heads</b></a>
                                                 <div class="select_sub show">
 
                                                     <ul class="sub">
@@ -1005,13 +1005,13 @@ $url = $url[0];
 
 
                                         <div class="nav-divider">&nbsp;</div>
-                                        
+
                                         <ul class="select <?php
-                                                            if ($this->uri->segment(2) == "allsociety")
-                                                                echo "current";
-                                                            else
-                                                                echo "select";
-                                                            ?> dropdown"><li><a href="#nogo"><b>Customers</b></a>
+                                        if ($this->uri->segment(2) == "allsociety")
+                                            echo "current";
+                                        else
+                                            echo "select";
+                                        ?> dropdown"><li><a href="javascript:void(0);"><b>Customers</b></a>
                                                 <div class="select_sub show">
 
                                                     <ul class="sub">               
@@ -1036,9 +1036,9 @@ $url = $url[0];
 
 
                                         <div class="nav-divider">&nbsp;</div>
-                                        
+
                                         <ul class="select  dropdown">
-                                            <li><a href="#nogo"><b>Registration</b></a>
+                                            <li><a href="javascript:void(0);"><b>Registration</b></a>
                                                 <div class="select_sub show">
 
                                                     <ul class="sub">
@@ -1054,13 +1054,25 @@ $url = $url[0];
                                             </li>
 
                                         </ul>
-                                         <div class="nav-divider">&nbsp;</div>
-                                         <ul class="select  dropdown">
-                                            <li><a href="#nogo"><b>Bill Upload</b></a></li>
-                                        </ul>
-                                         <div class="nav-divider">&nbsp;</div>
+                                        <div class="nav-divider">&nbsp;</div>
+                                        <ul class="select  dropdown">
+                                            <li><a href="javascript:void(0);"><b>Bill Upload</b></a>
+                                                <div class="select_sub show">
+                                                    <ul class="sub">
+                                                        <li>
+                                                            <a class="" href="<?php echo base_url(); ?>admin/allresidence/generatebill" >Download Bill CSV</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="" href="<?php echo base_url(); ?>admin/allresidence/uploadbill" >Upload Bill CSV</a>
+                                                        </li>
+                                                    </ul>
 
-                                        
+                                                </div>		
+                                            </li>
+                                        </ul>
+                                        <div class="nav-divider">&nbsp;</div>
+
+
                                         <div class="clear"></div>
 
 
@@ -1070,7 +1082,7 @@ $url = $url[0];
 
                                 </div>
 
-<?php } ?>
+                            <?php } ?>
 
 
                         </div>

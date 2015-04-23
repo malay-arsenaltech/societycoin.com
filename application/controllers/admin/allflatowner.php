@@ -7,7 +7,6 @@ class Allflatowner extends CI_Controller {
         $this->load->model('admin/master_model');
         $this->load->model('admin/flat_model');
         $this->load->model('admin/chargehead_model');
-        $this->load->library('pagination');
         check_in();
     }
 
@@ -107,6 +106,7 @@ class Allflatowner extends CI_Controller {
                 );
                 $success = $this->db->insert("ci_users", $insert_flat_owner);
                 $user_id = $this->db->insert_id();
+                $this->send_mail($username, $password,$val->email_address,$val->name);
 
                 $insert_flat_property = array(
                     "countryid" => $society_data[0]->countryid,
@@ -159,8 +159,25 @@ class Allflatowner extends CI_Controller {
             $this->db->insert_batch("ci_society_chargehead", $insert_batch_charge_head);
             $this->db->where("society_id", $society_id)->where_not_in("chargehead_id", $active_data)->update("ci_society_chargehead", array("status" => "0"));
 
-            redirect("admin/allusers");
+            redirect("admin/allresidence");
         }
+    }
+
+    function send_mail($username, $password,$email,$name) {
+        $this->load->library('email');
+
+        $this->email->from("no-reply@societycoin.com", "societycoin.com");
+        $this->email->to($email);
+        
+        $html = 'Hello ' . $name . ',  <br><br>Welcome to societycoin.com! <br><br>Please find below the login details of the site as a Role of "Flat Owner" <br> <br>---------------------------<br><br><b>User ID:</b> ' . $username . '  <br><b> Password:</b> ' . $password . ' <br> <br> <a href="' . base_url() . '" >Click to login</a> <br><br>---------------------------<br><br>Best regards,
+		<br>The SocietyCoin.com team.
+		<br>www.societycoin.com
+		<br>support@societycoin.com';
+
+        $this->email->subject('Account Created for Society Coin');
+        $this->email->message($html);
+        $this->email->set_mailtype("html");
+        $this->email->send();
     }
 
 }

@@ -330,6 +330,16 @@ class User_model extends CI_Model {
         $query = $this->db->get();
         return $query->num_rows();
     }
+    function activity($act) {
+        $data = array(
+            'userid' => $this->session->userdata('admin_id'),
+            'username' => $this->session->userdata('admin_fname'),
+            'utype' => $this->session->userdata('utype'),
+            'activity' => $act,
+            'status' => '1'
+        );
+        $query = $this->db->insert('ci_logs', $data);
+    }
 
     function fgetactivity($start, $limit) {
         $this->db->select('a.*,b.fname');

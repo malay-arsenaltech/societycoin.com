@@ -23,8 +23,8 @@
     }
 </style>
 <script>
-    function add_flat() {
-        window.location = "<?php echo base_url(); ?>admin/allflatowner/addflatowner";
+    function upload_bill() {
+        window.location = "<?php echo base_url(); ?>admin/allresidence/uploadbill";
     }
 </script>
 
@@ -35,7 +35,7 @@
 
         <!--  start page-heading -->
         <div id="page-heading">
-            <h1>Add Flats</h1><br>
+            <h1>Upload Bill</h1><br>
         </div>
         <!-- end page-heading -->
 
@@ -54,7 +54,7 @@
                 <td id="tbl-border-left"></td>
 
                 <td style="float:left;" id="table-content" >
-                    <form id="mainform" method='post' action="<?php echo base_url(); ?>admin/allflatowner/chargehead">
+                    <form id="mainform" method='post' action="<?php echo base_url(); ?>admin/allresidence/processbill">
                         <table id="id-form" class="table table-bordered">
                             <thead>
                                 <tr>    
@@ -63,25 +63,25 @@
                                             <table  cellspacing="0" cellpadding="0" border="0">
                                                 <tbody>
                                                     <tr>
-                                                        <td class="green-left">Total <b><?php echo count($success_record); ?></b> flat owner(s) will be added successfully out of <b><?php echo count($success_record) + count($failure_data); ?></b> flat owner(s). Following is the list of the flat owner(s) which will be added.</td>
+                                                        <td class="green-left">Total <b><?php echo count($success_data); ?></b> bill(s) will be Processed successfully out of <b><?php echo count($success_data) + count($failure_data); ?></b> bill(s). Following is the list of the bill(s) which will be Processed.</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
-                                         <table border="0" width="96%" cellpadding="0" cellspacing="0" class="reference" id="product-table">
-                                                <tr>
-                                                    <th class="table-header-repeat line-left minwidth-1"><span>Flat Address</span>	</th>
-                                                    <th class="table-header-repeat line-left"><span>Owner's Name</span></th>
-                                                    <th class="table-header-repeat line-left"><span>Email</span></th>
-                                                </tr>
-                                                <?php foreach ($success_record as $val) { ?>
-                                                    <tr>
-                                                        <td><?php echo $val['address']; ?></td>
-                                                        <td><?php echo $val['name']; ?></td>
-                                                        <td><?php echo $val['email_address']; ?></td>
-                                                    </tr>
+                                        <table border="0" width="96%" cellpadding="0" cellspacing="0" class="reference" id="product-table">
+                                            <tr>
+                                                <?php foreach ($header as $v) { ?>
+                                                    <th class="table-header-repeat line-left"><span><?php echo $v; ?></span>	</th>
                                                 <?php } ?>
-                                            </table>
+                                            </tr>
+                                            <?php foreach ($success_data as $val) { ?>
+                                                <tr>
+                                                    <?php foreach ($val as $v) { ?>
+                                                        <td><?php echo humanize($v); ?></td>
+                                                    <?php } ?>
+                                                </tr>
+                                            <?php } ?>
+                                        </table>
                                     </td>
                                 </tr>
                                 <?php if (!empty($failure_data)) { ?>
@@ -90,21 +90,21 @@
                                             <div id="message-red">
                                                 <table border="0" width="100%" cellpadding="0" cellspacing="0">
                                                     <tbody><tr>
-                                                            <td class="red-left">Total <b><?php echo count($failure_data); ?></b> flat owner(s) will not be added out of <b><?php echo count($success_record) + count($failure_data); ?></b> flat owner(s) as they contains error. Following is the list of the flat owner(s) which will not be added.</td>
+                                                            <td class="red-left">Total <b><?php echo count($failure_data); ?></b> bill(s) will not be Processed out of <b><?php echo count($success_data) + count($failure_data); ?></b> bill(s) as they missing some information. Following is the list of the bill(s) which will not be Processed.</td>
                                                         </tr>
                                                     </tbody></table>
                                             </div>
                                             <table border="0" width="96%" cellpadding="0" cellspacing="0" class="reference" id="product-table">
                                                 <tr>
-                                                    <th class="table-header-repeat line-left minwidth-1"><span>Flat Address</span>	</th>
-                                                    <th class="table-header-repeat line-left"><span>Owner's Name</span></th>
-                                                    <th class="table-header-repeat line-left"><span>Email</span></th>
+                                                    <?php foreach ($header as $v) { ?>
+                                                        <th class="table-header-repeat line-left"><span><?php echo $v; ?></span>	</th>
+                                                    <?php } ?>
                                                 </tr>
                                                 <?php foreach ($failure_data as $val) { ?>
                                                     <tr>
-                                                        <td><?php echo $val['address']; ?></td>
-                                                        <td><?php echo $val['name']; ?></td>
-                                                        <td><?php echo $val['email_address']; ?></td>
+                                                        <?php foreach ($val as $v) { ?>
+                                                            <td><?php echo humanize($v); ?></td>
+                                                        <?php } ?>
                                                     </tr>
                                                 <?php } ?>
                                             </table>
@@ -119,14 +119,14 @@
                                 <tr>
                                     <td colspan="2">
                             <center>
-                                <input type="hidden" name="success_record" value='<?php echo json_encode($success_record) ?>'>
-                                <input type="hidden" name="failure_record" value='<?php echo json_encode($failure_data) ?>'>
+                                <input type="hidden" name="success_data" value='<?php echo json_encode($success_post_data) ?>'>
+                                <input type="hidden" name="failure_data" value='<?php echo json_encode($failure_data) ?>'>
                                 <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" >
 
-                                <?php if (!empty($success_record)) { ?>
+                                <?php if (!empty($success_data)) { ?>
                                     <input type="submit" class="form-proceed" value="Yes">
                                 <?php } ?>
-                                <input class="form-back" type="reset" value="No" onclick="add_flat()" >&nbsp;
+                                <input class="form-back" type="reset" value="No" onclick="upload_bill()" >&nbsp;
                             </center>
 
                             </td>

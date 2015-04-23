@@ -15,12 +15,12 @@ class Residence_model extends CI_Model {
         return mysql_num_rows($sql);
     }
 
-    function all_residence($start, $limit) {
+    function all_residence($start = 0, $limit = 0) {
         $subadmiid = $this->session->userdata('admin_id');
         $where = '';
         if (isset($_GET['search_text']) && $_GET['search_text'] != '') {
             $s = trim($this->input->get_post('search_text'));
-            $where = "(u.fname='$s' OR u.lname='$s' OR u.mobile='$s' OR u.email='$s' OR u.city='$s') ";
+            $where = "(u.fname='$s' OR u.lname='$s' OR u.mobile='$s' OR u.email='$s' OR u.city='$s' OR u.state='$s' OR u.address like '%$s%') ";
         }
 
         $query = $this->db->query("select distinct id  from ci_society where society_user_id='$subadmiid'");
@@ -31,19 +31,24 @@ class Residence_model extends CI_Model {
             $alls = implode(',', $soid);
         }
         //   $all_society_u = $this->db->query("SELECT u.* FROM ci_users u inner join ci_transaction tr on tr.userid=u.id WHERE u.utype = 3 and  tr.society_id in ($alls) $where group by u.id limit  $limit,$start");
-        $this->db->select("u.*");
+        $this->db->select("SQL_CALC_FOUND_ROWS u.*", false);
         $this->db->join("ci_userpropertys up", " up.userid = u.id", "left");
         $this->db->where("u.utype", "3");
         $this->db->where("up.societyid IN($alls)");
         if (!empty($where))
             $this->db->where($where);
         $this->db->group_by("u.id");
-        $this->db->limit($start, $limit);
-        $all_society_u = $this->db->get("ci_users u");
-        if ($all_society_u->num_rows() > 0) {
-            return $all_society_u->result_array();
+        if ($start != 0 || $limit != 0) {
+            $this->db->limit($start, $limit);
         }
-        return array();
+        $all_society_u = $this->db->get("ci_users u");
+        $return_data = array();
+        if ($all_society_u->num_rows() > 0) {
+            $return_data['rows'] = $all_society_u->result_array();
+        }
+        $query = $this->db->query('SELECT FOUND_ROWS() AS `Count`');
+        $return_data['num_rows'] = $query->row()->Count;
+        return $return_data;
     }
 
     public function residence_by_id($id) {
@@ -52,8 +57,9 @@ class Residence_model extends CI_Model {
         ));
         return $query->row_array();
     }
-     function update_residence() {
-       if (isset($_POST['newpassword']) && $_POST['newpassword'] != '') {
+
+    function update_residence() {
+        if (isset($_POST['newpassword']) && $_POST['newpassword'] != '') {
             $password = md5($_POST['newpassword']);
             $data['password'] = $password;
         }
@@ -83,6 +89,7 @@ class Residence_model extends CI_Model {
         else
             return true;
     }
+
     function activity($act) {
         $data = array(
             'userid' => $this->session->userdata('admin_id'),
@@ -92,6 +99,39 @@ class Residence_model extends CI_Model {
             'status' => '1'
         );
         $query = $this->db->insert('ci_logs', $data);
+    }
+
+    function get_property_id($society_id, $address) {
+        $property_data = $this->db->select("id")->where("societyid", $society_id)->like("address", "$address")->get("ci_propertys")->result();
+        return !empty($property_data) ? $property_data[0]->id : "";
+    }
+
+    public function send_mail($data) {
+
+        $this->load->library('email');
+        $this->load->helper('email');
+
+        foreach ($data as $val) {
+            $html = "<style>table.bill_data {border-collapse: collapse;}table.bill_data, table.bill_data th,table.bill_data td {border: 1px solid black;}</style>
+                Hi {$val['name']}, <br> <br>
+                Your bill detail for {$val['sdate']} to {$val['edate']} is as follows:<br><br>
+                <table class='bill_data' cellpadding='10px'>
+                <tr><td><b>Bill</b></td><td><b>Amount</b></td>";
+            foreach ($val['charge_head'] as $_k => $_v) {
+                $html .= "<tr><td>{$_k}</td><td>$_v</td></tr>";
+            }
+            $html .="</table>
+                <br><br>Best regards,
+		<br>The SocietyCoin.com team.
+		<br>www.societycoin.com
+		<br>support@societycoin.com";
+            $this->email->from("no-reply@societycoin.com", "societycoin.com");
+            $this->email->subject("Bill Information for {$val['sdate']} to {$val['edate']}");
+            $this->email->message($html);
+            $this->email->set_mailtype("html");
+            $this->email->to(array($val['email']));
+           // $this->email->send();
+        }
     }
 
 }

@@ -4,7 +4,7 @@
     <!-- start content -->
     <div id="content">
         <!--  start page-heading -->
-        <div id="page-heading"><h1>Your Society Residence</h1><br />
+        <div id="page-heading"><h1>Your Society Residence Directory</h1><br />
             <?php
             $msg_error_red = $this->session->flashdata('msg_error_red');
             if ($msg_error_red != '') {
@@ -56,11 +56,6 @@
                 <td id="tbl-border-left"></td>
                 <td>
                     <div id="content-table-inner">
-                        <?php
-                        $k = 1;
-                        if (isset($_GET['per_page']))
-                            $k = $_GET['per_page'] + 1;
-                        ?>
                         <div id="table-content">
                             <form id="mainform" action="">
                                 <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
@@ -77,11 +72,13 @@
                                     <?php
                                     if (count($data) > 0) {
                                         $k = 1;
+                                        if (isset($_GET['per_page']))
+                                            $k = $_GET['per_page'] + 1;
                                         foreach ($data as $data) {
                                             ?>              
                                             <tr>
                                                 <td><?php echo $k; ?></td>
-                                                <td><?php echo $data['fname']." ".$data['lname']; ?></td>
+                                                <td><?php echo $data['fname'] . " " . $data['lname']; ?></td>
                                                 <td><?php echo $data['email']; ?></td>
                                                 <td><?php echo $data['address']; ?></td>
                                                 <td><?php echo $data['city']; ?></td>

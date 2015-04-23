@@ -1,4 +1,7 @@
 <?php $this->load->view('admin/header'); ?>
+<link rel="stylesheet" href="<?php echo AdminThemeUrl; ?>css/datePicker.css" type="text/css" />
+<script src="<?php echo AdminThemeUrl; ?>js/jquery/date.js" type="text/javascript"></script>
+<script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.datePicker.js" type="text/javascript"></script>
 <style type="text/css">
     #id-form th,#id-form td {
         font-size: 12px;
@@ -16,10 +19,11 @@
         margin-left: 9px;
         padding-left: 10px;
     }
+    .hidden{display: none;}
 </style>
 <script>
     function display_charge_head_form() {
-        $(".charge_head_form").slideToggle("slow").find("input").val("");
+        $(".charge_head_form").toggleClass("hidden").find("input").val("");
     }
     $(".add_charge_head").live("click", function(e) {
         e.preventDefault();
@@ -27,10 +31,10 @@
         if ($(".charge_head_form").find("[name='custom_charge_head']").val() == "") {
             return false;
         } else {
-            $.post("<?php echo base_url(); ?>admin/allchargehead/addchargehead", {"is_ajax":"1",charge_head_name: $(".charge_head_form").find("[name='custom_charge_head']").val()}, function(result) {
+            $.post("<?php echo base_url(); ?>admin/allchargehead/addchargehead", {"is_ajax": "1", charge_head_name: $(".charge_head_form").find("[name='custom_charge_head']").val()}, function(result) {
                 result = $.parseJSON(result);
                 if (result != "0") {
-                    var html = '<tr><td colspan="2"><input type="checkbox" name="charge_head[]" id="' + result.id + '" value="' + result.id + '"><b><label class="checkbox_label" for="' + result.id + '">' + result.name + '</label></b></td></tr>'
+                    var html = '<tr><td></td><td><input type="checkbox" name="charge_head[]" id="' + result.name + '" value="' + result.name + '"><b><label class="checkbox_label" for="' + result.name + '">' + result.name + '</label></b></td></tr>'
                     if ($(".checkbox:last").length > 0)
                         $(html).insertAfter($(".checkbox:last"));
                     else
@@ -41,8 +45,28 @@
             })
         }
     });
-</script>
+    $(function()
+    {
+        // initialise the "Select date" link
+        var dates = $('#sdate,#edate').datePicker(
+                {
+                    createButton: false,
+                    startDate: '01/01/2005',
+                    endDate: '31/12/2020'
 
+                });
+            $('#downloadbill').validate({// initialize the plugin
+                rules: {
+                    bill_generates_on: {
+                        required: true
+                    },
+                     bill_due_on: {
+                        required: true
+                    }
+                }
+        });
+    });
+</script>
 <div class="clear"></div>
 <div id="content-outer">
     <!-- start content -->
@@ -50,7 +74,7 @@
 
         <!--  start page-heading -->
         <div id="page-heading">
-            <h1>Add Flats</h1><br>
+            <h1>Bill Download</h1><br>
         </div>
         <!-- end page-heading -->
 
@@ -69,28 +93,36 @@
                 <td id="tbl-border-left"></td>
 
                 <td style="float:left;" id="table-content" >
-                    <form id="mainform" method='post' action="<?php echo base_url(); ?>admin/allflatowner/process">
+                    <form id="downloadbill" method='post' action="<?php echo base_url(); ?>admin/allresidence/downloadbill">
+                        <input type="hidden" name="society_name" value="<?php echo $society_name ?>">
                         <table id="id-form" class="table table-bordered">
                             <thead>
-                                <tr class="chargehead_title">    
-                                    <td colspan="2"><h2>CHARGE HEADS</h2></td>
+                                <tr>
+                                    <td>Bill Generated On</td>
+                                    <td><input type="text" name="bill_generates_on" class="required from-date" id="sdate"></td>
+                                </tr>
+                                <tr>
+                                    <td>Bill Due Date</td>
+                                    <td><input type="text" name="bill_due_on" class="required to-date" id="edate"></td>
                                 </tr>
                                 <?php
-                                foreach ($charge_head as $val) {
+                                foreach ($charge_head as $key => $val) {
                                     ?>
                                     <tr class="checkbox">    
-                                        <td colspan="2">
-                                            <input type="checkbox" class="no-checkbox" name="charge_head[]" id="<?php echo $val->chargehead_id; ?>" value="<?php echo $val->chargehead_id; ?>" checked='checked'><b><label class="checkbox_label" for="<?php echo $val->chargehead_id; ?>"><?php echo $val->charge_head_name; ?></label></b>
+                                        <td><?php echo ($key == 0) ? "Charge Heads" : ""; ?></td>
+                                        <td>
+                                            <input type="checkbox" class="no-checkbox" name="charge_head[]" id="<?php echo $val->charge_head_name; ?>" value="<?php echo $val->charge_head_name; ?>" checked='checked'><b><label class="checkbox_label" for="<?php echo $val->charge_head_name; ?>"><?php echo $val->charge_head_name; ?></label></b>
                                         </td>
                                     </tr>
                                 <?php } ?>
-                                <tr class="chargehead_or" style="<?php echo empty($charge_head) ? 'display:none;' : ''?>">
-                                    <td colspan="2"><h2><center>OR</center></h2></td>
+                                <tr class="chargehead_or" style="<?php echo empty($charge_head) ? 'display:none;' : '' ?>">
+                                    <td></td><td><h2><center>OR</center></h2></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><h2><center><a href="javascript:void(0);"  onclick="display_charge_head_form()">ADD YOUR CHARGE HEADS</a></center></h2></td>
+                                    <td></td><td><h2><center><a href="javascript:void(0);"  onclick="display_charge_head_form()">ADD YOUR CHARGE HEADS</a></center></h2></td>
                                 </tr>
-                                <tr class="charge_head_form" style="display:none;">    
+                                <tr class="charge_head_form hidden">    
+                                    <td></td>
                                     <td>
                                         <input type="text" name="custom_charge_head"  value="">
                                         <button class="add_charge_head">Add</button>
@@ -98,11 +130,12 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <input type="hidden" name="success_record" value='<?php echo $success_record ?>'>
-                                        <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" >
-                                        <input type="submit" class="form-proceed" onclick="$(form).submit()" value="Confirm">
-                                    </td>
-                                </tr>
+                            <center>
+                                <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" >
+                                <input type="submit" class="form-proceed" onclick="$(form).submit()" value="Download Bill">
+                            </center>
+                            </td>
+                            </tr>
                             </thead>
                         </table>
                     </form>

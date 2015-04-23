@@ -21,8 +21,8 @@ class Allchargehead extends CI_Controller {
     public function addchargehead() {
         if ($this->input->post("is_ajax")) {
             $name = $this->input->post("charge_head_name");
-            $data = array("charge_head_name" => $name, "added_on" => date("Y-m-d H:i:s"));
-            echo ($this->db->insert("ci_chargehead", $data)) ? json_encode(array("name" => $name, "id" => $this->db->insert_id())) : json_encode(array("name" => "", "id" => 0));
+            $data = array("bill_name" => $name, "status" => "1");
+            echo ($this->db->insert("ci_bill", $data)) ? json_encode(array("name" => $name, "id" => $this->db->insert_id())) : json_encode(array("name" => "", "id" => 0));
         } else {
             $this->load->view("admin/addchargehead");
         }
@@ -31,8 +31,8 @@ class Allchargehead extends CI_Controller {
     public function process() {
         $name = $this->input->post("charge_head_name");
 
-        $data = array("charge_head_name" => $name, "added_on" => date("Y-m-d H:i:s"));
-        if ($this->db->insert("ci_chargehead", $data)) {
+        $data = array("bill_name" => $name, "status" => "1");
+        if ($this->db->insert("ci_bill", $data)) {
             $insert_id = $this->db->insert_id();
             $society_data = $this->db->select("id")->where("society_user_id", $this->session->userdata('admin_id'))->get("ci_society")->result();
             $society_id = $society_data[0]->id;
@@ -46,14 +46,14 @@ class Allchargehead extends CI_Controller {
 
     public function editchargehead($id) {
         $name = $this->input->post("charge_head_name");
-        if ($this->db->where("id", $id)->update("ci_chargehead", array("charge_head_name" => $name, "updated_on" => date("Y-m-d H:i:s"), "ip" => $_SERVER['REMOTE_ADDR'])))
+        if ($this->db->where("id", $id)->update("ci_bill", array("bill_name" => $name)))
             echo $name;
         else
             echo "";
     }
 
     public function deletechargehead($id) {
-        if ($this->db->where("id", $id)->delete("ci_chargehead"))
+        if ($this->db->where("id", $id)->delete("ci_bill"))
             $this->session->set_flashdata('msg_error', "charge Head deleted successfully.");
         else
             $this->session->set_flashdata('msg_error_red', "charge Head not deleted successfully.");

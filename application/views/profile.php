@@ -1,87 +1,86 @@
-<?php 
-
-$this->load->view('header'); ?>
+<?php $this->load->view('header'); ?>
 
 <!--mid-portion-->
 
 <div class="row-fluid mid-outer">
 
-  <div class=" container mid-inner">
+    <div class=" container mid-inner">
 
-    <!--left-->
+        <!--left-->
 
-    <?php $this->load->view('left'); ?>
+<?php $this->load->view('left'); ?>
 
-    <!--left//-->
+        <!--left//-->
 
-    <!-- mob navigation-->
+        <!-- mob navigation-->
 
-    <?php $this->load->view('mob_nav'); ?>
+<?php $this->load->view('mob_nav'); ?>
 
-    <!--right-->
+        <!--right-->
 
-    <div class="right">
+        <div class="right">
 
-    <?php $this->load->view('menu'); ?>
+<?php $this->load->view('menu'); ?>
 
-      <!--form-->
-
-        
-
-      <!--form//-->
-
-      <div class="user-pannel">
+            <!--form-->
 
 
 
-     <?php //	  $this->load->helper('societycoin');		  
+            <!--form//-->
 
-     $societycoin= new societycoin;
+            <div class="user-pannel">
 
 
 
-	  echo $societycoin->msg(@$_REQUEST['msg']);
+<?php
+//	  $this->load->helper('societycoin');		  
 
+$societycoin = new societycoin;
+
+
+
+echo $societycoin->msg(@$_REQUEST['msg']);
 ?>
 
-							<h6>Dashboard</h6>
+                <h6>Dashboard</h6>
 
-						   <hr>
+                <hr>
 
-							<ul class="dashboard_mob-1" style="float:left;">
+                <ul class="dashboard_mob-1" style="float:left;">
 
-							<li><a href="<?php echo base_url()?>user/myaccount" >My Settings</a></li>
+                    <li><a href="<?php echo base_url() ?>user/myaccount" >My Settings</a></li>
 
-							<li><a href="<?php echo base_url()?>property/transactionlog">My Transactions</a></li>
-						<li class="m_rpt" style="margin-left:162px; width:100%"><a href="<?php echo base_url();?>">Make A Payment</a></li>
-                                                     
+                    <li><a href="<?php echo base_url() ?>property/transactionlog">My Transactions</a></li>
+                    <li><a href="<?php echo base_url(); ?>">Make A Payment</a></li>
 
-                            </ul>
 
-                            <ul class="dashboard_mob-2" style="float:right; ">
+                </ul>
 
-							<li><a href="<?php echo base_url()?>property">My Properties</a></li>
+                <ul class="dashboard_mob-2" style="float:right; ">
 
-							<li><a href="<?php echo base_url()?>user/IIIrd_party_payment">Send a payment Request</a></li>
+                    <li><a href="<?php echo base_url() ?>property">My Properties</a></li>
 
-						
+                    <li><a href="<?php echo base_url() ?>user/bills">My Bills</a></li>
+                    <li><a href="<?php echo base_url() ?>user/IIIrd_party_payment">Send a payment Request</a></li>
 
-                            
 
-							</ul>
 
-                        </div>
 
-                                
 
-                                 
+                </ul>
 
-      <div class="clearfix"></div>
+            </div>
+
+
+
+
+
+            <div class="clearfix"></div>
+
+        </div>
 
     </div>
 
-  </div>
-
 </div>
 
-    <?php $this->load->view('footer'); ?>
+<?php $this->load->view('footer'); ?>
