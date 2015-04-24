@@ -111,8 +111,50 @@
     td a.success{color:green !important; border: 1px solid #ccc;text-transform: capitalize;font-weight: bold; }
 </style>
 
-
 <script type="text/javascript" >
+    $(document).ready(function()
+    {
+        $('.box-nine').show();
+        $('.box-eight').hide();
+        $('#psearch,#bsearch').hide();
+        $('#tab1').addClass('active');
+<?php if (@$_GET['act'] == 'tact' || isset($_GET['bill'])) {
+    ?>
+            $('#tab1,#tab3').removeClass('active');
+            $('#tab2').addClass('active');
+            $('#search,#psearch').hide();
+            $('#bsearch').show();
+            $('.box-nine').hide();
+            $('.box-eight').show();
+
+<?php } else { ?>
+            $('#tab1').addClass('active');
+            $('#tab2').removeClass('active');
+            $('#tab3').removeClass('active');
+            $('#psearch,#bsearch').hide();
+            $('.box-nine').show();
+            $('.box-eight').hide();
+<?php } ?>
+
+        $('#tab1').click(function() {
+
+            $('#tab1').addClass('active');
+            $('#tab2').removeClass('active');
+            $('#search').show();
+            $('#bsearch').hide();
+            $('.box-nine').show();
+            $('.box-eight').hide();
+        });
+
+        $('#tab2').click(function() {
+            $('#tab1').removeClass('active');
+            $('#tab2').addClass('active');
+            $('#search').hide();
+            $('#bsearch').show();
+            $('.box-nine').hide();
+            $('.box-eight').show();
+        });
+    });
 // Popup window code
     function newPopup(url) {
         popupWindow = window.open(
@@ -161,13 +203,25 @@
         <!-- end page-heading --> 
         <div class="clear">&nbsp;</div>
         <div style="padding-right:17px; float:right;margin-right:73px;" >
-            <form id="psearch" name="psearch" action="<?php echo base_url(); ?>admin/login/dashboard" method="get" >
+            <form id="search" name="psearch" action="<?php echo base_url(); ?>admin/login/dashboard" method="get" >
 
                 <table id="id-form" ><tr>
                         <td><input type="text"  value="<?php echo $this->input->get_post('search_text'); ?>"  name="search_text"     /> 			 </td>
                         <td><input type="submit" name="sbt"  style="width:70px;margin-left:5px;"  value="Search"  /></td>
                     </tr></table>
-            </form></div>
+            </form>
+            <form id="bsearch" name="bsearch" action="<?php echo base_url(); ?>admin/login/dashboard" method="get" >
+                <input type="hidden" name="bill"  value="details" />
+                <table id="id-form" ><tr>
+                        <td>
+                            <input type="text"  value="<?php echo $this->input->get_post('search_text'); ?>"  name="search_text"     /> 
+                        </td>
+                        <td><input type="submit" name="sbt"  style="width:70px;margin-left:5px;"  value="Search"  /></td>
+                    </tr></table>
+
+
+            </form>
+        </div>
         <div class="clear">&nbsp;</div>
         <div id="content-table-inner">
 
@@ -177,7 +231,10 @@
 
                     <ul class="tabs group">
 
-                        <li><a  href="javascript:void(0)" >Transaction Details</a></li>
+                        <li id="tab1"><a  href="javascript:void(0)" >Transaction Details</a></li>
+                        <?php if ($this->session->userdata('utype') == 4) { ?>
+                            <li><a id="tab2" href="javascript:void(0)" >Latest Generated Bill</a></li>
+                        <?php } ?>
                     </ul>
 
                     <div class="box-wrap">
@@ -222,10 +279,12 @@
                                                     <a href="<?php echo base_url(); ?>admin/allusers/pdf/<?php echo $data['id']; ?>" class="info-tooltip"   title="Pdf Transaction Details"><img src="<?php echo base_url(); ?>images/pdf.png"  style="margin-left:10px;width:22px;"  ></a>
                                                     <a href="JavaScript:newPopup('<?php echo base_url(); ?>admin/allusers/print_transaction/<?php echo $data['id']; ?>');" class="info-tooltip"   title="Print Transaction Details"><img src="<?php echo base_url(); ?>images/print.png"  style="margin-left:10px;width:22px;"  ></a>	</td>
                                             </tr>
-    <?php }
-} else {
-    echo "<tr><td colspan='8'><strong> No Records Found!</strong></td></tr>";
-} ?>
+                                            <?php
+                                        }
+                                    } else {
+                                        echo "<tr><td colspan='8'><strong> No Records Found!</strong></td></tr>";
+                                    }
+                                    ?>
 
                                 </tbody></table>
                             </table>
@@ -236,6 +295,58 @@
 
                                 </tr>
                             </table>      
+                        </div>
+                        <?php if ($this->session->userdata('utype') == 4) { ?>
+                            <div class="box-eight">
+                                <table width="100%" cellspacing="0" cellpadding="0" border="0" id="product-table">
+                                    <tbody><tr>
+                                            <th class="table-header-repeat line-left" style="width:20px;"><span>S.No</span>	</th>
+                                            <th class="table-header-repeat line-left minwidth-1"><span>Name</span>	</th>
+                                            <th class="table-header-repeat line-left minwidth-1"><span>Email</span></th>
+                                            <th class="table-header-repeat line-left minwidth-1"><span>Flat</span></th>
+                                            <th class="table-header-repeat line-left"><span>Total</span></th>
+                                            <th class="table-header-repeat line-left"><span>Generated On</span></th>
+                                            <th class="table-header-repeat line-left"><span>Due Date</span></th>
+                                            <th class="table-header-repeat line-left"><span>Options</span></th>
+                                        </tr>
+                                        <?php
+                                        $i = 0;
+                                        $k = 1;
+                                        if (isset($_GET['per_page']))
+                                            $k = $_GET['per_page'] + 1;
+
+
+                                        foreach ($bill_data as $data) {
+                                            $i++;
+
+                                            if ($i % 2 == 1) {
+                                                $style = 'alternate-row';
+                                            } else {
+                                                $style = '';
+                                            }
+                                            ?>
+                                            <tr class="<?php echo $style; ?>">
+                                                <td><?php echo $k; ?></td>
+                                                <td><a href="<?php echo base_url(); ?>admin/allusers/view/<?php echo $data['userid']; ?>" ><?php echo $data['fname'] . " " . $data['lname']; ?></a></td>
+                                                <td><?php echo $data['email']; ?></td>
+                                                <td><?php echo $data['flat']; ?></td>
+                                                <td><?php echo $data['total']; ?></td>
+                                                <td><?php echo DateTime::createFromFormat('d/m/Y', $data['sdate'])->format('l, jS \of F, Y'); ?></td>
+                                                <td><?php echo DateTime::createFromFormat('d/m/Y', $data['edate'])->format('l, jS \of F, Y'); ?></td>
+                                                <td><a href="<?php echo base_url(); ?>admin/allresidence/bill_detail/<?php echo $data['billid']; ?>"  class=" icon-3 info-tooltip" title="Bill Details"></a></td>
+                                            </tr>
+                                            <?php
+                                            $k++;
+                                        }
+                                        ?>
+
+                                    </tbody></table>
+                                <table border="0" cellpadding="0" cellspacing="0" id="paging-table">
+                                    <tr>
+                                        <?php echo $links3; ?>
+                                    </tr>
+                                </table>        
+                            <?php } ?>
                         </div>
 
                     </div>

@@ -11,7 +11,7 @@ class Allflatowner extends CI_Controller {
     }
 
     public function addflatowner() {
-        $this->load->view('admin/addflatowner', $data);
+        $this->load->view('admin/addflatowner');
     }
 
     public function upload() {

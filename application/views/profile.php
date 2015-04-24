@@ -60,7 +60,7 @@ echo $societycoin->msg(@$_REQUEST['msg']);
 
                     <li><a href="<?php echo base_url() ?>property">My Properties</a></li>
 
-                    <li><a href="<?php echo base_url() ?>user/bills">My Bills</a></li>
+                    <li><a href="<?php echo base_url() ?>property/bills">My Bills</a></li>
                     <li><a href="<?php echo base_url() ?>user/IIIrd_party_payment">Send a payment Request</a></li>
 
 

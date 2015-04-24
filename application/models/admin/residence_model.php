@@ -101,8 +101,9 @@ class Residence_model extends CI_Model {
         $query = $this->db->insert('ci_logs', $data);
     }
 
-    function get_property_id($society_id, $address) {
-        $property_data = $this->db->select("id")->where("societyid", $society_id)->like("address", "$address")->get("ci_propertys")->result();
+    function get_property_id($society_id, $address,$email) {
+        $property_data = $this->db->select("ci_propertys.id")->join("ci_userpropertys","ci_userpropertys.userid = ci_users.id")->join("ci_propertys","ci_propertys.id = ci_userpropertys.addressid");
+        $property_data = $this->db->where("ci_users.email",$email)->where("ci_propertys.societyid", $society_id)->like("ci_propertys.address", "$address")->get("ci_users")->result();
         return !empty($property_data) ? $property_data[0]->id : "";
     }
 
@@ -130,8 +131,50 @@ class Residence_model extends CI_Model {
             $this->email->message($html);
             $this->email->set_mailtype("html");
             $this->email->to(array($val['email']));
-           // $this->email->send();
+            // $this->email->send();
         }
+    }
+
+    function billdata($start = 0, $limit = 0, $society_admin_id = 0) {
+        if ($this->input->get_post('search_text')) {
+            $s = trim($this->input->get_post('search_text'));
+
+            $this->db->where("(c.address like  '$s%' OR u.fname like '$s%'  OR u.lname like '$s%' OR u.email like '$s'  OR a.sdate like '$s%'  OR a.edate like '$s%' OR a.totalamount like '$s%' OR s.fname like '$s%' OR s.lname like '$s%'  OR sd.society_title like '$s%') ");
+        }
+        $this->db->select('SQL_CALC_FOUND_ROWS a.id as billid,c.address as flat,u.id as userid,u.fname as fname, u.lname as lname,u.email as email,a.sdate,a.edate,a.totalamount as total,concat(s.fname," ",s.lname) as society_admin,sd.society_title', false);
+        $this->db->from('ci_bill_charge  as a');
+        $this->db->join('ci_bill as b', 'a.bill_id=b.id');
+        $this->db->join('ci_propertys as c', 'a.property_id=c.id');
+        $this->db->join('ci_userpropertys as up', 'c.id = up.addressid');
+        $this->db->join('ci_users as u', 'up.userid = u.id');
+        $this->db->join('ci_users as s', 'a.addbyid = s.id');
+        $this->db->join('ci_society as sd', 'sd.id = up.societyid');
+        $this->db->where("a.related_id IS NOT NULL");
+        $this->db->group_by("a.related_id");
+        $this->db->order_by("a.id","desc");
+        if ($society_admin_id > 0)
+            $this->db->where('a.addbyid', $this->session->userdata('admin_id'));
+        $this->db->limit($start, $limit);
+        $query = $this->db->get(); //echo $this->db->last_query();exit;
+        $return_data = array();
+        $return_data['rows'] = $query->result_array();
+        $query = $this->db->query('SELECT FOUND_ROWS() AS `Count`');
+        $return_data['num_rows'] = $query->row()->Count;
+        return $return_data;
+    }
+
+    function billdetailbyid($id) {
+        $this->db->select('SQL_CALC_FOUND_ROWS a.id as billid,c.address as flat,u.id as userid,u.fname as fname, u.lname as lname,u.email as email,a.sdate,a.edate,a.totalamount as total,concat(s.fname," ",s.lname) as society_admin,sd.society_title,group_concat(b.bill_name) as bill_name,group_concat(a.amount) as amount,a.taxamount as tax', false);
+        $this->db->from('ci_bill_charge  as a');
+        $this->db->join('ci_bill as b', 'a.bill_id=b.id', "left");
+        $this->db->join('ci_propertys as c', 'a.property_id=c.id', "left");
+        $this->db->join('ci_userpropertys as up', 'c.id = up.addressid', "left");
+        $this->db->join('ci_users as u', 'up.userid = u.id', "left");
+        $this->db->join('ci_users as s', 'a.addbyid = s.id', "left");
+        $this->db->join('ci_society as sd', 'sd.id = up.societyid', "left");
+        $this->db->where("a.related_id", $id);
+        $query = $this->db->group_by("a.related_id")->get();
+        return $query->result_array();
     }
 
 }

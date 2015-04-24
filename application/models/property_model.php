@@ -1,12 +1,12 @@
 <?php
-class Property_model extends CI_Model
-{
-    public function __construct()
-    {
+
+class Property_model extends CI_Model {
+
+    public function __construct() {
         $this->load->database();
     }
-    public function get_state_for_add($id = FALSE)
-    {
+
+    public function get_state_for_add($id = FALSE) {
         if ($id === FALSE) {
             $query = $this->db->get('ci_states');
             return $query->result_array();
@@ -16,8 +16,8 @@ class Property_model extends CI_Model
         ));
         return $query->row_array();
     }
-    public function get_city($id = FALSE)
-    {
+
+    public function get_city($id = FALSE) {
         if ($id === FALSE) {
             $query = $this->db->get('ci_city');
             return $query->result_array();
@@ -28,8 +28,8 @@ class Property_model extends CI_Model
         ));
         return $query->result_array();
     }
-    public function get_area($id = FALSE)
-    {
+
+    public function get_area($id = FALSE) {
         if ($id === FALSE) {
             $query = $this->db->get('ci_area');
             return $query->result_array();
@@ -40,8 +40,8 @@ class Property_model extends CI_Model
         ));
         return $query->result_array();
     }
-    public function get_society_for_add($id = FALSE)
-    {
+
+    public function get_society_for_add($id = FALSE) {
         if ($id === FALSE) {
             $query = $this->db->get('ci_society');
             return $query->result_array();
@@ -52,19 +52,19 @@ class Property_model extends CI_Model
         ));
         return $query->result_array();
     }
-    public function get_society($id = FALSE)
-    {
+
+    public function get_society($id = FALSE) {
         if ($id === FALSE) {
-			/* $this->db->where('status',1);
-            $query = $this->db->get('ci_society'); */
-			
-			$this->db->select('s.*,a.areaname');
-		$this->db->from('ci_society as s');
-		
-		 $this->db->join('ci_area as a', 's.areaid=a.id');
-        $this->db->where('s.status','1' );
-		$this->db->order_by('a.areaname','ASC' );
-			$query= $this->db->get();
+            /* $this->db->where('status',1);
+              $query = $this->db->get('ci_society'); */
+
+            $this->db->select('s.*,a.areaname');
+            $this->db->from('ci_society as s');
+
+            $this->db->join('ci_area as a', 's.areaid=a.id');
+            $this->db->where('s.status', '1');
+            $this->db->order_by('a.areaname', 'ASC');
+            $query = $this->db->get();
             return $query->result_array();
         }
         $query = $this->db->get_where('ci_society', array(
@@ -73,10 +73,10 @@ class Property_model extends CI_Model
         ));
         return $query->row_array();
     }
-    public function get_property($id = FALSE)
-    {
+
+    public function get_property($id = FALSE) {
         if ($id === FALSE) {
-		
+
             $query = $this->db->get('ci_propertys');
             return $query->result_array();
         }
@@ -86,8 +86,8 @@ class Property_model extends CI_Model
         ));
         return $query->row_array();
     }
-    public function get_propertyid($id)
-    {
+
+    public function get_propertyid($id) {
         $this->db->distinct();
         $this->db->select('*');
         $this->db->from('ci_propertys');
@@ -97,8 +97,8 @@ class Property_model extends CI_Model
         return $query->result_array();
         //echo '<pre>';  print_r($states); exit();
     }
-    public function get_propertymodyfy($id)
-    {
+
+    public function get_propertymodyfy($id) {
         $this->db->distinct();
         $this->db->select('*');
         $this->db->from('ci_propertys');
@@ -108,8 +108,8 @@ class Property_model extends CI_Model
         return $query->result_array();
         //echo '<pre>';  print_r($states); exit();
     }
-    public function allpropertylist()
-    {
+
+    public function allpropertylist() {
         $id = $this->session->userdata('userid');
         $this->db->distinct();
         $this->db->select('b.address,c.society_title,b.status,a.id');
@@ -117,14 +117,14 @@ class Property_model extends CI_Model
         $this->db->join('ci_propertys as b', 'a.addressid= b.id');
         $this->db->join('ci_society as c', 'a.societyid= c.id');
         $this->db->where('a.userid', $id);
-       
+
         $this->db->where('a.status', '1');
         $query = $this->db->get();
-       
+
         return $query->result_array();
     }
-    public function allsocietyforg()
-    {
+
+    public function allsocietyforg() {
         $id = $this->session->userdata('userid');
         $this->db->distinct();
         $this->db->select('c.society_title,c.id');
@@ -137,8 +137,8 @@ class Property_model extends CI_Model
         //echo '<pre>'; print_r($query->result_array()); exit();
         return $query->result_array();
     }
-    public function update()
-    {
+
+    public function update() {
         $data = array(
             'userid' => $this->session->userdata('userid'),
             'countryid' => $this->input->post('countryid'),
@@ -149,7 +149,7 @@ class Property_model extends CI_Model
             'addressid' => $this->input->post('addressid'),
             'status' => '1'
         );
-        $id   = $this->input->post('id');
+        $id = $this->input->post('id');
         $this->db->where('id', $id);
         $query = $this->db->update('ci_userpropertys', $data);
         if (!empty($query)) {
@@ -158,12 +158,12 @@ class Property_model extends CI_Model
             return false;
         }
     }
-    public function add()
-    {
-       
-        $data     = array(
+
+    public function add() {
+
+        $data = array(
             'userid' => $this->session->userdata('userid'),
-            'countryid' =>1,
+            'countryid' => 1,
             'stateid' => $this->input->post('stateid'),
             'cityid' => $this->input->post('cityid'),
             'areaid' => $this->input->post('areaid'),
@@ -173,13 +173,13 @@ class Property_model extends CI_Model
             'status' => '1'
         );
         //echo '<pre>'; print_r($data); exit();
-        $query    = $this->db->insert('ci_userpropertys', $data);
+        $query = $this->db->insert('ci_userpropertys', $data);
         return $this->db->insert_id();
     }
-    public function addpropertypayment($data)
-    {
+
+    public function addpropertypayment($data) {
         //	 print_r($data); exit();
-        $query    = $this->db->get_where('ci_userpropertys', array(
+        $query = $this->db->get_where('ci_userpropertys', array(
             'addressid' => $data['proid'],
             'status' => '1'
         ));
@@ -195,8 +195,8 @@ class Property_model extends CI_Model
             $this->db->join('ci_assign_society as b', 'a.societyid= b.societyid');
             $this->db->where('a.id', $data['proid']);
             $this->db->where('a.status', 1);
-            $query1          = $this->db->get();
-            $data_new        = $query1->row_array();
+            $query1 = $this->db->get();
+            $data_new = $query1->row_array();
             $data_new_insert = array(
                 'userid' => $this->session->userdata('userid'),
                 'countryid' => $data_new['countryid'],
@@ -208,13 +208,13 @@ class Property_model extends CI_Model
                 'sadminid' => $data_new['sadminid'],
                 'status' => '1'
             );
-            $query           = $this->db->insert('ci_userpropertys', $data_new_insert);
+            $query = $this->db->insert('ci_userpropertys', $data_new_insert);
             echo "Successful assign property";
             //	  print_r($data_new_insert);  exit();
         }
     }
-    public function set_news()
-    {
+
+    public function set_news() {
         $this->load->helper('url');
         $slug = url_title($this->input->post('title'), 'dash', TRUE);
         $data = array(
@@ -224,16 +224,16 @@ class Property_model extends CI_Model
         );
         return $this->db->insert('news', $data);
     }
-    public function pupdateuserStatus()
-    {
+
+    public function pupdateuserStatus() {
         $data['status'] = 0;
-        $id             = $_REQUEST['pid'];
+        $id = $_REQUEST['pid'];
         $this->db->where('addressid', $id);
         $this->db->update('ci_userpropertys', $data);
         return true;
     }
-    public function getuserproperty($id = FALSE)
-    {
+
+    public function getuserproperty($id = FALSE) {
         if ($id === FALSE) {
             $query = $this->db->get_where('ci_userpropertys', array(
                 'status' => '1'
@@ -246,8 +246,8 @@ class Property_model extends CI_Model
         ));
         return $query->row_array();
     }
-    public function getuserpropertybill($id = FALSE)
-    {
+
+    public function getuserpropertybill($id = FALSE) {
         $this->db->select('a.id,a.totalamount,b.id as proid,b.address,c.id as billid,c.bill_name');
         $this->db->from('ci_bill_charge as a');
         $this->db->join('ci_propertys  as b', 'a.property_id=b.id');
@@ -258,32 +258,32 @@ class Property_model extends CI_Model
         //		  echo '<pre>';  print_r($query->result_array()); exit();
         return $query->result_array();
     }
-    function getbillamount($data)
-    {
+
+    function getbillamount($data) {
         $id = $_POST['id'];
         $this->db->select('a.totalamount');
         $this->db->from('ci_bill_charge as a');
         $this->db->where('a.id', $id);
         $query = $this->db->get();
-        $data  = $query->row_array();
+        $data = $query->row_array();
         echo '<input type="text" id="amount" name="amount" value="' . @$data['totalamount'] . '" />';
     }
-    function successfulpayment()
-    {
-	
-        
-        $userid   = '';
+
+    function successfulpayment() {
+
+
+        $userid = '';
         $payUtype = 3;
-			if($this->session->userdata('userid')!=NULL)
-				$userid_request = $this->session->userdata('userid') ;
-				elseif($this->session->userdata('userid_request')!=NULL)
-				$userid_request = $this->session->userdata('userid_request');
-				else
-				$userid_request = '';
-	   
-        $data     = array(
+        if ($this->session->userdata('userid') != NULL)
+            $userid_request = $this->session->userdata('userid');
+        elseif ($this->session->userdata('userid_request') != NULL)
+            $userid_request = $this->session->userdata('userid_request');
+        else
+            $userid_request = '';
+
+        $data = array(
             'userid' => $userid_request,
-			'society_id'=>$this->session->userdata('societyid'),
+            'society_id' => $this->session->userdata('societyid'),
             'propertyid' => $this->input->post('udf1'),
             'bill_id' => $this->input->post('udf3'),
             'billname' => $this->input->post('udf4'),
@@ -316,18 +316,17 @@ class Property_model extends CI_Model
             'name_on_card' => $this->input->post('name_on_card'),
             'cardnum' => $this->input->post('cardnum'),
             'cardhash' => $this->input->post('cardhash'),
-			'custom_note'=> $this->session->userdata('payment_desc'),
-			
+            'custom_note' => $this->session->userdata('payment_desc'),
         );
-        
-        $query    = $this->db->insert('ci_transaction', $data);
-        
-       
+
+        $query = $this->db->insert('ci_transaction', $data);
+
+
         //return $this->input->post('txnid');
-         return  $this->db->insert_id();
+        return $this->db->insert_id();
     }
-    public function get_transaction($id = FALSE)
-    {
+
+    public function get_transaction($id = FALSE) {
         $userid = $this->session->userdata('userid');
         if ($id === FALSE) {
             $this->db->select('a.billname,a.societyname,b.address,a.totalamount as amount,a.status,a.id,a.addedon');
@@ -345,8 +344,8 @@ class Property_model extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     }
-    function Convenience($data)
-    {
+
+    function Convenience($data) {
         //echo '<pre>'; 			 print_r($data);exit();
         if ($data['action'] == 'debitcard') {
             $this->db->select('a.debit_fa,a.debit_pa');
@@ -361,10 +360,10 @@ class Property_model extends CI_Model
         }
         $this->db->from('ci_convenience as a');
         $this->db->where('a.societyid', $data['cid']);
-        $query   = $this->db->get();
+        $query = $this->db->get();
         $amtdata = $query->row_array();
-        $fa      = 0;
-        $pa      = 0;
+        $fa = 0;
+        $pa = 0;
         if ($data['action'] == 'debitcard') {
             $fa = $amtdata['debit_fa'];
             $pa = $amtdata['debit_pa'];
@@ -381,8 +380,8 @@ class Property_model extends CI_Model
             $fa = $amtdata['cashcard_fa'];
             $pa = $amtdata['cashcard_pa'];
         }
-        $con_amt     = $fa + ($data['amount'] * $pa/ 100) ;
-        $toalamt     = $data['amount'] + $con_amt;
+        $con_amt = $fa + ($data['amount'] * $pa / 100);
+        $toalamt = $data['amount'] + $con_amt;
         $autocondata = array(
             'fpamount' => $toalamt,
             'fpcon_amt' => $con_amt,
@@ -392,220 +391,174 @@ class Property_model extends CI_Model
         $this->session->set_userdata($autocondata);
         echo $response = '{    "con":"' . $con_amt . '",  "totalamt":"' . $toalamt . '","carttypepay":"' . $data['action'] . '"  }';
     }
-    function autocon()
-    {
+
+    function autocon() {
         $amount = $this->session->userdata('amount');
-        $cid    = $this->session->userdata('cid');
+        $cid = $this->session->userdata('cid');
         $this->db->select('a.debit_fa,a.debit_pa');
         $this->db->from('ci_convenience as a');
         $this->db->where('a.societyid', $cid);
-        $query       = $this->db->get();
-        $amtdata     = $query->row_array();
-        $fa          = $amtdata['debit_fa'];
-        $pa          = $amtdata['debit_pa'];
-        $con_amt     = $fa + ($amount * $pa / 100);
-        $totalamt    = $amount + $con_amt;
+        $query = $this->db->get();
+        $amtdata = $query->row_array();
+        $fa = $amtdata['debit_fa'];
+        $pa = $amtdata['debit_pa'];
+        $con_amt = $fa + ($amount * $pa / 100);
+        $totalamt = $amount + $con_amt;
         $autocondata = array(
             'fpamount' => $totalamt,
             'fpcon_amt' => $con_amt
         );
         $this->session->set_userdata($autocondata);
     }
-	
-	 
 
-	public function getcity($id)
-	 { 
+    public function getcity($id) {
 
-	  $this->db->distinct();
+        $this->db->distinct();
 
- 	  $this->db->select('*');
+        $this->db->select('*');
 
-      $this->db->from('ci_city');		
+        $this->db->from('ci_city');
 
-	  $this->db->where('stateid',$id);
- $this->db->where('status',1);
-	  $this->db->order_by('cityname','ASC');
+        $this->db->where('stateid', $id);
+        $this->db->where('status', 1);
+        $this->db->order_by('cityname', 'ASC');
 
-      $query = $this->db->get();
+        $query = $this->db->get();
 
- $states=$query->result_array();
+        $states = $query->result_array();
 
-  $html='<option value="">Select Your City</option>';
+        $html = '<option value="">Select Your City</option>';
 
- foreach($states as $states)
+        foreach ($states as $states) {
 
-  {
+            $html .='<option value="' . $states['id'] . '" >' . $states['cityname'] . '</option>';
+        }
 
-	  $html .='<option value="'.$states['id'].'" >'.$states['cityname'].'</option>';
+        $html .='';
 
-	  }
+        return $html;
+    }
 
-$html .='';	
+    public function getarea($id) {
 
-return  $html;
 
- }
+        $this->db->distinct();
 
-		 
+        $this->db->select('*');
 
-		 
+        $this->db->from('ci_area');
 
-		 
+        $this->db->where('cityid', $id);
+        $this->db->where('status', 1);
+        $this->db->order_by('areaname', 'ASC');
 
-	 public function getarea($id)
+        $query = $this->db->get();
 
-	 { 
+        $states = $query->result_array();
 
-		 
-	  $this->db->distinct();
+        $html = '<option value="">Select Your Area/Sector</option>';
 
- 	  $this->db->select('*');
+        foreach ($states as $states) {
 
-      $this->db->from('ci_area');		
+            $html .='<option value="' . $states['id'] . '" >' . $states['areaname'] . '</option>';
+        }
 
-	  $this->db->where('cityid',$id);
- $this->db->where('status',1);
-	  $this->db->order_by('areaname','ASC');
+        $html .='';
 
-      $query = $this->db->get();	  
 
- $states=$query->result_array();
+        return $html;
+    }
 
- $html='<option value="">Select Your Area/Sector</option>';
+    public function getsociety($id) {
 
- foreach($states as $states)
+        $this->db->distinct();
 
-  {
+        $this->db->select('*');
 
-	  $html .='<option value="'.$states['id'].'" >'.$states['areaname'].'</option>';
+        $this->db->from('ci_society');
 
-	  }
+        $this->db->where('areaid', $id);
+        $this->db->where('status', 1);
+        $this->db->order_by('society_title', 'ASC');
 
-$html .='';	  
+        $query = $this->db->get();
 
 
-return  $html;
-	 
+        $states = $query->result_array();
 
-	 }
+        $html = '<option value="">Select Your Society</option>';
 
-	 
+        foreach ($states as $states) {
 
-	 public function getsociety($id)
+            $html .='<option value="' . $states['id'] . '" >' . $states['society_title'] . '</option>';
+        }
 
-	 { 		
+        $html .='';
 
-	  $this->db->distinct();
 
- 	  $this->db->select('*');
 
-      $this->db->from('ci_society');		
+        return $html;
+    }
 
-	  $this->db->where('areaid',$id);
- $this->db->where('status',1);
-	  $this->db->order_by('society_title','ASC');
+    public function getaddress($id) {
 
-      $query = $this->db->get();
 
-		
- $states=$query->result_array();
+        $this->db->distinct();
 
- $html='<option value="">Select Your Society</option>';
+        $this->db->select('*');
 
- foreach($states as $states)
+        $this->db->from('ci_propertys');
 
-  {
+        $this->db->where('societyid', $id);
+        $this->db->where('status', 1);
+        $this->db->order_by('address', 'ASC');
 
-	  $html .='<option value="'.$states['id'].'" >'.$states['society_title'].'</option>';
+        $query = $this->db->get();
 
-	  }
+        $states = $query->result_array();
 
-$html .='';	  
+        $html = ' <option value="">Select Your Property</option>';
 
+        foreach ($states as $states) {
 
+            $html .='<option value="' . $states['id'] . '" >' . $states['address'] . '</option>';
+        }
 
-return  $html;
+        $html .='';
 
+        return $html;
+    }
 
+    function getrequest_details($request_id) {
 
 
 
-		 
+        $this->db->select('*');
 
-		 }
+        $this->db->from('ci_payment_request');
 
+        $this->db->where('md5(id)', "$request_id");
+        $this->db->where('status', 'sent');
+        $query = $this->db->get();
 
 
-	 
+        if ($query->num_rows() > 0)
+            return $query->row();
+        else
+            return array();
+    }
 
-	 public function getaddress($id)
+    function get_bill_detail() {
+        $this->db->select('SQL_CALC_FOUND_ROWS up.addressid as address_id,a.id as billid,c.address as flat,u.id as userid,u.fname as fname, u.lname as lname,u.email as email,a.sdate,a.edate,a.totalamount as total,concat(s.fname," ",s.lname) as society_admin,sd.society_title,sd.id as society_id,group_concat(b.bill_name) as bill_name,group_concat(a.amount) as amount,a.taxamount as tax', false);
+        $this->db->from('ci_bill_charge  as a');
+        $this->db->join('ci_bill as b', 'a.bill_id=b.id', "left");
+        $this->db->join('ci_propertys as c', 'a.property_id=c.id', "left");
+        $this->db->join('ci_userpropertys as up', 'c.id = up.addressid', "left");
+        $this->db->join('ci_users as u', 'up.userid = u.id', "left");
+        $this->db->join('ci_users as s', 'a.addbyid = s.id', "left");
+        $this->db->join('ci_society as sd', 'sd.id = up.societyid', "left");
+        $this->db->where("up.userid", $this->session->userdata('userid'));
+        return $this->db->group_by("a.related_id")->get()->result();
+    }
 
-	 { 
-   
-
-	  $this->db->distinct();
-
- 	  $this->db->select('*');
-
-      $this->db->from('ci_propertys');		
-
-	  $this->db->where('societyid',$id);	 
- $this->db->where('status',1);
-	  $this->db->order_by('address','ASC');
-
-      $query = $this->db->get();  
-
- $states=$query->result_array();
-
- $html=' <option value="">Select Your Property</option>';
-
- foreach($states as $states)
-
-  {
-
-	  $html .='<option value="'.$states['id'].'" >'.$states['address'].'</option>';
-
-	  }
-
-$html .='';	  
-
-return  $html;
-
-
-
-		 }
-
-	
-	function getrequest_details($request_id){
-	
-	
-	
- 	  $this->db->select('*');
-
-      $this->db->from('ci_payment_request');		
-
-	  $this->db->where('md5(id)',"$request_id");
-		$this->db->where('status','sent');
-      $query = $this->db->get();
-		
-		
-		if( $query->num_rows() > 0)		
-		return $query->row();
-	
-	else return array();
-	
-	
-	
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

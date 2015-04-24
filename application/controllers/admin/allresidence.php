@@ -211,9 +211,11 @@ class Allresidence extends CI_Controller {
         $email_data  = array();
         foreach ($success_data as $val) {
             $email_data[] = array_merge($val['data'],array("charge_head"=>$val['charge_head']));
-            $property_id = $this->residence_model->get_property_id($society_id, $val['data']['address']);
+            $property_id = $this->residence_model->get_property_id($society_id, $val['data']['address'],$val['data']['email']);
+            $related_id = 0;
+            $i = 0;
             foreach ($val['charge_head'] as $_k => $_v) {
-                $insert_data[] = array(
+                $_temp = array(
                     "society_id" => $society_id,
                     "property_id" => $property_id,
                     "sdate" => $val['data']['sdate'],
@@ -224,16 +226,29 @@ class Allresidence extends CI_Controller {
                     "totalamount" => $val['data']['total'],
                     "timestamp" => date("Y-m-d H:i:s"),
                     "addbyid" => $this->session->userdata('admin_id'),
-                    "status" => "1"
+                    "status" => "1",
+                    "related_id"=>$related_id
                 );
+                if($i == 0){
+                    $this->db->insert("ci_bill_charge",$_temp);
+                    $related_id = $this->db->insert_id();
+                    $this->db->where("id",$related_id)->update("ci_bill_charge",array("related_id"=>$related_id));
+                }else{
+                    $insert_data[] = $_temp;
+                }
+                $i++;
             }
         }
         if (!empty($insert_data)) {
             $this->db->insert_batch("ci_bill_charge",$insert_data);
             $this->residence_model->send_mail($email_data);
             $this->session->set_flashdata('msg_error', "Bill generated successfully.");
-            redirect("admin/login/dashboard");
+            redirect("admin/login/dashboard/?&bill=details");
         }
     }
-
+    function bill_detail($id){
+        $response = $this->residence_model->billdetailbyid($id);
+         $data['data'] = $response[0];
+        $this->load->view("admin/bill_details",$data);
+    }
 }

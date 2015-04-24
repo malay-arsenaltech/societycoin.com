@@ -18,6 +18,7 @@ class Login extends CI_Controller {
 
 
             $this->load->model('admin/user_model');
+            $this->load->model('admin/residence_model');
             if (isset($_GET['utype']) && $_GET['utype'] != '') {
                 $search_str = "&utype=" . $_GET['utype'];
             }
@@ -72,6 +73,35 @@ class Login extends CI_Controller {
 
 
             $data['pay'] = $this->user_model->tranactionlog($page, $config1["per_page"]);
+
+            if ($this->input->get_post('search_text')) {
+                $search_str = "&search_text=" . $this->input->get_post('search_text');
+            }
+            else
+                $search_str = '';
+            $config2 = array();
+            $config2["base_url"] = base_url() . "admin/login/index/?&bill=details&$search_str";
+            $config2["per_page"] = 25;
+            $config2["uri_segment"] = 3;
+            $config2['full_tag_open'] = '<td>';
+            $config2['first_link'] = 'First';
+            $config2['last_link'] = 'Last';
+            $config2['next_link'] = '&gt;';
+            $config2['prev_link'] = '&lt;';
+            $config2['cur_tag_open'] = '<b>';
+            $config2['cur_tag_close'] = '</b>';
+            $config2['full_tag_close'] = '</td>';
+            $config2["page_query_string"] = true;
+            $page = (isset($_GET['per_page']) && isset($_GET['bill'])) ? $_GET['per_page'] : 0;
+
+            $response = $this->residence_model->billdata($config2["per_page"], $page);
+            $data['bill_data'] = $response['rows'];
+            $config2["total_rows"] = $response['num_rows'];
+
+            $this->pagination->initialize($config2);
+            $data["links3"] = $this->pagination->create_links();
+
+
             $this->load->view('admin/home', $data);
         }
     }
@@ -111,6 +141,7 @@ class Login extends CI_Controller {
     public function dashboard() {
 
         $this->load->model('admin/user_model');
+        $this->load->model('admin/residence_model');
         if ($this->input->get_post('search_text')) {
             $search_str = "&search_text=" . $this->input->get_post('search_text');
         }
@@ -138,6 +169,35 @@ class Login extends CI_Controller {
 
 
         $data['pay'] = $this->user_model->subadmin_customer_transaction($config1["per_page"], $page);
+
+        if ($this->input->get_post('search_text')) {
+            $search_str = "&search_text=" . $this->input->get_post('search_text');
+        }
+        else
+            $search_str = '';
+        if ($this->session->userdata('utype') == 4) {
+            $config2 = array();
+            $config2["base_url"] = base_url() . "admin/login/dashboard/?&bill=details&$search_str";
+            $config2["per_page"] = 5;
+            $config2["uri_segment"] = 3;
+            $config2['full_tag_open'] = '<td>';
+            $config2['first_link'] = 'First';
+            $config2['last_link'] = 'Last';
+            $config2['next_link'] = '&gt;';
+            $config2['prev_link'] = '&lt;';
+            $config2['cur_tag_open'] = '<b>';
+            $config2['cur_tag_close'] = '</b>';
+            $config2['full_tag_close'] = '</td>';
+            $config2["page_query_string"] = true;
+            $page = (isset($_GET['per_page']) && isset($_GET['bill'])) ? $_GET['per_page'] : 0;
+
+            $response = $this->residence_model->billdata($config2["per_page"], $page,1);
+            $data['bill_data'] = $response['rows'];
+            $config2["total_rows"] = $response['num_rows'];
+
+            $this->pagination->initialize($config2);
+            $data["links3"] = $this->pagination->create_links();
+        }
         $this->load->view('admin/subadmin_dashboard', $data);
     }
 
