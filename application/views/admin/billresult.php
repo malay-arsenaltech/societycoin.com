@@ -3,10 +3,13 @@
     #id-form th,#id-form td {
         font-size: 12px;
         line-height: 28px;
-        min-width: 130px;
+        min-width: auto;
         padding: 10px;
         text-align: left;
         height:100%;
+        box-sizing: border-box;
+        -webkit-sizing: border-box;
+        -moz-sizing: border-box;
     }
     .table-header-repeat span {
         color: #fff;
@@ -21,6 +24,7 @@
     #table-content #mainform #product-table tr:hover {
         background: none repeat scroll 0 0 #f1fbe5;
     }
+    .green-left, .red-left {line-height:16px!important;}
 </style>
 <script>
     function upload_bill() {
@@ -53,14 +57,14 @@
             <tr>
                 <td id="tbl-border-left"></td>
 
-                <td style="float:left;" id="table-content" >
+                <td id="table-content" >
                     <form id="mainform" method='post' action="<?php echo base_url(); ?>admin/allresidence/processbill">
-                        <table id="id-form" class="table table-bordered">
+                        <table id="id-form" class="table table-bordered" width="100%">
                             <thead>
                                 <tr>    
                                     <td colspan="2">
                                         <div id="message-green">
-                                            <table  cellspacing="0" cellpadding="0" border="0">
+                                            <table  cellspacing="0" cellpadding="0" border="0" width="100%">
                                                 <tbody>
                                                     <tr>
                                                         <td class="green-left">Total <b><?php echo count($success_data); ?></b> bill(s) will be Processed successfully out of <b><?php echo count($success_data) + count($failure_data); ?></b> bill(s). Following is the list of the bill(s) which will be Processed.</td>
@@ -68,7 +72,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <table border="0" width="96%" cellpadding="0" cellspacing="0" class="reference" id="product-table">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" class="reference" id="product-table">
                                             <tr>
                                                 <?php foreach ($header as $v) { ?>
                                                     <th class="table-header-repeat line-left"><span><?php echo $v; ?></span>	</th>
@@ -94,7 +98,7 @@
                                                         </tr>
                                                     </tbody></table>
                                             </div>
-                                            <table border="0" width="96%" cellpadding="0" cellspacing="0" class="reference" id="product-table">
+                                            <table border="0" width="100%" cellpadding="0" cellspacing="0" class="reference" id="product-table">
                                                 <tr>
                                                     <?php foreach ($header as $v) { ?>
                                                         <th class="table-header-repeat line-left"><span><?php echo $v; ?></span>	</th>
@@ -124,9 +128,9 @@
                                 <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" >
 
                                 <?php if (!empty($success_data)) { ?>
-                                    <input type="submit" class="form-proceed" value="Yes">
+                                    <input type="submit" class="form-proceed form-button" value="Yes">
                                 <?php } ?>
-                                <input class="form-back" type="reset" value="No" onclick="upload_bill()" >&nbsp;
+                                <input class="form-button-gray" type="reset" value="No" onclick="upload_bill()" >&nbsp;
                             </center>
 
                             </td>

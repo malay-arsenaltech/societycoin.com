@@ -21,6 +21,8 @@
     #table-content #mainform #product-table tr:hover {
         background: none repeat scroll 0 0 #f1fbe5;
     }
+    .green-left, .red-left {line-height:16px!important;}
+    
 </style>
 <script>
     function add_flat() {
@@ -53,14 +55,26 @@
             <tr>
                 <td id="tbl-border-left"></td>
 
-                <td style="float:left;" id="table-content" >
+                <td id="table-content" >
+                    <div id="step-holder">
+                        <div class="step-no">1</div>
+                        <div class="step-dark-left"><a href="<?php echo base_url() . "admin/allflatowner/addflatowner" ?>">Upload CSV File</a></div>
+                        <div class="step-dark-right">&nbsp;</div>
+                        <div class="step-no">2</div>
+                        <div class="step-dark-left">Preview</div>
+                        <div class="step-dark-right">&nbsp;</div>
+                        <div class="step-no-off">3</div>
+                        <div class="step-light-left">Select Charge Heads</div>
+                        <div class="step-light-round">&nbsp;</div>
+                        <div class="clear"></div>
+                    </div>
                     <form id="mainform" method='post' action="<?php echo base_url(); ?>admin/allflatowner/chargehead">
-                        <table id="id-form" class="table table-bordered">
+                        <table id="id-form" class="table table-bordered" width="100%">
                             <thead>
                                 <tr>    
                                     <td colspan="2">
                                         <div id="message-green">
-                                            <table  cellspacing="0" cellpadding="0" border="0">
+                                            <table  cellspacing="0" cellpadding="0" border="0" width="100%">
                                                 <tbody>
                                                     <tr>
                                                         <td class="green-left">Total <b><?php echo count($success_record); ?></b> flat owner(s) will be added successfully out of <b><?php echo count($success_record) + count($failure_data); ?></b> flat owner(s). Following is the list of the flat owner(s) which will be added.</td>
@@ -68,20 +82,20 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                         <table border="0" width="96%" cellpadding="0" cellspacing="0" class="reference" id="product-table">
+                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" class="reference" id="product-table">
+                                            <tr>
+                                                <th class="table-header-repeat line-left minwidth-1"><span>Flat Address</span>	</th>
+                                                <th class="table-header-repeat line-left"><span>Owner's Name</span></th>
+                                                <th class="table-header-repeat line-left"><span>Email</span></th>
+                                            </tr>
+                                            <?php foreach ($success_record as $val) { ?>
                                                 <tr>
-                                                    <th class="table-header-repeat line-left minwidth-1"><span>Flat Address</span>	</th>
-                                                    <th class="table-header-repeat line-left"><span>Owner's Name</span></th>
-                                                    <th class="table-header-repeat line-left"><span>Email</span></th>
+                                                    <td><?php echo $val['address']; ?></td>
+                                                    <td><?php echo $val['name']; ?></td>
+                                                    <td><?php echo $val['email_address']; ?></td>
                                                 </tr>
-                                                <?php foreach ($success_record as $val) { ?>
-                                                    <tr>
-                                                        <td><?php echo $val['address']; ?></td>
-                                                        <td><?php echo $val['name']; ?></td>
-                                                        <td><?php echo $val['email_address']; ?></td>
-                                                    </tr>
-                                                <?php } ?>
-                                            </table>
+                                            <?php } ?>
+                                        </table>
                                     </td>
                                 </tr>
                                 <?php if (!empty($failure_data)) { ?>
@@ -94,7 +108,7 @@
                                                         </tr>
                                                     </tbody></table>
                                             </div>
-                                            <table border="0" width="96%" cellpadding="0" cellspacing="0" class="reference" id="product-table">
+                                            <table border="0" width="100%" cellpadding="0" cellspacing="0" class="reference" id="product-table">
                                                 <tr>
                                                     <th class="table-header-repeat line-left minwidth-1"><span>Flat Address</span>	</th>
                                                     <th class="table-header-repeat line-left"><span>Owner's Name</span></th>
@@ -124,9 +138,9 @@
                                 <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" >
 
                                 <?php if (!empty($success_record)) { ?>
-                                    <input type="submit" class="form-proceed" value="Yes">
+                                    <input type="submit" class="form-proceed form-button" value="Yes">
                                 <?php } ?>
-                                <input class="form-back" type="reset" value="No" onclick="add_flat()" >&nbsp;
+                                <input class="form-back form-button-gray" type="reset" value="No" onclick="add_flat()" >&nbsp;
                             </center>
 
                             </td>

@@ -178,7 +178,7 @@ class Login extends CI_Controller {
         if ($this->session->userdata('utype') == 4) {
             $config2 = array();
             $config2["base_url"] = base_url() . "admin/login/dashboard/?&bill=details&$search_str";
-            $config2["per_page"] = 5;
+            $config2["per_page"] = 25;
             $config2["uri_segment"] = 3;
             $config2['full_tag_open'] = '<td>';
             $config2['first_link'] = 'First';

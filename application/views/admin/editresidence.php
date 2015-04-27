@@ -169,7 +169,8 @@
                                 </tr>
                                 <tr>
                                     <th>   </th>
-                                    <td><input type="submit" class="form-submit"  value="Update" >
+                                    <td><input type="submit" class="form-button form-proceed"  value="Update" >
+                                        <input class="form-button-gray" type="reset" value="Reset" >
                                         <input type="hidden" id="status" name="status" value="<?php echo $data['status']; ?>" >
                                         <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" >
                                     </td>

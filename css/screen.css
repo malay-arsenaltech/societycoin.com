@@ -249,11 +249,13 @@ h3 {
 }
 
 .red-left {
-    background: url(../images/table/message_red.gif) top left no-repeat;
+   background: url(../images/table/message_red.gif) top left no-repeat;
     color: #ce2700;
     font-family: Tahoma;
     font-weight: bold;
     padding: 0 0 0 20px;
+    /*background: #fbd3b1;
+    border:#f5c69a solid 1px;*/
 }
 
 .red-left a {
@@ -857,6 +859,7 @@ a:hover.action-delete {
     padding: 13px 15px 0 25px;
     font-size: 13px;
     color: #fff;
+    line-height: 11px;
     font-weight: bold;
 }
 
@@ -889,6 +892,7 @@ a:hover.action-delete {
     height: 39px;
     color: #cbcbcb;
     font-weight: bold;
+    line-height: 11px;
 }
 
 .step-light-left a {
@@ -1286,7 +1290,8 @@ Copyright (c) 2005-2007 Stu Nicholls. All rights reserved. This stylesheet and t
 
 #footer {
     height: 70px;
-    margin: -49px auto 0px auto;
+    /*margin: -49px auto 0px auto;*/
+    margin: 0px auto 0px auto;
     padding: 0px 0 0 0;
     text-align: left;
     min-width: 780px;
@@ -2153,3 +2158,5 @@ form table tr td input[type="checkbox"] {
 .fleft {float:left}
 .mr-r-10{margin-right: 10px;}
 label.error{font-size:13px;}
+.form-button{background: none repeat scroll 0 0 #94b52c; border: #94b52c solid 1px; color: #fff; width: auto; padding:4px 10px; margin-right: 15px; }
+.form-button-gray{background: none repeat scroll 0 0 #7d7d7d; border: #7d7d7d solid 1px; color: #fff; width: auto; padding:4px 10px; }

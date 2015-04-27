@@ -16,6 +16,11 @@
         margin-left: 9px;
         padding-left: 10px;
     }
+    .charge_head{
+        color: grey;
+        text-decoration: underline;
+    }
+    .charge_head_form input{ width: 125px!important;}
 </style>
 <script>
     function display_charge_head_form() {
@@ -27,7 +32,7 @@
         if ($(".charge_head_form").find("[name='custom_charge_head']").val() == "") {
             return false;
         } else {
-            $.post("<?php echo base_url(); ?>admin/allchargehead/addchargehead", {"is_ajax":"1",charge_head_name: $(".charge_head_form").find("[name='custom_charge_head']").val()}, function(result) {
+            $.post("<?php echo base_url(); ?>admin/allchargehead/addchargehead", {"is_ajax": "1", charge_head_name: $(".charge_head_form").find("[name='custom_charge_head']").val()}, function(result) {
                 result = $.parseJSON(result);
                 if (result != "0") {
                     var html = '<tr><td colspan="2"><input type="checkbox" name="charge_head[]" id="' + result.id + '" value="' + result.id + '"><b><label class="checkbox_label" for="' + result.id + '">' + result.name + '</label></b></td></tr>'
@@ -69,6 +74,18 @@
                 <td id="tbl-border-left"></td>
 
                 <td style="float:left;" id="table-content" >
+                    <div id="step-holder">
+                        <div class="step-no">1</div>
+                        <div class="step-dark-left"><a href="<?php echo base_url() . "admin/allflatowner/addflatowner" ?>">Upload CSV File</a></div>
+                        <div class="step-dark-right">&nbsp;</div>
+                        <div class="step-no">2</div>
+                        <div class="step-dark-left"><a href="javascript:void(0)" onclick="window.history.back();">Preview</a></div>
+                        <div class="step-dark-right">&nbsp;</div>
+                        <div class="step-no">3</div>
+                        <div class="step-dark-left">Select Charge Heads</div>
+                        <div class="step-dark-round">&nbsp;</div>
+                        <div class="clear"></div>
+                    </div>
                     <form id="mainform" method='post' action="<?php echo base_url(); ?>admin/allflatowner/process">
                         <table id="id-form" class="table table-bordered">
                             <thead>
@@ -84,23 +101,23 @@
                                         </td>
                                     </tr>
                                 <?php } ?>
-                                <tr class="chargehead_or" style="<?php echo empty($charge_head) ? 'display:none;' : ''?>">
+                                <tr class="chargehead_or" style="<?php echo empty($charge_head) ? 'display:none;' : '' ?>">
                                     <td colspan="2"><h2><center>OR</center></h2></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><h2><center><a href="javascript:void(0);"  onclick="display_charge_head_form()">ADD YOUR CHARGE HEADS</a></center></h2></td>
+                                    <td colspan="2"><h2><center><a class="charge_head" href="javascript:void(0);"  onclick="display_charge_head_form()">ADD YOUR CHARGE HEADS</a></center></h2></td>
                                 </tr>
                                 <tr class="charge_head_form" style="display:none;">    
                                     <td>
                                         <input type="text" name="custom_charge_head"  value="">
-                                        <button class="add_charge_head">Add</button>
+                                        <button class="add_charge_head form-button">Add</button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
                                         <input type="hidden" name="success_record" value='<?php echo $success_record ?>'>
                                         <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" >
-                                        <input type="submit" class="form-proceed" onclick="$(form).submit()" value="Confirm">
+                                        <input type="submit" class="form-proceed form-button btnb" onclick="$(form).submit()" value="Confirm">
                                     </td>
                                 </tr>
                             </thead>

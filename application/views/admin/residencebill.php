@@ -20,6 +20,12 @@
         padding-left: 10px;
     }
     .hidden{display: none;}
+    .charge_head{
+        color: grey;
+        text-decoration: underline;
+    }
+    .charge_head_form td { text-align: center!important;}
+    .charge_head_form input{ width: 125px!important;}
 </style>
 <script>
     function display_charge_head_form() {
@@ -95,15 +101,15 @@
                 <td style="float:left;" id="table-content" >
                     <form id="downloadbill" method='post' action="<?php echo base_url(); ?>admin/allresidence/downloadbill">
                         <input type="hidden" name="society_name" value="<?php echo $society_name ?>">
-                        <table id="id-form" class="table table-bordered">
+                        <table id="id-form" class="table table-bordered" width="120%">
                             <thead>
                                 <tr>
                                     <td>Bill Generated On</td>
-                                    <td><input type="text" name="bill_generates_on" class="required from-date" id="sdate"></td>
+                                    <td><input type="text" name="bill_generates_on" class="required from-date" id="sdate" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>Bill Due Date</td>
-                                    <td><input type="text" name="bill_due_on" class="required to-date" id="edate"></td>
+                                    <td><input type="text" name="bill_due_on" class="required to-date" id="edate" autocomplete="off"></td>
                                 </tr>
                                 <?php
                                 foreach ($charge_head as $key => $val) {
@@ -119,20 +125,20 @@
                                     <td></td><td><h2><center>OR</center></h2></td>
                                 </tr>
                                 <tr>
-                                    <td></td><td><h2><center><a href="javascript:void(0);"  onclick="display_charge_head_form()">ADD YOUR CHARGE HEADS</a></center></h2></td>
+                                    <td></td><td><h2><center><a class="charge_head" href="javascript:void(0);"  onclick="display_charge_head_form()">ADD YOUR CHARGE HEADS</a></center></h2></td>
                                 </tr>
                                 <tr class="charge_head_form hidden">    
                                     <td></td>
                                     <td>
                                         <input type="text" name="custom_charge_head"  value="">
-                                        <button class="add_charge_head">Add</button>
+                                        <button class="add_charge_head form-button">Add</button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
                             <center>
                                 <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" >
-                                <input type="submit" class="form-proceed" onclick="$(form).submit()" value="Download Bill">
+                                <input type="submit" class="form-proceed form-button btnb" onclick="$(form).submit()" value="Download Bill">
                             </center>
                             </td>
                             </tr>

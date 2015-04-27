@@ -29,7 +29,7 @@
 
         <!--  start page-heading -->
         <div id="page-heading">
-            <h1>Add Flats</h1><br>
+            <h1>Add Flat Owners</h1><br>
             <?php
             $msg_error = $this->session->flashdata('msg_error');
 
@@ -78,6 +78,18 @@
             <tr>
                 <td id="tbl-border-left"></td>
                 <td style="float:left;" >
+                    <div id="step-holder">
+                        <div class="step-no">1</div>
+                        <div class="step-dark-left"><a href="javascript:void(0)">Upload CSV File</a></div>
+                        <div class="step-dark-right">&nbsp;</div>
+                        <div class="step-no-off">2</div>
+                        <div class="step-light-left">Preview</div>
+                        <div class="step-light-right">&nbsp;</div>
+                        <div class="step-no-off">3</div>
+                        <div class="step-light-left">Select Charge Heads</div>
+                        <div class="step-light-round">&nbsp;</div>
+                        <div class="clear"></div>
+                    </div>
                     <!--  start content-table-inner ...................................................................... START -->
                     <form enctype="multipart/form-data" id="addnewflat" name="addnewflat" method="post" onsubmit="return $('#addnewflat').valid()"  action="<?php echo base_url(); ?>admin/allflatowner/upload" >
                         <table id="id-form" class="table table-bordered">
@@ -89,8 +101,8 @@
                                 <tr>    
                                     <th>&nbsp;</th>
                                     <td>
-                                        <input type="submit" class="form-submit"  value="Upload" >&nbsp;
-                                        <input class="form-reset" type="reset" value="Reset" >
+                                        <input type="submit" class="form-proceed form-button"  value="Upload" >&nbsp;
+                                        <input class="form-button-gray" type="reset" value="Reset" >
                                         <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" >
                                     </td>
                                 </tr>

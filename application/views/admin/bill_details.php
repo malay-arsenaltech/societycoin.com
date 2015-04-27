@@ -50,13 +50,13 @@
             </tr>
             <tr>
                 <td id="tbl-border-left"></td>
-                <td style="float:left;" ><!--  start content-table-inner ...................................................................... START -->
+                <td ><!--  start content-table-inner ...................................................................... START -->
 
-                    <table id="id-form" class="table table-bordered">
+                    <table id="id-form" class="table table-bordered" width="100%">
 
                         <tr>
-                            <td><strong> Name &nbsp;:</strong></td>
-                            <td>&nbsp;<?php echo $data['fname'] . " " . $data['lname']; ?>
+                            <td width="15%"><strong> Name &nbsp;:</strong></td>
+                            <td width="85%">&nbsp;<?php echo $data['fname'] . " " . $data['lname']; ?>
                             </td>
                         </tr>
 
@@ -104,7 +104,7 @@
                                 <td valign="top"><strong> Details &nbsp;:</strong></td>
                                 <td>
                                     <div id="table-content">
-                                        <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table">
+                                        <table border="0" width="45%" cellpadding="0" cellspacing="0" id="product-table">
                                             <tr>
                                                 <td class="table-header-repeat line-left  minwidth-1"><span>Bill Name</span></td>
                                                 <td class="table-header-repeat line-left  minwidth-1"><span>Amount</span></td>
