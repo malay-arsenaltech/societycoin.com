@@ -23,4 +23,10 @@ class Chargehead_model extends CI_Model {
         return isset($data[0]) ? explode(",", $data[0]->chargehead_id) : array();
     }
 
+    public function get_current_charge_head_name($society_id) {
+
+        $data = $this->db->select("group_concat(ci_bill.bill_name) as charge_head_name")->join("ci_society_chargehead", "ci_society_chargehead.chargehead_id = ci_bill.id")->where("society_id", $society_id)->where("ci_society_chargehead.status", "1")->from("ci_bill")->get()->result();
+        return !empty($data) ? explode(",",$data[0]->charge_head_name) : array();
+    }
+
 }

@@ -12,530 +12,493 @@ $url = $url[0];
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-    <head>
+<head>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-        <title><?php echo "SocietyCoin Admin page"; ?></title>
+    <title><?php echo "SocietyCoin Admin page"; ?></title>
 
-        <link rel="stylesheet" href="<?php echo AdminThemeUrl; ?>css/screen.css" type="text/css" media="screen" title="default" />
-        <link rel="shortcut icon" href="<?php echo base_url(); ?>/images/favicon.ico" type="image/x-icon">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <!--[if IE]>
-                
-                <link rel="stylesheet" media="all" type="text/css" href="css/pro_dropline_ie.css" />
-                
-                <![endif]-->
+    <link rel="stylesheet" href="<?php echo AdminThemeUrl; ?>css/screen.css" type="text/css" media="screen" title="default"/>
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>/images/favicon.ico" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if IE]>
 
-                <!--  jquery core -->
+    <link rel="stylesheet" media="all" type="text/css" href="css/pro_dropline_ie.css"/>
 
-                <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <![endif]-->
 
-                <!--  checkbox styling script -->
+    <!--  jquery core -->
 
-                <script src="<?php echo AdminThemeUrl; ?>js/jquery/ui.core.js" type="text/javascript"></script>
+    <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery-1.4.1.min.js" type="text/javascript"></script>
 
-                <script src="<?php echo AdminThemeUrl; ?>js/jquery/ui.checkbox.js" type="text/javascript"></script>
+    <!--  checkbox styling script -->
 
-                <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.bind.js" type="text/javascript"></script>
+    <script src="<?php echo AdminThemeUrl; ?>js/jquery/ui.core.js" type="text/javascript"></script>
 
-                <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="<?php echo AdminThemeUrl; ?>js/jquery/ui.checkbox.js" type="text/javascript"></script>
 
-                <script type="text/javascript">
+    <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.bind.js" type="text/javascript"></script>
 
-                    $(function() {
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-                        $('input:not(".no-checkbox")').checkBox();
+    <script type="text/javascript">
 
-                        $('#toggle-all').click(function() {
+        $(function () {
 
-                            $('#toggle-all').toggleClass('toggle-checked');
+            $('input:not(".no-checkbox")').checkBox();
 
-                            $('#mainform input[type=checkbox]').checkBox('toggle');
+            $('#toggle-all').click(function () {
 
-                            return false;
+                $('#toggle-all').toggleClass('toggle-checked');
 
-                        });
+                $('#mainform input[type=checkbox]').checkBox('toggle');
 
-                    });
+                return false;
 
-                </script>  
+            });
 
-                <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.selectbox-0.5.js" type="text/javascript"></script>
+        });
 
-                <script type="text/javascript">
+    </script>
 
-                    $(document).ready(function() {
+    <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.selectbox-0.5.js" type="text/javascript"></script>
 
-                        //$('.styledselect').selectbox({ inputClass: "selectbox_styled" });
+    <script type="text/javascript">
 
-                    });
+        $(document).ready(function () {
 
-                </script>
-                <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.selectbox-0.5_style_2.js" type="text/javascript"></script>
+            //$('.styledselect').selectbox({ inputClass: "selectbox_styled" });
 
-                <script type="text/javascript">
+        });
 
-                    $(document).ready(function() {
+    </script>
+    <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.selectbox-0.5_style_2.js" type="text/javascript"></script>
 
-                        $('.styledselect_form_1').selectbox({inputClass: "styledselect_form_1"});
+    <script type="text/javascript">
 
-                        $('.styledselect_form_2').selectbox({inputClass: "styledselect_form_2"});
+        $(document).ready(function () {
 
-                    });
+            $('.styledselect_form_1').selectbox({inputClass: "styledselect_form_1"});
 
-                </script>
+            $('.styledselect_form_2').selectbox({inputClass: "styledselect_form_2"});
 
-                <!--  styled select box script version 3 --> 
+        });
 
-                <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.selectbox-0.5_style_2.js" type="text/javascript"></script>
+    </script>
 
-                <script type="text/javascript">
+    <!--  styled select box script version 3 -->
 
-                    $(document).ready(function() {
+    <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.selectbox-0.5_style_2.js" type="text/javascript"></script>
 
-                        $('.styledselect_pages').selectbox({inputClass: "styledselect_pages"});
+    <script type="text/javascript">
 
-                    });
+        $(document).ready(function () {
 
-                </script>
+            $('.styledselect_pages').selectbox({inputClass: "styledselect_pages"});
 
-                <!--  styled file upload script --> 
+        });
 
-                <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.filestyle.js" type="text/javascript"></script>
+    </script>
 
-                <script type="text/javascript" charset="utf-8">
+    <!--  styled file upload script -->
 
-                    $(function() {
+    <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.filestyle.js" type="text/javascript"></script>
 
-                        $("input.file_1").filestyle({
-                            image: "images/forms/choose-file.gif",
-                            imageheight: 21,
-                            imagewidth: 78,
-                            width: 310
+    <script type="text/javascript" charset="utf-8">
 
-                        });
+        $(function () {
 
-                    });
+            $("input.file_1").filestyle({
+                image: "images/forms/choose-file.gif",
+                imageheight: 21,
+                imagewidth: 78,
+                width: 310
 
-                </script>
+            });
 
-                <!-- Custom jquery scripts -->
+        });
 
-                <script src="<?php echo AdminThemeUrl; ?>js/jquery/custom_jquery.js" type="text/javascript"></script>
+    </script>
 
+    <!-- Custom jquery scripts -->
 
-                <!-- Tooltips -->
+    <script src="<?php echo AdminThemeUrl; ?>js/jquery/custom_jquery.js" type="text/javascript"></script>
 
-                <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.tooltip.js" type="text/javascript"></script>
 
-                <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.dimensions.js" type="text/javascript"></script>
+    <!-- Tooltips -->
 
-                <script type="text/javascript">
+    <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.tooltip.js" type="text/javascript"></script>
 
-                    $(function() {
+    <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.dimensions.js" type="text/javascript"></script>
 
-                        $('a.info-tooltip ').tooltip({
-                            track: true,
-                            delay: 0,
-                            fixPNG: true,
-                            showURL: false,
-                            showBody: " - ",
-                            top: -35,
-                            left: 5
+    <script type="text/javascript">
 
-                        });
+        $(function () {
 
-                    });
+            $('a.info-tooltip ').tooltip({
+                track: true,
+                delay: 0,
+                fixPNG: true,
+                showURL: false,
+                showBody: " - ",
+                top: -35,
+                left: 5
 
-                </script> 
+            });
 
-                <!--  date picker script -->
+        });
 
-                <link rel="stylesheet" href="<?php echo AdminThemeUrl; ?>css/datePicker.css" type="text/css" />
+    </script>
 
-                <script src="<?php echo AdminThemeUrl; ?>js/jquery/date.js" type="text/javascript"></script>
+    <!--  date picker script -->
 
-                <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.datePicker.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="<?php echo AdminThemeUrl; ?>css/datePicker.css" type="text/css"/>
 
-                <script type="text/javascript" charset="utf-8">
+    <script src="<?php echo AdminThemeUrl; ?>js/jquery/date.js" type="text/javascript"></script>
 
-                    $(function()
+    <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.datePicker.js" type="text/javascript"></script>
 
-                    {
+    <script type="text/javascript" charset="utf-8">
 
+        $(function () {
 
 
-                        // initialise the "Select date" link
 
-                        $('#sdate')
+            // initialise the "Select date" link
 
-                                .datePicker(
-                                // associate the link with a date picker
+            $('#sdate')
 
-                                        {
-                                            createButton: false,
-                                            startDate: '01/01/2005',
-                                            endDate: '31/12/2020'
+                .datePicker(
+                // associate the link with a date picker
 
-                                        }
+                {
+                    createButton: false,
+                    startDate: '01/01/2005',
+                    endDate: '31/12/2020'
 
-                                )
+                }
+            )
 
-                                        .bind(
-                                        // when the link is clicked display the date picker
+                .bind(
+                // when the link is clicked display the date picker
 
-                                        'click',
-                                        function()
+                'click',
+                function () {
 
-                                        {
+                    updateSelects($(this).dpGetSelected()[0]);
 
-                                            updateSelects($(this).dpGetSelected()[0]);
+                    $(this).dpDisplay();
 
-                                            $(this).dpDisplay();
+                    return false;
 
-                                            return false;
+                }
+            )
 
-                                        }
+                .bind(
+                // when a date is selected update the SELECTs
 
-                                )
+                'dateSelected',
+                function (e, selectedDate, $td, state) {
 
-                                        .bind(
-                                        // when a date is selected update the SELECTs
+                    updateSelects(selectedDate);
 
-                                        'dateSelected',
-                                        function(e, selectedDate, $td, state)
+                }
+            )
 
-                                        {
+                .bind(
+                'dpClosed',
+                function (e, selected) {
 
-                                            updateSelects(selectedDate);
+                    updateSelects(selected[0]);
 
-                                        }
+                }
+            );
 
-                                )
 
-                                        .bind(
-                                        'dpClosed',
-                                        function(e, selected)
+            $('#edate')
 
-                                        {
+                .datePicker(
+                // associate the link with a date picker
 
-                                            updateSelects(selected[0]);
+                {
+                    createButton: false,
+                    startDate: '01/01/2005',
+                    endDate: '31/12/2020'
 
-                                        }
+                }
+            )
 
-                                );
+                .bind(
+                // when the link is clicked display the date picker
 
+                'click',
+                function () {
 
+                    updateSelects($(this).dpGetSelected()[0]);
 
-                                $('#edate')
+                    $(this).dpDisplay();
 
-                                        .datePicker(
-                                        // associate the link with a date picker
+                    return false;
 
-                                                {
-                                                    createButton: false,
-                                                    startDate: '01/01/2005',
-                                                    endDate: '31/12/2020'
+                }
+            )
 
-                                                }
+                .bind(
+                // when a date is selected update the SELECTs
 
-                                        )
+                'dateSelected',
+                function (e, selectedDate, $td, state) {
 
-                                                .bind(
-                                                // when the link is clicked display the date picker
+                    updateSelects(selectedDate);
 
-                                                'click',
-                                                function()
+                }
+            )
 
-                                                {
+                .bind(
+                'dpClosed',
+                function (e, selected) {
 
-                                                    updateSelects($(this).dpGetSelected()[0]);
+                    updateSelects(selected[0]);
 
-                                                    $(this).dpDisplay();
+                }
+            );
 
-                                                    return false;
 
-                                                }
+            var updateSelects = function (selectedDate) {
 
-                                        )
+                var selectedDate = new Date(selectedDate);
 
-                                                .bind(
-                                                // when a date is selected update the SELECTs
+                $('#d option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
 
-                                                'dateSelected',
-                                                function(e, selectedDate, $td, state)
+                $('#m option[value=' + (selectedDate.getMonth() + 1) + ']').attr('selected', 'selected');
 
-                                                {
+                $('#y option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
 
-                                                    updateSelects(selectedDate);
+            }
 
-                                                }
+            // listen for when the selects are changed and update the picker
 
-                                        )
+            $('#d, #m, #y')
 
-                                                .bind(
-                                                'dpClosed',
-                                                function(e, selected)
+                .bind(
+                'change',
+                function () {
 
-                                                {
+                    var d = new Date(
+                        $('#y').val(),
+                        $('#m').val() - 1,
+                        $('#d').val()
+                    );
 
-                                                    updateSelects(selected[0]);
+                    $('#date-pick').dpSetSelected(d.asString());
 
-                                                }
+                }
+            );
 
-                                        );
 
+            // default the position of the selects to today
 
+            var today = new Date();
 
+            updateSelects(today.getTime());
 
 
+            // and update the datePicker to reflect it...
 
+            $('#d').trigger('change');
 
+        });
 
+    </script>
 
-                                        var updateSelects = function(selectedDate)
+    <style>
 
-                                        {
+        .breadcrumb ul li {
+            display: inline;
+            margin: 0 5px;
+            list-style: none;
+        }
 
-                                            var selectedDate = new Date(selectedDate);
+        .breadcrumb li + li:before {
+            content: "» ";
+        }
 
-                                            $('#d option[value=' + selectedDate.getDate() + ']').attr('selected', 'selected');
+        .breadcrumb {
+            float: right;
+        }
+    </style>
 
-                                            $('#m option[value=' + (selectedDate.getMonth() + 1) + ']').attr('selected', 'selected');
+    <!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
 
-                                            $('#y option[value=' + (selectedDate.getFullYear()) + ']').attr('selected', 'selected');
+    <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.pngFix.pack.js" type="text/javascript"></script>
 
-                                        }
+    <script type="text/javascript">
 
-                                        // listen for when the selects are changed and update the picker
+        $(document).ready(function () {
 
-                                        $('#d, #m, #y')
+            $(document).pngFix();
 
-                                                .bind(
-                                                'change',
-                                                function()
 
-                                                {
+        });
 
-                                                    var d = new Date(
-                                                            $('#y').val(),
-                                                            $('#m').val() - 1,
-                                                            $('#d').val()
+    </script>
+    <script type="text/javascript" src="<?php echo frontThemeUrl; ?>assets/js/jquery.validate.js"></script>
+</head>
 
-                                                            );
+<body>
+<!-- Start: page-top-outer -->
 
-                                                    $('#date-pick').dpSetSelected(d.asString());
+<div id="page-top-outer">
 
-                                                }
+    <!-- Start: page-top -->
 
-                                        );
+    <div id="page-top">
 
+        <!-- start logo -->
 
+        <div id="logo">
 
-                                        // default the position of the selects to today
+            <!--<a href=""><img src="<?php echo AdminThemeUrl; ?>images/shared/society-coin-logo-white.png" width="159" height="134" alt="" /></a>-->
 
-                                        var today = new Date();
+        </div>
 
-                                        updateSelects(today.getTime());
 
+        <div class="clear"></div>
 
 
-                                        // and update the datePicker to reflect it...
+    </div>
 
-                                        $('#d').trigger('change');
+</div>
+<div class="clear"></div>
 
-                                    });
+<div class="nav-outer-repeat">
 
-                </script>
+    <!--  start nav-outer -->
 
-                <style>
+    <div class="nav-outer">
+        <h2 style="position: absolute; font-size: 16px; right: 89px; top: 125px;">Welcome <a style="color:#393939;text-transform: capitalize;" href="<?php echo base_url(); ?>admin/allusers/edituser?uid=<?php echo $this->session->userdata('admin_id'); ?>"><?php echo $this->session->userdata('admin_fname'); ?>!</a></h2>
 
-                    .breadcrumb ul li {display: inline;margin:0 5px;list-style:none;}
-                    .breadcrumb li+li:before {
-                        content:"» ";
-                    }
-                    .breadcrumb {float:right;}
-                </style>
+        <div class="clear"></div>
+        <div class="breadcrumb" style="position: absolute;  font-size: 13px; right:457px; top: 135px;">
+            <?php //echo set_breadcrumb( '', '', array(     'replacer' =>array (        'aluas'   => '','materia'    => '' ) ) );  ?>
 
-                <!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
+        </div>
+        <!-- start nav-right -->
 
-                <script src="<?php echo AdminThemeUrl; ?>js/jquery/jquery.pngFix.pack.js" type="text/javascript"></script>
+        <div id="nav-right">
 
-                <script type="text/javascript">
+            <div class="nav-divider">&nbsp;</div>
 
-                            $(document).ready(function() {
+            <div class="showhide-account"><img src="<?php echo AdminThemeUrl; ?>images/shared/nav/nav_myaccount.gif" width="93" height="14" alt=""/></div>
 
-                                $(document).pngFix( );
+            <div class="nav-divider">&nbsp;</div>
 
+            <a href="<?php echo base_url(); ?>admin/login/logout" id="logout"><img src="<?php echo AdminThemeUrl; ?>images/shared/nav/nav_logout.gif" width="64" height="14" alt=""/></a>
 
-                            });
+            <div class="clear">&nbsp;</div>
 
-                </script>
-                <script type="text/javascript"  src="<?php echo frontThemeUrl; ?>assets/js/jquery.validate.js"></script> 
-                </head>
+            <!--  start account-content -->
 
-                <body> 
-                    <!-- Start: page-top-outer -->
+            <div class="account-content">
 
-                    <div id="page-top-outer">    
+                <div class="account-drop-inner">
 
-                        <!-- Start: page-top -->
+                    <a href="<?php echo base_url(); ?>admin/myaccount/update/" id="acc-settings">Settings</a>
 
-                        <div id="page-top">
+                    <div class="clear">&nbsp;</div>
 
-                            <!-- start logo -->
 
-                            <div id="logo">
+                </div>
 
-        <!--<a href=""><img src="<?php echo AdminThemeUrl; ?>images/shared/society-coin-logo-white.png" width="159" height="134" alt="" /></a>-->
+            </div>
+
+
+        </div>
+
+
+        <?php if ($this->session->userdata('utype') == 1) {
+            ?>
+
+            <div class="nav">
+
+                <div class="table">
+
+
+                    <ul class="<?php
+                    if ($this->uri->segment(2) == "")
+                        echo "current";
+                    else
+                        echo "select";
+                    ?>">
+                        <li class="sub_show"><a href="<?php echo base_url(); ?>admin"><b>Dashboard</b></a>
+
+                        </li>
+
+                    </ul>
+
+
+                    <div class="nav-divider">&nbsp;</div>
+
+
+                    <ul class="<?php
+                    if ($this->uri->segment(2) == "master")
+                        echo "current";
+                    else
+                        echo "select";
+                    ?>  dropdown">
+                        <li><a href="#nogo"><b>Master Head</b></a>
+
+
+                            <div class="select_sub show">
+
+                                <ul class="sub">
+
+
+                                    <li class="<?php
+                                    $murl = @trim($url[1]);
+                                    if ($murl == '') {
+                                        echo "sub_show";
+                                    }
+                                    ?>"><a href="<?php echo base_url(); ?>admin/master">Add City </a></li>
+                                    <li class="<?php
+                                    $murl = @trim($url[1]);
+                                    if ($murl == '') {
+                                        echo "sub_show";
+                                    }
+                                    ?>"><a href="<?php echo base_url(); ?>admin/master/citylist">All Cities </a></li>
+
+
+                                    <li class="<?php
+                                    $murl = @trim($url[1]);
+                                    if ($murl == 'addarea') {
+                                        echo "sub_show";
+                                    }
+                                    ?>"><a href="<?php echo base_url(); ?>admin/master/addarea">Add Area / Sector Master</a></li>
+                                    <li class="<?php
+                                    $murl = @trim($url[1]);
+                                    if ($murl == '') {
+                                        echo "sub_show";
+                                    }
+                                    ?>"><a href="<?php echo base_url(); ?>admin/master/arealist">All Area </a></li>
+                                    <!--	<li class="<?php
+                                    $murl = @trim($url[1]);
+                                    if ($murl == 'allbill') {
+                                        echo "sub_show";
+                                    }
+                                    ?>"  ><a href="<?php echo base_url(); ?>admin/master/allbill">Society Charge Heads</a></li>				 -->
+
+
+                                </ul>
 
                             </div>
 
 
-                            <div class="clear"></div>
+                        </li>
+
+                    </ul>
 
 
-                        </div>
-
-                    </div>	<div class="clear"></div>
-
-                    <div class="nav-outer-repeat"> 
-
-                        <!--  start nav-outer -->
-
-                        <div class="nav-outer"> 
-                            <h2 style="position: absolute; font-size: 16px; right: 89px; top: 125px;">Welcome  <a  style="color:#393939;text-transform: capitalize;" href="<?php echo base_url(); ?>admin/allusers/edituser?uid=<?php echo $this->session->userdata('admin_id'); ?>" ><?php echo $this->session->userdata('admin_fname'); ?>!</a></h2>
-                            <div class="clear"></div>
-                            <div class="breadcrumb" style="position: absolute;  font-size: 13px; right:457px; top: 135px;">
-                                <?php //echo set_breadcrumb( '', '', array(     'replacer' =>array (        'aluas'   => '','materia'    => '' ) ) );  ?> 
-
-                            </div>
-                            <!-- start nav-right -->
-
-                            <div id="nav-right">
-
-                                <div class="nav-divider">&nbsp;</div>
-
-                                <div class="showhide-account"><img src="<?php echo AdminThemeUrl; ?>images/shared/nav/nav_myaccount.gif" width="93" height="14" alt="" /></div>
-
-                                <div class="nav-divider">&nbsp;</div>
-
-                                <a href="<?php echo base_url(); ?>admin/login/logout" id="logout"><img src="<?php echo AdminThemeUrl; ?>images/shared/nav/nav_logout.gif" width="64" height="14" alt="" /></a>
-
-                                <div class="clear">&nbsp;</div>
-
-                                <!--  start account-content -->	
-
-                                <div class="account-content">
-
-                                    <div class="account-drop-inner">
-
-                                        <a href="<?php echo base_url(); ?>admin/myaccount/update/" id="acc-settings">Settings</a>
-
-                                        <div class="clear">&nbsp;</div>
-
-
-                                    </div>
-
-                                </div>	
-
-
-                            </div>
-
-
-                            <?php if ($this->session->userdata('utype') == 1) {
-                                ?>
-
-                                <div class="nav">
-
-                                    <div class="table">
-
-
-
-                                        <ul class="<?php
-                                        if ($this->uri->segment(2) == "")
-                                            echo "current";
-                                        else
-                                            echo "select";
-                                        ?>"><li class="sub_show" ><a href="<?php echo base_url(); ?>admin"><b>Dashboard</b></a>
-
-                                            </li>
-
-                                        </ul>
-
-
-                                        <div class="nav-divider">&nbsp;</div>
-
-
-                                        <ul class="<?php
-                                        if ($this->uri->segment(2) == "master")
-                                            echo "current";
-                                        else
-                                            echo "select";
-                                        ?>  dropdown"><li><a href="#nogo"><b>Master Head</b></a>
-
-
-                                                <div class="select_sub show">
-
-                                                    <ul class="sub">
-
-
-                                                        <li class="<?php
-                                                        $murl = @trim($url[1]);
-                                                        if ($murl == '') {
-                                                            echo "sub_show";
-                                                        }
-                                                        ?>"  ><a href="<?php echo base_url(); ?>admin/master" >Add City </a></li>
-                                                        <li class="<?php
-                                                        $murl = @trim($url[1]);
-                                                        if ($murl == '') {
-                                                            echo "sub_show";
-                                                        }
-                                                        ?>"  ><a href="<?php echo base_url(); ?>admin/master/citylist" >All Cities </a></li>
-
-
-                                                        <li class="<?php
-                                                        $murl = @trim($url[1]);
-                                                        if ($murl == 'addarea') {
-                                                            echo "sub_show";
-                                                        }
-                                                        ?>"  ><a href="<?php echo base_url(); ?>admin/master/addarea">Add Area / Sector Master</a></li>				
-                                                        <li class="<?php
-                                                        $murl = @trim($url[1]);
-                                                        if ($murl == '') {
-                                                            echo "sub_show";
-                                                        }
-                                                        ?>"  ><a href="<?php echo base_url(); ?>admin/master/arealist" >All Area  </a></li>
-                                                        <!--	<li class="<?php
-                                                        $murl = @trim($url[1]);
-                                                        if ($murl == 'allbill') {
-                                                            echo "sub_show";
-                                                        }
-                                                        ?>"  ><a href="<?php echo base_url(); ?>admin/master/allbill">Society Charge Heads</a></li>				 -->
-
-
-
-
-
-                                                    </ul>
-
-                                                </div>
-
-
-
-                                            </li>
-
-                                        </ul>
-
-
-
-
-
-
-
-
-                                <!--<ul class="<?php //if($this->uri->segment(2) == "society_user") echo "current" ; else echo "select" ;    ?> dropdown"><li><a href="#nogo"><b>Society Admin</b></a>
+                    <!--<ul class="<?php //if($this->uri->segment(2) == "society_user") echo "current" ; else echo "select" ;    ?> dropdown"><li><a href="#nogo"><b>Society Admin</b></a>
 
                                 <div class="select_sub show">
 
@@ -556,111 +519,105 @@ $url = $url[0];
                                 </ul>-->
 
 
-
-                                        <div class="nav-divider">&nbsp;</div>
-
+                    <div class="nav-divider">&nbsp;</div>
 
 
-                                        <ul class="<?php
-                                        if ($this->uri->segment(2) == "allsociety")
-                                            echo "current";
-                                        else
-                                            echo "select";
-                                        ?> dropdown"><li><a href="#nogo"><b>Society</b></a>
+                    <ul class="<?php
+                    if ($this->uri->segment(2) == "allsociety")
+                        echo "current";
+                    else
+                        echo "select";
+                    ?> dropdown">
+                        <li><a href="#nogo"><b>Society</b></a>
 
-                                                <div class="select_sub show">
+                            <div class="select_sub show">
 
-                                                    <ul class="sub">
-                                                        <li class="<?php
-                                                        $murl = @trim($url[1]);
-                                                        if ($murl == 'addsociety') {
-                                                            echo "sub_show";
-                                                        }
-                                                        ?>"  ><a href="<?php echo base_url(); ?>admin/allsociety/addsociety">Add New Society</a></li>	
-                                                        <li class="<?php
-                                                        $murl = @trim($url[1]);
-                                                        if ($murl == '') {
-                                                            echo "sub_show";
-                                                        }
-                                                        ?>"  ><a href="<?php echo base_url(); ?>admin/allsociety" >View all societies</a></li>
-
-
-
-                                                    </ul>
-
-                                                </div>
+                                <ul class="sub">
+                                    <li class="<?php
+                                    $murl = @trim($url[1]);
+                                    if ($murl == 'addsociety') {
+                                        echo "sub_show";
+                                    }
+                                    ?>"><a href="<?php echo base_url(); ?>admin/allsociety/addsociety">Add New Society</a></li>
+                                    <li class="<?php
+                                    $murl = @trim($url[1]);
+                                    if ($murl == '') {
+                                        echo "sub_show";
+                                    }
+                                    ?>"><a href="<?php echo base_url(); ?>admin/allsociety">View all societies</a></li>
 
 
+                                </ul>
 
-                                            </li>
-
-                                        </ul>
-
+                            </div>
 
 
-                                        <div class="nav-divider">&nbsp;</div>
+                        </li>
+
+                    </ul>
 
 
-
-                                        <ul class="<?php
-                                        if ($this->uri->segment(2) == "allusers" || $this->uri->segment(2) == 'allpropertys')
-                                            echo "current";
-                                        else
-                                            echo "select";
-                                        ?> dropdown"><li><a href="#nogo"><b>Sub Admin</b></a>
+                    <div class="nav-divider">&nbsp;</div>
 
 
+                    <ul class="<?php
+                    if ($this->uri->segment(2) == "allusers" || $this->uri->segment(2) == 'allpropertys')
+                        echo "current";
+                    else
+                        echo "select";
+                    ?> dropdown">
+                        <li><a href="#nogo"><b>Sub Admin</b></a>
 
-                                                <div class="select_sub show">
 
-                                                    <ul class="sub">
+                            <div class="select_sub show">
+
+                                <ul class="sub">
 
 
+                                    <li><a class="<?php
+                                        $murl = @trim($url[1]);
+                                        if ($murl == 'adduser') {
+                                            echo "sub_show";
+                                        }
+                                        ?>" href="<?php echo base_url(); ?>admin/allusers/adduser">Add New Sub Admin</a></li>
+                                    <li><a class="<?php
+                                        $murl = @trim($url[0]);
+                                        $murl_1 = @trim($url[1]);
+                                        if ($murl == 'allusers' && $murl_1 == '') {
+                                            echo "sub_show";
+                                        }
+                                        ?>" href="<?php echo base_url(); ?>admin/allusers">View All Sub Admins</a></li>
+                                    <li><a class="<?php
+                                        $murl = @trim($url[1]);
+                                        if ($murl == 'assignsociety') {
+                                            echo "sub_show";
+                                        }
+                                        ?>" href="<?php echo base_url(); ?>admin/allusers/assignsociety	">Assign Society</a></li>
 
-                                                        <li><a class="<?php
-                                                            $murl = @trim($url[1]);
-                                                            if ($murl == 'adduser') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>"  href="<?php echo base_url(); ?>admin/allusers/adduser">Add New Sub Admin</a></li>
-                                                        <li><a class="<?php
-                                                            $murl = @trim($url[0]);
-                                                            $murl_1 = @trim($url[1]);
-                                                            if ($murl == 'allusers' && $murl_1 == '') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>"   href="<?php echo base_url(); ?>admin/allusers" >View All Sub Admins</a></li>
-                                                        <li><a class="<?php
-                                                            $murl = @trim($url[1]);
-                                                            if ($murl == 'assignsociety') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>"  href="<?php echo base_url(); ?>admin/allusers/assignsociety	">Assign Society</a></li>
+                                    <li><a class="<?php
+                                        $murl = @trim($url[1]);
+                                        if ($murl == 'addproperty') {
+                                            echo "sub_show";
+                                        }
+                                        ?>" href="<?php echo base_url(); ?>admin/allpropertys/addproperty">Add New properties</a></li>
 
-                                                        <li><a class="<?php
-                                                            $murl = @trim($url[1]);
-                                                            if ($murl == 'addproperty') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>"  href="<?php echo base_url(); ?>admin/allpropertys/addproperty" >Add New properties</a></li>
+                                    <li><a class="<?php
+                                        $murl = @trim($url[0]);
+                                        $murl_1 = @trim($url[1]);
+                                        if ($murl == 'allpropertys' && $murl_1 == '') {
+                                            echo "sub_show";
+                                        }
+                                        ?>" href="<?php echo base_url(); ?>admin/allpropertys">View all properties </a></li>
 
-                                                        <li><a class="<?php
-                                                            $murl = @trim($url[0]);
-                                                            $murl_1 = @trim($url[1]);
-                                                            if ($murl == 'allpropertys' && $murl_1 == '') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>"       href="<?php echo base_url(); ?>admin/allpropertys" >View all properties </a></li>
+                                </ul>
 
-                                                    </ul>
+                            </div>
 
-                                                </div>
+                        </li>
 
-                                            </li>
+                    </ul>
 
-                                        </ul>
-
-                                        <!--		
+                    <!--
                                         
                                                 <div class="nav-divider">&nbsp;</div>
                                         
@@ -687,268 +644,265 @@ $url = $url[0];
                                                         </ul> -->
 
 
+                    <ul class="<?php
+                    if ($this->uri->segment(2) == "customers")
+                        echo "current";
+                    else
+                        echo "select";
+                    ?> dropdown">
+                        <li><a href="#nogo"><b>Customer</b></a>
 
+                            <div class="select_sub show">
 
-                                        <ul class="<?php
-                                        if ($this->uri->segment(2) == "customers")
-                                            echo "current";
-                                        else
-                                            echo "select";
-                                        ?> dropdown"><li><a href="#nogo"><b>Customer</b></a>
+                                <ul class="sub">
+                                    <li class="<?php
+                                    $murl = @trim($url[1]);
+                                    if ($murl == 'addsociety') {
+                                        echo "sub_show";
+                                    }
+                                    ?>"><a href="<?php echo base_url(); ?>admin/customers/add">Add Customer</a></li>
+                                    <li class="<?php
+                                    $murl = @trim($url[1]);
+                                    if ($murl == '') {
+                                        echo "sub_show";
+                                    }
+                                    ?>"><a href="<?php echo base_url(); ?>admin/customers">View all Customers</a></li>
 
-                                                <div class="select_sub show">
 
-                                                    <ul class="sub">
-                                                        <li class="<?php
-                                                        $murl = @trim($url[1]);
-                                                        if ($murl == 'addsociety') {
-                                                            echo "sub_show";
-                                                        }
-                                                        ?>"  ><a href="<?php echo base_url(); ?>admin/customers/add">Add Customer</a></li>
-                                                        <li class="<?php
-                                                        $murl = @trim($url[1]);
-                                                        if ($murl == '') {
-                                                            echo "sub_show";
-                                                        }
-                                                        ?>"  ><a href="<?php echo base_url(); ?>admin/customers" >View all Customers</a></li>
+                                </ul>
 
+                            </div>
 
 
-                                                    </ul>
+                        </li>
 
-                                                </div>
+                    </ul>
 
 
+                    <div class="nav-divider">&nbsp;</div>
 
-                                            </li>
 
-                                        </ul>
+                    <ul class="<?php
+                    if ($this->uri->segment(2) == "allcmspages")
+                        echo "current";
+                    else
+                        echo "select";
+                    ?> dropdown">
+                        <li><a href="#nogo"><b>Static Pages</b></a>
 
 
-                                        <div class="nav-divider">&nbsp;</div>
+                            <div class="select_sub show">
 
+                                <ul class="sub">
 
+                                    <li><a class="<?php
+                                        $murl = @trim($url[1]);
+                                        if ($murl == 'addcmspage') {
+                                            echo "sub_show";
+                                        }
+                                        ?>" href="<?php echo base_url(); ?>admin/allcmspages/addcmspage">Add New Static Page</a></li>
+                                    <li><a class="<?php
+                                        $murl = @trim($url[1]);
+                                        if ($murl == '') {
+                                            echo "sub_show";
+                                        }
+                                        ?>" href="<?php echo base_url(); ?>admin/allcmspages">View All Static Pages</a></li>
 
-                                        <ul class="<?php
-                                        if ($this->uri->segment(2) == "allcmspages")
-                                            echo "current";
-                                        else
-                                            echo "select";
-                                        ?> dropdown"><li><a href="#nogo"><b>Static Pages</b></a>
 
+                                </ul>
 
+                            </div>
 
-                                                <div class="select_sub show">
+                        </li>
 
-                                                    <ul class="sub">
+                    </ul>
 
-                                                        <li><a class="<?php
-                                                            $murl = @trim($url[1]);
-                                                            if ($murl == 'addcmspage') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>"  href="<?php echo base_url(); ?>admin/allcmspages/addcmspage">Add New Static Page</a></li>
-                                                        <li><a class="<?php
-                                                            $murl = @trim($url[1]);
-                                                            if ($murl == '') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>"  href="<?php echo base_url(); ?>admin/allcmspages">View All Static Pages</a></li>
+                    <div class="nav-divider">&nbsp;</div>
 
+                    <ul class="<?php
+                    if ($this->uri->segment(2) == "allfaq")
+                        echo "current";
+                    else
+                        echo "select";
+                    ?>  dropdown">
+                        <li><a href="#nogo"><b>FAQS</b></a>
 
-                                                    </ul>
+                            <div class="select_sub show">
 
-                                                </div>	
+                                <ul class="sub">
+                                    <li><a class="<?php
+                                        $murl = @trim($url[1]);
+                                        if ($murl == '') {
+                                            echo "sub_show";
+                                        }
+                                        ?>" href="<?php echo base_url(); ?>admin/allfaq/addfaq">Add New FAQ</a></li>
+                                    <li><a class="<?php
+                                        $murl = @trim($url[1]);
+                                        if ($murl == '') {
+                                            echo "sub_show";
+                                        }
+                                        ?>" href="<?php echo base_url(); ?>admin/allfaq">View All FAQS</a></li>
 
-                                            </li>
 
-                                        </ul>
+                                </ul>
 
-                                        <div class="nav-divider">&nbsp;</div>
+                            </div>
 
-                                        <ul class="<?php
-                                        if ($this->uri->segment(2) == "allfaq")
-                                            echo "current";
-                                        else
-                                            echo "select";
-                                        ?>  dropdown">
-                                            <li><a href="#nogo"><b>FAQS</b></a>
+                        </li>
 
-                                                <div class="select_sub show">
+                    </ul>
 
-                                                    <ul class="sub">
-                                                        <li><a class="<?php
-                                                            $murl = @trim($url[1]);
-                                                            if ($murl == '') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>"  href="<?php echo base_url(); ?>admin/allfaq/addfaq" >Add New FAQ</a></li>
-                                                        <li><a class="<?php
-                                                            $murl = @trim($url[1]);
-                                                            if ($murl == '') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>"  href="<?php echo base_url(); ?>admin/allfaq">View All FAQS</a></li>
+                </div>
 
+            </div>
 
-                                                    </ul>
+        <?php } else if ($this->session->userdata('utype') == 2) {
+            ?>
 
-                                                </div>	
+            <div class="nav">
 
-                                            </li>
+                <div class="table">
 
-                                        </ul>
+                    <ul class="select <?php
+                    if ($this->uri->segment(2) == "")
+                        echo "current";
+                    else
+                        echo "select";
+                    ?>">
+                        <li class="sub_show"><a href="<?php echo base_url(); ?>admin/login/dashboard"><b>Dashboard</b></a>
 
-                                    </div>
 
-                                </div>
+                        </li>
 
-                            <?php } else if ($this->session->userdata('utype') == 2) {
-                                ?>                  
+                    </ul>
 
-                                <div class="nav">
+                    <div class="nav-divider">&nbsp;</div>
 
-                                    <div class="table">
+                    <ul class="select <?php
+                    if ($this->uri->segment(2) == "allsociety")
+                        echo "current";
+                    else
+                        echo "select";
+                    ?>  dropdown">
+                        <li><a href="#nogo"><b>Society</b></a>
 
-                                        <ul class="select <?php
-                                        if ($this->uri->segment(2) == "")
-                                            echo "current";
-                                        else
-                                            echo "select";
-                                        ?>"><li class="sub_show" ><a href="<?php echo base_url(); ?>admin/login/dashboard"><b>Dashboard</b></a>
+                            <div class="select_sub show">
 
+                                <ul class="sub">
 
-                                            </li>
+                                    <li><a class="<?php
+                                        $murl = @trim($url[1]);
+                                        if ($murl == '') {
+                                            echo "sub_show";
+                                        }
+                                        ?>" href="<?php echo base_url(); ?>admin/allsociety">View all societies</a></li>
 
-                                        </ul>
 
-                                        <div class="nav-divider">&nbsp;</div>
+                                    <!--<li><a class="<?php
+                                    $murl = @trim($url[1]);
+                                    if ($murl == 'allcharge') {
+                                        echo "sub_show";
+                                    }
+                                    ?>" href="<?php echo base_url(); ?>admin/allsociety/allcharge" >View/mass upload bills</a></li>-->
 
-                                        <ul class="select <?php
-                                        if ($this->uri->segment(2) == "allsociety")
-                                            echo "current";
-                                        else
-                                            echo "select";
-                                        ?>  dropdown"><li><a href="#nogo"><b>Society</b></a>
-                                                <div class="select_sub show">
+                                    <li><a class="<?php
+                                        $murl = @trim($url[0]);
+                                        $murl_1 = @trim($url[1]);
+                                        if ($murl == 'allusers' && $murl_1 == '') {
+                                            echo "sub_show";
+                                        }
+                                        ?>" href="<?php echo base_url(); ?>admin/allusers">View all Customers</a></li>
 
-                                                    <ul class="sub">
+                                </ul>
 
-                                                        <li><a class="<?php
-                                                            $murl = @trim($url[1]);
-                                                            if ($murl == '') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>" href="<?php echo base_url(); ?>admin/allsociety" >View all societies</a></li>
+                            </div>
 
+                        </li>
 
-                                                        <!--<li><a class="<?php
-                                                        $murl = @trim($url[1]);
-                                                        if ($murl == 'allcharge') {
-                                                            echo "sub_show";
-                                                        }
-                                                        ?>" href="<?php echo base_url(); ?>admin/allsociety/allcharge" >View/mass upload bills</a></li>-->
+                    </ul>
 
-                                                        <li><a class="<?php
-                                                            $murl = @trim($url[0]);
-                                                            $murl_1 = @trim($url[1]);
-                                                            if ($murl == 'allusers' && $murl_1 == '') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>"   href="<?php echo base_url(); ?>admin/allusers" >View all Customers</a></li>                
 
-                                                    </ul>
+                    <div class="nav-divider">&nbsp;</div>
 
-                                                </div>		
 
-                                            </li>
+                    <ul class="select <?php
+                    if ($this->uri->segment(2) == "allpropertys")
+                        echo "current";
+                    else
+                        echo "select";
+                    ?> dropdown">
+                        <li><a href="#nogo"><b>Property</b></a>
 
-                                        </ul>
 
+                            <div class="select_sub show">
 
-                                        <div class="nav-divider">&nbsp;</div>
+                                <ul class="sub">
 
+                                    <li><a class="<?php
+                                        $murl = @trim($url[1]);
+                                        if ($murl == 'addproperty') {
+                                            echo "sub_show";
+                                        }
+                                        ?>" href="<?php echo base_url(); ?>admin/allpropertys/addproperty">Add New Property</a></li>
 
-                                        <ul class="select <?php
-                                        if ($this->uri->segment(2) == "allpropertys")
-                                            echo "current";
-                                        else
-                                            echo "select";
-                                        ?> dropdown"><li><a href="#nogo"><b>Property</b></a>
+                                    <li><a class="<?php
+                                        $murl = @trim($url[1]);
+                                        if ($murl == '') {
+                                            echo "sub_show";
+                                        }
+                                        ?>" href="<?php echo base_url(); ?>admin/allpropertys">View All properties</a></li>
 
 
+                                </ul>
 
-                                                <div class="select_sub show">
+                            </div>
 
-                                                    <ul class="sub">
 
-                                                        <li><a class="<?php
-                                                            $murl = @trim($url[1]);
-                                                            if ($murl == 'addproperty') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>" href="<?php echo base_url(); ?>admin/allpropertys/addproperty" >Add New Property</a></li>
+                        </li>
 
-                                                        <li><a class="<?php
-                                                            $murl = @trim($url[1]);
-                                                            if ($murl == '') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>"   href="<?php echo base_url(); ?>admin/allpropertys" >View All properties</a></li>
+                    </ul>
 
+                    <div class="nav-divider">&nbsp;</div>
 
-                                                    </ul>
+                    <div class="clear"></div>
 
-                                                </div>
+                </div>
 
+                <div class="clear"></div>
 
-                                            </li>
+            </div>
 
-                                        </ul>        
+        <?php
+        } else if ($this->session->userdata('utype') == 4) {
+            ?>
 
-                                        <div class="nav-divider">&nbsp;</div>
+            <div class="nav">
 
-                                        <div class="clear"></div>            
+                <div class="table">
 
-                                    </div>
 
-                                    <div class="clear"></div>
+                    <ul class="select <?php
+                    if ($this->uri->segment(2) == "")
+                        echo "current";
+                    else
+                        echo "select";
+                    ?>">
+                        <li class="sub_show"><a href="<?php echo base_url(); ?>admin/login/dashboard"><b>Dashboard</b></a>
 
-                                </div>
 
-                                <?php
-                            } else if ($this->session->userdata('utype') == 4) {
-                                ?>                  
+                        </li>
 
-                                <div class="nav">
+                    </ul>
 
-                                    <div class="table">
+                    <div class="nav-divider">&nbsp;</div>
 
 
-
-                                        <ul class="select <?php
-                                        if ($this->uri->segment(2) == "")
-                                            echo "current";
-                                        else
-                                            echo "select";
-                                        ?>"><li class="sub_show" ><a href="<?php echo base_url(); ?>admin/login/dashboard"><b>Dashboard</b></a>
-
-
-
-                                            </li>
-
-                                        </ul>
-
-                                        <div class="nav-divider">&nbsp;</div>
-
-
-
-                                        <!--                                        <ul class="select <?php
-                                        if ($this->uri->segment(2) == "society_property")
-                                            echo "current";
-                                        else
-                                            echo "select";
-                                        ?> dropdown"><li><a href="#nogo"><b>Property</b></a>
+                    <!--                                        <ul class="select <?php
+                    if ($this->uri->segment(2) == "society_property")
+                        echo "current";
+                    else
+                        echo "select";
+                    ?> dropdown"><li><a href="#nogo"><b>Property</b></a>
                                         
                                         
                                                                                         <div class="select_sub show">
@@ -956,18 +910,18 @@ $url = $url[0];
                                                                                             <ul class="sub">
                                         
                                                                                                 <li><a class="<?php
-                                        $murl = @trim($url[1]);
-                                        if ($murl == '') {
-                                            echo "sub_show";
-                                        }
-                                        ?>"   href="<?php echo base_url(); ?>admin/society_property/add" >Add New property</a></li>
+                    $murl = @trim($url[1]);
+                    if ($murl == '') {
+                        echo "sub_show";
+                    }
+                    ?>"   href="<?php echo base_url(); ?>admin/society_property/add" >Add New property</a></li>
                                         
                                                                                                 <li><a class="<?php
-                                        $murl = @trim($url[1]);
-                                        if ($murl == '') {
-                                            echo "sub_show";
-                                        }
-                                        ?>"   href="<?php echo base_url(); ?>admin/society_property" >View All properties</a></li>
+                    $murl = @trim($url[1]);
+                    if ($murl == '') {
+                        echo "sub_show";
+                    }
+                    ?>"   href="<?php echo base_url(); ?>admin/society_property" >View All properties</a></li>
                                         
                                         
                                                                                             </ul>
@@ -980,120 +934,124 @@ $url = $url[0];
                                                                                 </ul>-->
 
 
-                                        <ul class="select  dropdown">
-                                            <li><a href="<?php echo base_url(); ?>admin/allresidence"><b>Residence Directory</b></a></li>
-                                        </ul>
-                                        <div class="nav-divider">&nbsp;</div>
-                                        <ul class="select  dropdown">
-                                            <li><a href="javascript:void(0);"><b>Charge Heads</b></a>
-                                                <div class="select_sub show">
+                    <ul class="select  dropdown">
+                        <li><a href="<?php echo base_url(); ?>admin/allresidence"><b>Residence Directory</b></a></li>
+                    </ul>
+                    <div class="nav-divider">&nbsp;</div>
+                    <ul class="select  dropdown">
+                        <li><a href="javascript:void(0);"><b>Charge Heads</b></a>
 
-                                                    <ul class="sub">
-                                                        <li>
-                                                            <a class="" href="<?php echo base_url(); ?>admin/allchargehead/addchargehead" >Add Charge Head</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="" href="<?php echo base_url(); ?>admin/allchargehead" >View Society's Charge Head</a>
-                                                        </li>
-                                                    </ul>
+                            <div class="select_sub show">
 
-                                                </div>		
+                                <ul class="sub">
+                                    <li>
+                                        <a class="" href="<?php echo base_url(); ?>admin/allchargehead/addchargehead">Add Charge Head</a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="<?php echo base_url(); ?>admin/allchargehead">View Society's Charge Head</a>
+                                    </li>
+                                </ul>
 
-                                            </li>
+                            </div>
 
-                                        </ul>
+                        </li>
 
-
-                                        <div class="nav-divider">&nbsp;</div>
-
-                                        <ul class="select <?php
-                                        if ($this->uri->segment(2) == "allsociety")
-                                            echo "current";
-                                        else
-                                            echo "select";
-                                        ?> dropdown"><li><a href="javascript:void(0);"><b>Customers</b></a>
-                                                <div class="select_sub show">
-
-                                                    <ul class="sub">               
-
-                                                        <li><a class="<?php
-                                                            $murl = @trim($url[0]);
-                                                            $murl_1 = @trim($url[1]);
-                                                            if ($murl == 'allusers' && $murl_1 == '') {
-                                                                echo "sub_show";
-                                                            }
-                                                            ?>"   href="<?php echo base_url(); ?>admin/allusers" >View Your Customers</a></li>                
-
-                                                    </ul>
-
-                                                </div>
+                    </ul>
 
 
+                    <div class="nav-divider">&nbsp;</div>
 
-                                            </li>
+                    <ul class="select <?php
+                    if ($this->uri->segment(2) == "allsociety")
+                        echo "current";
+                    else
+                        echo "select";
+                    ?> dropdown">
+                        <li><a href="javascript:void(0);"><b>Customers</b></a>
 
-                                        </ul>
+                            <div class="select_sub show">
 
+                                <ul class="sub">
 
-                                        <div class="nav-divider">&nbsp;</div>
+                                    <li><a class="<?php
+                                        $murl = @trim($url[0]);
+                                        $murl_1 = @trim($url[1]);
+                                        if ($murl == 'allusers' && $murl_1 == '') {
+                                            echo "sub_show";
+                                        }
+                                        ?>" href="<?php echo base_url(); ?>admin/allusers">View Your Customers</a></li>
 
-                                        <ul class="select  dropdown">
-                                            <li><a href="javascript:void(0);"><b>Registration</b></a>
-                                                <div class="select_sub show">
+                                </ul>
 
-                                                    <ul class="sub">
-
-                                                        <li>
-                                                            <a class="" href="<?php echo base_url(); ?>admin/allflatowner/addflatowner" >Flat Owners</a>
-                                                        </li>
-
-                                                    </ul>
-
-                                                </div>		
-
-                                            </li>
-
-                                        </ul>
-                                        <div class="nav-divider">&nbsp;</div>
-                                        <ul class="select  dropdown">
-                                            <li><a href="javascript:void(0);"><b>Flat Owner Bills</b></a>
-                                                <div class="select_sub show">
-                                                    <ul class="sub">
-                                                        <li>
-                                                            <a class="" href="<?php echo base_url(); ?>admin/allresidence/generatebill" >Download Bill CSV</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="" href="<?php echo base_url(); ?>admin/allresidence/uploadbill" >Upload Bill CSV</a>
-                                                        </li>
-                                                    </ul>
-
-                                                </div>		
-                                            </li>
-                                        </ul>
-                                        <div class="nav-divider">&nbsp;</div>
+                            </div>
 
 
-                                        <div class="clear"></div>
+                        </li>
+
+                    </ul>
 
 
-                                    </div>
+                    <div class="nav-divider">&nbsp;</div>
 
-                                    <div class="clear"></div>
+                    <ul class="select  dropdown">
+                        <li><a href="javascript:void(0);"><b>Registration</b></a>
 
-                                </div>
+                            <div class="select_sub show">
 
-                            <?php } ?>
+                                <ul class="sub">
 
+                                    <li>
+                                        <a class="" href="<?php echo base_url(); ?>admin/allflatowner/addflatowner">Flat Owners</a>
+                                    </li>
 
-                        </div>
+                                </ul>
 
+                            </div>
 
-                        <div class="clear"></div>
+                        </li>
 
-                        <!--  start nav-outer -->
+                    </ul>
+                    <div class="nav-divider">&nbsp;</div>
+                    <ul class="select  dropdown">
+                        <li><a href="javascript:void(0);"><b>Flat Owner Bills</b></a>
 
-                    </div>
+                            <div class="select_sub show">
+                                <ul class="sub">
+                                    <li>
+                                        <a class="" href="<?php echo base_url(); ?>admin/allresidence/generatebill">Download Bill CSV</a>
+                                    </li>
+                                    <li>
+                                        <a class="" href="<?php echo base_url(); ?>admin/allresidence/uploadbill">Upload Bill CSV</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="nav-divider">&nbsp;</div>
+
 
                     <div class="clear"></div>
-                    <!--bread-crum-outer-strat-->
+
+
+                </div>
+
+                <div class="clear"></div>
+
+            </div>
+
+        <?php } ?>
+
+
+    </div>
+
+
+    <div class="clear"></div>
+
+    <!--  start nav-outer -->
+
+</div>
+
+<div class="clear"></div>
+<!--bread-crum-outer-strat-->
 

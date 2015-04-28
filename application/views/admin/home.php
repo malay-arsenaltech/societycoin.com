@@ -451,6 +451,7 @@
                             </div>
 
                             <div class="box-eight">
+                                <a  style=" float: right; margin-bottom:3px;" class="btnb" href="javascript:newPopup('<?php echo base_url(); ?>admin/allresidence/print_all_bill/0/<?php echo $this->input->get_post('search_text'); ?>');"  >Print All</a>
                                 <table width="100%" cellspacing="0" cellpadding="0" border="0" id="product-table">
                                     <tbody><tr>
                                             <th class="table-header-repeat line-left" style="width:20px;"><span>S.No</span>	</th>
@@ -485,7 +486,7 @@
                                                 <td><?php echo $data['email']; ?></td>
                                                 <td><?php echo $data['society_title']; ?></td>
                                                 <td><?php echo $data['flat']; ?></td>
-                                                <td><?php echo $data['total']; ?></td>
+                                                <td><?php echo "INR ".$data['total']; ?></td>
                                                 <td><?php echo DateTime::createFromFormat('d/m/Y', $data['sdate'])->format('l, jS \of F, Y'); ?></td>
                                                 <td><?php echo DateTime::createFromFormat('d/m/Y', $data['edate'])->format('l, jS \of F, Y'); ?></td>
                                                 <td><a href="<?php echo base_url(); ?>admin/allresidence/bill_detail/<?php echo $data['billid']; ?>"  class=" icon-3 info-tooltip" title="Bill Details"></a></td>

@@ -97,7 +97,7 @@
                                     ?>
                                     <tr class="checkbox">    
                                         <td colspan="2">
-                                            <input type="checkbox" class="no-checkbox" name="charge_head[]" id="<?php echo $val->chargehead_id; ?>" value="<?php echo $val->chargehead_id; ?>" checked='checked'><b><label class="checkbox_label" for="<?php echo $val->chargehead_id; ?>"><?php echo $val->charge_head_name; ?></label></b>
+                                            <b><input type="checkbox" class="no-checkbox" name="charge_head[]" id="<?php echo $val->chargehead_id; ?>" value="<?php echo $val->chargehead_id; ?>" checked='checked'><label class="checkbox_label" for="<?php echo $val->chargehead_id; ?>"><?php echo $val->charge_head_name; ?></label></b>
                                         </td>
                                     </tr>
                                 <?php } ?>

@@ -117,7 +117,7 @@
                                     <tr class="checkbox">    
                                         <td><?php echo ($key == 0) ? "Charge Heads" : ""; ?></td>
                                         <td>
-                                            <input type="checkbox" class="no-checkbox" name="charge_head[]" id="<?php echo $val->charge_head_name; ?>" value="<?php echo $val->charge_head_name; ?>" checked='checked'><b><label class="checkbox_label" for="<?php echo $val->charge_head_name; ?>"><?php echo $val->charge_head_name; ?></label></b>
+                                            <b><input type="checkbox" class="no-checkbox" name="charge_head[]" id="<?php echo $val->charge_head_name; ?>" value="<?php echo $val->charge_head_name; ?>" checked='checked'><label class="checkbox_label" for="<?php echo $val->charge_head_name; ?>"><?php echo $val->charge_head_name; ?></label></b>
                                         </td>
                                     </tr>
                                 <?php } ?>

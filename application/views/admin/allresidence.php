@@ -1,4 +1,10 @@
 <?php $this->load->view('admin/header'); ?>
+<script>
+function newPopup(url) {
+        popupWindow = window.open(
+                url, 'popUpWindow', 'height=700,width=700,left=100,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+    }
+</script>
 <div class="clear"></div>
 <div id="content-outer">
     <!-- start content -->
@@ -43,6 +49,7 @@
                 <input name="task"  value="search" type="hidden"  >
 
             </form>
+            <a  style=" float: right; margin-bottom:3px;" class="btnb" href="javascript:newPopup('<?php echo base_url(); ?>admin/allresidence/print_all_residence/<?php echo $this->input->get_post('search_text'); ?>');"  >Print All</a>
         </div>
         <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
             <tr>

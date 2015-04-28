@@ -105,7 +105,9 @@
         });
 
     });
-
+function goBack() {
+        window.history.back();
+    }
 </script>
 <style>
     #addnewresidence label.error {float:right !important; width:250px;}
@@ -170,7 +172,8 @@
                                 <tr>
                                     <th>   </th>
                                     <td><input type="submit" class="form-button form-proceed"  value="Update" >
-                                        <input class="form-button-gray" type="reset" value="Reset" >
+                                        <input class="form-button-gray" type="reset" value="Reset"  style="margin-right:10px;">
+                                        <input class="form-button-gray" type="reset" value="Cancel" onclick="goBack();">
                                         <input type="hidden" id="status" name="status" value="<?php echo $data['status']; ?>" >
                                         <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" >
                                     </td>

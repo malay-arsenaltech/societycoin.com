@@ -20,7 +20,7 @@ class Allresidence extends CI_Controller {
 
         $config = array();
         $config["base_url"] = base_url() . "admin/allresidence/index/?";
-        $config["per_page"] = 10;
+        $config["per_page"] = 25;
         $config["page_query_string"] = true;
         $config["uri_segment"] = 3;
         $config['full_tag_open'] = '<td>';
@@ -32,7 +32,7 @@ class Allresidence extends CI_Controller {
         $config['cur_tag_close'] = '</b>';
         $config['full_tag_close'] = '</td>';
 
-        $page = (isset($_GET['per_page']) && $_GET['per_page'] != '' ) ? $_GET['per_page'] : 0;
+        $page = (isset($_GET['per_page']) && $_GET['per_page'] != '') ? $_GET['per_page'] : 0;
         $response = $this->residence_model->all_residence($config["per_page"], $page);
         $data['data'] = $response['rows'];
         $config["total_rows"] = $response['num_rows'];
@@ -117,7 +117,7 @@ class Allresidence extends CI_Controller {
 
         $headers = $data;
         $this->session->set_userdata("bill_header", json_encode($headers));
-        $this->session->set_userdata("bill_file_name", $society_name . "_Bill_".$this->input->post("bill_generates_on").".csv");
+        $this->session->set_userdata("bill_file_name", $society_name . "_Bill_" . $this->input->post("bill_generates_on") . ".csv");
         redirect("admin/allresidence/uploadbill");
     }
 
@@ -144,19 +144,48 @@ class Allresidence extends CI_Controller {
             $i = 0;
             $success_data = array();
             $failure_data = array();
+            $success_post_data = array();
             $start_date = "";
             $end_date = "";
+            $success = 1;
+            $society_data = $this->db->select("id,society_title")->where("society_user_id", $this->session->userdata('admin_id'))->get("ci_society")->result();
+            $society_id = $society_data[0]->id;
             while ($post_data = fgetcsv($handle, 1000, ",", "'")) {
                 $post_data = array_map("trim", $post_data);
+                if ($i == 0 && $society_data[0]->society_title != $post_data[0]) {
+                    $this->session->set_flashdata("msg_error_red", "Bill is not associated with your society");
+                    $success = 0;
+                }
                 if ($i == 2) {
+                    if (!$this->valid_date($post_data[1])) {
+                        $this->session->set_flashdata("msg_error_red", "Invalid Bill Generated On date");
+                        $success = 0;
+                    } else if ($this->is_bill_generated($post_data[1], $society_id)) {
+                        $success = 0;
+                    }
                     $start_date = $post_data[1];
                 } else if ($i == 3) {
+                    if (!$this->valid_date($post_data[1])) {
+                        $this->session->set_flashdata("msg_error_red", "Invalid Bill Generated On date");
+                        $success = 0;
+                    }
                     $end_date = $post_data[1];
                 } else if ($i == 5) {
                     $key_array = array_map("strtolower", $post_data);
                     unset($key_array[0]);
                     unset($key_array[1]);
                     unset($key_array[2]);
+                    $chargehead = $this->chargehead_model->get_current_charge_head_name($society_id);
+                    $chargehead = array_map("strtolower", array_merge($chargehead, array("Tax", "Total")));
+                    $diff_array = array_diff($key_array, $chargehead);
+                    if (strtolower($post_data[0]) != "flat" || strtolower($post_data[1]) != "owner" || strtolower($post_data[2]) != "email" || !empty($diff_array)) {
+                        $this->session->set_flashdata("msg_error_red", "Invalid bill");
+                        $success = 0;
+                    }
+                }
+                if ($i < 6 && $success == 0) {
+                    redirect("admin/allresidence/uploadbill");
+                    exit;
                 }
                 if ($i < 6) {
                     $i++;
@@ -177,6 +206,9 @@ class Allresidence extends CI_Controller {
                     }
                     $total += $post_data[$_k];
                 }
+                $property_id = $this->residence_model->get_property_id($society_id, $post_data[0], $post_data[2]);
+                if (empty($property_id))
+                    $success = 0;
                 $extra_data = array("address" => $post_data[0], "name" => $post_data[1], "email" => $post_data[2]);
                 if ($success) {
                     $success_data[] = array_merge($extra_data, $selected_charge_head, array("Tax" => $tax, "TOTAL" => $total));
@@ -253,6 +285,39 @@ class Allresidence extends CI_Controller {
         $response = $this->residence_model->billdetailbyid($id);
         $data['data'] = $response[0];
         $this->load->view("admin/bill_details", $data);
+    }
+
+    function valid_date($date) {
+        $parts = explode("/", $date);
+        if (count($parts) == 3) {
+            if (checkdate($parts[1], $parts[0], $parts[2])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function is_bill_generated($date, $society_id) {
+        $parts = explode("/", $date);
+        $parts = "/" . $parts[1] . "/" . $parts[2];
+        $data = $this->db->select("id")->where("society_id", $society_id)->like("sdate", $parts)->get("ci_bill_charge")->result();
+        $msg = empty($data) ? "" : "Bill is already generated for this month";
+        $this->session->set_flashdata("msg_error_red", $msg);
+        return empty($data) ? 0 : 1;
+    }
+
+    public function print_all_residence($searchtext = '') {
+        $data['records'] = array();
+        $data['records'] = $this->residence_model->print_all_residents($searchtext);
+
+
+        $this->load->view('admin/print_all_residents', $data);
+    }
+    public function print_all_bill($admin = 0,$searchtext = '') {
+        $data['records'] = array();
+        $data['records'] = $this->residence_model->print_all_bills($searchtext,$admin);
+  
+        $this->load->view('admin/print_all_bills', $data);
     }
 
 }

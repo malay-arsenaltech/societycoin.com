@@ -877,7 +877,8 @@ $(document).pngFix( );
 
 		
 
-		<ul class="select <?php $murl=trim($url[0]); if($murl=='allpropertys'){ echo "current";} ?>"><li><a href="#nogo"><b>Property</b><!--[if IE 7]><!--></a><!--<![endif]-->
+		<ul class="select <?php $murl=trim($url[0]); if($murl=='allprope
+		rtys'){ echo "current";} ?>"><li><a href="#nogo"><b>Property</b><!--[if IE 7]><!--></a><!--<![endif]-->
 
 		<!--[if lte IE 6]><table><tr><td><![endif]-->
 
