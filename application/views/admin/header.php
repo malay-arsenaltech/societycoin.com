@@ -1056,7 +1056,7 @@ $url = $url[0];
                                         </ul>
                                         <div class="nav-divider">&nbsp;</div>
                                         <ul class="select  dropdown">
-                                            <li><a href="javascript:void(0);"><b>Bill Upload</b></a>
+                                            <li><a href="javascript:void(0);"><b>Flat Owner Bills</b></a>
                                                 <div class="select_sub show">
                                                     <ul class="sub">
                                                         <li>

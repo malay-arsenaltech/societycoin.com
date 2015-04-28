@@ -117,7 +117,7 @@ class Allresidence extends CI_Controller {
 
         $headers = $data;
         $this->session->set_userdata("bill_header", json_encode($headers));
-        $this->session->set_userdata("bill_file_name", $society_name . "_Bill.csv");
+        $this->session->set_userdata("bill_file_name", $society_name . "_Bill_".$this->input->post("bill_generates_on").".csv");
         redirect("admin/allresidence/uploadbill");
     }
 
@@ -125,9 +125,11 @@ class Allresidence extends CI_Controller {
 
         if ($this->session->userdata("bill_header") && $this->session->userdata("bill_file_name")) {
             $this->load->helper('csv');
-            echo array_to_csv(json_decode($this->session->userdata("bill_header"), true), $this->session->userdata("bill_file_name"));
+            $bill_header = $this->session->userdata("bill_header");
+            $bill_file_name = $this->session->userdata("bill_file_name");
             $this->session->unset_userdata(array("bill_header" => "", "bill_file_name" => ""));
-            header("refresh:1;url=uploadbill");
+            header("refresh:;url=uploadbill");
+            echo array_to_csv(json_decode($bill_header, true), $bill_file_name);
         } else {
             $this->load->view('admin/uploadresidencebill');
         }
@@ -197,7 +199,7 @@ class Allresidence extends CI_Controller {
     }
 
     public function processbill() {
-        if(!$this->input->post("success_data"))
+        if (!$this->input->post("success_data"))
             redirect("admin/allresidence/uploadbill");
         $this->load->model("chargehead_model");
         $success_data = json_decode($this->input->post("success_data"), true);
@@ -208,10 +210,10 @@ class Allresidence extends CI_Controller {
             $chargehead_data[strtolower($val->charge_head_name)] = $val->chargehead_id;
         }
         $insert_data = array();
-        $email_data  = array();
+        $email_data = array();
         foreach ($success_data as $val) {
-            $email_data[] = array_merge($val['data'],array("charge_head"=>$val['charge_head']));
-            $property_id = $this->residence_model->get_property_id($society_id, $val['data']['address'],$val['data']['email']);
+            $email_data[] = array_merge($val['data'], array("charge_head" => $val['charge_head']));
+            $property_id = $this->residence_model->get_property_id($society_id, $val['data']['address'], $val['data']['email']);
             $related_id = 0;
             $i = 0;
             foreach ($val['charge_head'] as $_k => $_v) {
@@ -227,28 +229,30 @@ class Allresidence extends CI_Controller {
                     "timestamp" => date("Y-m-d H:i:s"),
                     "addbyid" => $this->session->userdata('admin_id'),
                     "status" => "1",
-                    "related_id"=>$related_id
+                    "related_id" => $related_id
                 );
-                if($i == 0){
-                    $this->db->insert("ci_bill_charge",$_temp);
+                if ($i == 0) {
+                    $this->db->insert("ci_bill_charge", $_temp);
                     $related_id = $this->db->insert_id();
-                    $this->db->where("id",$related_id)->update("ci_bill_charge",array("related_id"=>$related_id));
-                }else{
+                    $this->db->where("id", $related_id)->update("ci_bill_charge", array("related_id" => $related_id));
+                } else {
                     $insert_data[] = $_temp;
                 }
                 $i++;
             }
         }
         if (!empty($insert_data)) {
-            $this->db->insert_batch("ci_bill_charge",$insert_data);
+            $this->db->insert_batch("ci_bill_charge", $insert_data);
             $this->residence_model->send_mail($email_data);
             $this->session->set_flashdata('msg_error', "Bill generated successfully.");
             redirect("admin/login/dashboard/?&bill=details");
         }
     }
-    function bill_detail($id){
+
+    function bill_detail($id) {
         $response = $this->residence_model->billdetailbyid($id);
-         $data['data'] = $response[0];
-        $this->load->view("admin/bill_details",$data);
+        $data['data'] = $response[0];
+        $this->load->view("admin/bill_details", $data);
     }
+
 }
