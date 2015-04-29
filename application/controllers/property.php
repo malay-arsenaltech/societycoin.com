@@ -369,11 +369,40 @@ class Property extends CI_Controller {
         }
     }
 
-    public function bills() {
-        $data['bill'] = $this->property_model->get_bill_detail();
-        $data['bill'] = isset($data['bill'][0]) ? $data['bill'][0] : array();
-        $this->load->view('bill_detail', $data);
+    public function bills($bill_year = 0,$bill_id = 0) {
+        $data['bill'] = $this->property_model->get_bill_detail($bill_year,$bill_id);
+        $array_for_sorting = array();
+        $data['min_year'] = 0;
+        $data['max_year'] = 0;
+        $data['charge_head'] = array();
+        foreach ($data['bill'] as $val) {
+            $year = DateTime::createFromFormat('d/m/Y', $val->sdate)->format('Y');
+            $date = strtotime(DateTime::createFromFormat('d/m/Y', $val->sdate)->format('Y-m-d H:i:s'));
+            if ($data['max_year'] == 0 || $year > $data['max_year'])
+                $data['max_year'] = $year;
+            if ($data['min_year'] == 0 || $year < $data['min_year'])
+                $data['min_year'] = $year;
+            $array_for_sorting[$date] = $val;
+            $data['charge_head'] = array_merge($data['charge_head'], explode(",", $val->bill_name));
+        }
+        $data['charge_head'] = array_map("strtolower", $data['charge_head']);
+        $data['charge_head'] = array_unique($data['charge_head']);
+        $data['paid_bill'] = $this->property_model->get_paid_bill();
+        $data['paid_bill'] = !empty($data['paid_bill']) ? explode(",", $data['paid_bill'][0]->paid_bill) : array();
+        if (!empty($bill_year) && empty($bill_id)) {
+            krsort($array_for_sorting);
+            $this->load->helper('inflector');
+            $data['year'] = $bill_year;
+            $data['bill'] = $array_for_sorting;
+            $this->load->view('bill_list', $data);
+        } else {
+            ksort($array_for_sorting);
+            $data['bill'] = array_pop($array_for_sorting);
+            $data['paid_amount'] = $this->property_model->get_paid_bill_amount($data['bill']->billid);
+            $this->load->view('bill_detail', $data);
+        }
     }
+
 }
 
 /* End of file welcome.php */

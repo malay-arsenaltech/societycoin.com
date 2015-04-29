@@ -8,7 +8,7 @@ $this->load->view('header');
         background: none repeat scroll 0 0 #fff;
         padding: 22px;
         text-align: center;
-        width: 45%;
+        width: 55%;
         padding-top: 4px;
     }
 
@@ -19,10 +19,10 @@ $this->load->view('header');
         width: 68%;
     }
     #bill_details_form th{
-        text-align: center
+        text-align: center; height: 32px;
     }
     #bill_details_form td{
-        border: 1px solid #d4d4d4;
+        border: 1px solid #d4d4d4;padding: 5px;
     }
     .bill_year{
         display: block;
@@ -30,10 +30,20 @@ $this->load->view('header');
         margin-right: 5px;
         margin-top: -104px;
     }
-    #billing_form{width: 382px;}
-    #billing_form input[type="text"]{width: 100px; margin-left:10px;}
- 
+    #billing_form{width: 459px;}
+    #billing_form input[type="text"]{    margin-left: 12px;
+                                         padding-left: 10px !important;
+                                         width: 72px;}
+    .previous_bill{width: auto!important;}
+
 </style>
+<script>
+    function get_bill(val) {
+        if (val != "") {
+            window.location = '<?php echo base_url() ?>property/bills/' + val;
+        }
+    }
+</script>
 <!--mid-portion-->
 
 <div class="row-fluid mid-outer">
@@ -63,7 +73,7 @@ $this->load->view('header');
                     <tbody>
                         <tr>
                             <th class="table-header-repeat line-left minwidth-1"><span>Bill Name</span></th>
-                            <th class="table-header-repeat line-left"><span>Amount</span></th>
+                            <th class="table-header-repeat line-left"><span>Amount [INR]</span></th>
                         </tr>
                         <?php
                         if (!empty($bill->bill_name)) {
@@ -98,9 +108,14 @@ $this->load->view('header');
 
                     </tbody>
                 </table>
-                <span class="bill_year">Year
-                    <br><?php echo DateTime::createFromFormat('d/m/Y', $bill->sdate)->format('Y'); ?>
-                    <br><?php echo DateTime::createFromFormat('d/m/Y', $bill->edate)->format('Y'); ?>
+                <span class="bill_year">Previous bill:<br>
+                    <select name="previous_bill" class="previous_bill" onchange="get_bill(this.value);">
+                        <option value="">Select year</option>
+                        <?php for ($i = $max_year; $i >= $min_year; $i--) { ?>
+                            <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                        <?php }
+                        ?>
+                    </select>
                 </span>
             </div>
             <div class="main-form" id="billing_form" style=" height:auto; margin-top:15px;">
@@ -115,31 +130,38 @@ $this->load->view('header');
                             <td width="144">PAYMENT DUE :</td>
                             <td width="209"><b> <?php echo DateTime::createFromFormat('d/m/Y', $bill->edate)->format('l, jS \of F, Y'); ?> </b></td>
                         </tr>
+                        <?php if ($paid_amount > 0) { ?>
                         <tr>
-                            <td>Default Amount [INR]:</td>
-                            <td align="left"><input id="payable_amount" name="amount" type="text" value="<?php echo $bill->total; ?>"/></td>
+                            <td width="144">Paid Amount :</td>
+                            <td width="209" align='left'><span  style='margin-left:12px'>INR <?php echo $paid_amount; ?> </span></td>
                         </tr>
-                        
-                        
-                        
-                        <tr>
-                            <td colspan="2" align="center">
-                                <input name="pay_now" class="msgsend" type="submit"  style="margin-top:0px;" value="Pay Now">
-                            </td>
-                        </tr>
-                        
-                    </table>
-                    
+                        <?php } ?>
+                        <?php if (!in_array($bill->billid, $paid_bill)) { ?>
+                            <tr>
+                                <td>Default Amount [INR]:</td>
+                                <td align="left"><input id="payable_amount" name="amount" type="text" value="<?php echo $bill->total - $paid_amount; ?>"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <input name="pay_now" class="msgsend" type="submit"  style="margin-top:0px;" value="Pay Now">
+                                </td>
+                            </tr>
+                        <?php } ?>
 
-                    <label> <?php //echo $math_captcha_question; ?> </label>
-                    <?php //  echo form_input('math_captcha'); ?>
-                    <input type="hidden" name="societyid" value="<?php echo $bill->society_id?>">
-                    <input type="hidden" name="addressid" value="<?php echo $bill->address_id?>">
-                    <input type="hidden" name="society_name" value="<?php echo $bill->society_title?>">
-                    <input type="hidden" name="name" value="<?php echo $bill->fname." ".$bill->lname?>">
-                    <input type="hidden" name="sdate" value="<?php echo $bill->sdate?>">
-                    <input type="hidden" name="edate" value="<?php echo $bill->edate?>">
-                    <input type="hidden" name="email" value="<?php echo $bill->email?>">
+                    </table>
+
+
+                    <label> <?php //echo $math_captcha_question;  ?> </label>
+                    <?php //  echo form_input('math_captcha');  ?>
+                    <input type="hidden" name="societyid" value="<?php echo $bill->society_id ?>">
+                    <input type="hidden" name="billid" value="<?php echo $bill->billid ?>">
+                    <input type="hidden" name="societyid" value="<?php echo $bill->society_id ?>">
+                    <input type="hidden" name="addressid" value="<?php echo $bill->address_id ?>">
+                    <input type="hidden" name="society_name" value="<?php echo $bill->society_title ?>">
+                    <input type="hidden" name="name" value="<?php echo $bill->fname . " " . $bill->lname ?>">
+                    <input type="hidden" name="sdate" value="<?php echo $bill->sdate ?>">
+                    <input type="hidden" name="edate" value="<?php echo $bill->edate ?>">
+                    <input type="hidden" name="email" value="<?php echo $bill->email ?>">
                 </form>                 
 
 

@@ -131,7 +131,7 @@ class Residence_model extends CI_Model {
             $this->email->message($html);
             $this->email->set_mailtype("html");
             $this->email->to(array($val['email']));
-            // $this->email->send();
+            $this->email->send();
         }
     }
 
@@ -169,7 +169,7 @@ class Residence_model extends CI_Model {
         $this->db->join('ci_bill as b', 'a.bill_id=b.id', "left");
         $this->db->join('ci_propertys as c', 'a.property_id=c.id', "left");
         $this->db->join('ci_userpropertys as up', 'c.id = up.addressid', "left");
-        $this->db->join('ci_users as u', 'up.userid = u.id', "left");
+        $this->db->join('ci_users as u', 'up.userid = u.id');
         $this->db->join('ci_users as s', 'a.addbyid = s.id', "left");
         $this->db->join('ci_society as sd', 'sd.id = up.societyid', "left");
         $this->db->where("a.related_id", $id);

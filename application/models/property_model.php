@@ -285,7 +285,7 @@ class Property_model extends CI_Model {
             'userid' => $userid_request,
             'society_id' => $this->session->userdata('societyid'),
             'propertyid' => $this->input->post('udf1'),
-            'bill_id' => $this->input->post('udf3'),
+            'bill_id' => ($this->input->post('udf3')) ? $this->input->post('udf3') : $this->session->userdata('billid'),
             'billname' => $this->input->post('udf4'),
             'societyname' => $this->input->post('udf5'),
             'propertyname' => $this->input->post('udf2'),
@@ -548,7 +548,7 @@ class Property_model extends CI_Model {
             return array();
     }
 
-    function get_bill_detail() {
+    function get_bill_detail($year = 0,$bill_id = 0) {
         $this->db->select('SQL_CALC_FOUND_ROWS up.addressid as address_id,a.id as billid,c.address as flat,u.id as userid,u.fname as fname, u.lname as lname,u.email as email,a.sdate,a.edate,a.totalamount as total,concat(s.fname," ",s.lname) as society_admin,sd.society_title,sd.id as society_id,group_concat(b.bill_name) as bill_name,group_concat(a.amount) as amount,a.taxamount as tax', false);
         $this->db->from('ci_bill_charge  as a');
         $this->db->join('ci_bill as b', 'a.bill_id=b.id', "left");
@@ -558,7 +558,22 @@ class Property_model extends CI_Model {
         $this->db->join('ci_users as s', 'a.addbyid = s.id', "left");
         $this->db->join('ci_society as sd', 'sd.id = up.societyid', "left");
         $this->db->where("up.userid", $this->session->userdata('userid'));
+        if($year > 0){
+            $this->db->like("a.sdate", $year,"before");
+        }
+        if($bill_id > 0){
+            $this->db->where("a.related_id",$bill_id);
+        }
+       // $this->db->order_by("a.sdate","desc");
         return $this->db->group_by("a.related_id")->get()->result();
     }
-
+    public function get_paid_bill(){
+        $this->db->select("group_concat(bill_id) as paid_bill,sum(amount) as paid_amount,totalamount")->where("userid", $this->session->userdata('userid'))->having("paid_amount = totalamount")->where("status","success");
+        return $this->db->group_by("bill_id")->get("ci_transaction")->result();
+    }
+    public function get_paid_bill_amount($bill_id){
+        $this->db->select("sum(amount) as paid_amount")->where("userid", $this->session->userdata('userid'))->where("bill_id",$bill_id)->where("status","success");
+        $data = $this->db->group_by("bill_id")->get("ci_transaction")->result();
+        return !empty($data) ? $data[0]->paid_amount : 0;
+    }
 }
