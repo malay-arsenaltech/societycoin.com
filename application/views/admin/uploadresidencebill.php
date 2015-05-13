@@ -3,7 +3,6 @@
     #id-form th, #id-form td {
         font-size: 12px;
         line-height: 28px;
-        min-width: 130px;
         padding: 10px;
         text-align: left;
         height: 100%;
@@ -111,12 +110,12 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Bill</td>
+                                    <td width="5%">Bill</td>
                                     <td><input type="file" name="bill_data" id="flat_data" accept=".csv"></td>
                                 </tr>
 
                                 <tr>
-                                    <th>&nbsp;</th>
+                                    <td>&nbsp;</td>
                                     <td>
                                         <input type="submit" class="form-proceed form-button" value="Upload">&nbsp;
                                         <input class="form-button-gray" type="reset" value="Reset">
