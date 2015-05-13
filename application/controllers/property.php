@@ -398,7 +398,7 @@ class Property extends CI_Controller {
         } else {
             ksort($array_for_sorting);
             $data['bill'] = array_pop($array_for_sorting);
-            $data['paid_amount'] = $this->property_model->get_paid_bill_amount($data['bill']->billid);
+            $data['paid_amount'] = !empty($data['bill']) ? $this->property_model->get_paid_bill_amount($data['bill']->billid) : 0;
             $this->load->view('bill_detail', $data);
         }
     }

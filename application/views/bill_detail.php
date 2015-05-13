@@ -35,6 +35,7 @@ $this->load->view('header');
                                          padding-left: 10px !important;
                                          width: 72px;}
     .previous_bill{width: auto!important;}
+    .bill_text{  display: block;float: right;margin-right: 5px;margin-top: -53px;max-width: 90px;}
 
 </style>
 <script>
@@ -108,6 +109,7 @@ $this->load->view('header');
 
                     </tbody>
                 </table>
+                <?php if(!empty($max_year)){?>
                 <span class="bill_year">Previous bill:<br>
                     <select name="previous_bill" class="previous_bill" onchange="get_bill(this.value);">
                         <option value="">Select year</option>
@@ -117,7 +119,11 @@ $this->load->view('header');
                         ?>
                     </select>
                 </span>
+                <?php }else{ ?>
+                <span class="bill_text">No Previous bills found </span>
+                <?php } ?>
             </div>
+            <?php  if(!empty($bill)){?>
             <div class="main-form" id="billing_form" style=" height:auto; margin-top:15px;">
                 <form id="contact" name="contact"  method="post" action="<?php echo base_url(); ?>home/plogin" >
                     <table align="center">
@@ -167,6 +173,7 @@ $this->load->view('header');
 
 
             </div>
+            <?php } ?>
 
             <div class="clearfix"></div>
 
