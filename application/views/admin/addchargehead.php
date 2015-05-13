@@ -1,5 +1,36 @@
 
 <?php $this->load->view('admin/header'); ?>
+<script>
+    var base_url = "<?php echo base_url(); ?>";
+    $(document).ready(function() {
+        focusInvalid: false,
+        $('#addchargehead').validate({// initialize the plugin
+            rules: {
+                charge_head_name: {
+                    remote:
+                            {
+                                url: base_url + "admin/allchargehead/check_charge_head",
+                                type: "post",
+                                data: {
+                                    charge_head_name: function() {
+                                        return $("#charge_head_name").val();
+                                    }
+                                }
+                            }
+                }
+            },
+            messages: {
+                charge_head_name: {
+                    required: "This field is required",
+                    remote: "This charge head is already associated with your society."
+                }
+            },
+            errorPlacement: function(error, element) {
+                $(error).insertAfter(element);
+            }
+        });
+    });
+</script>
 
 <div class="clear"></div>
 <div id="content-outer">

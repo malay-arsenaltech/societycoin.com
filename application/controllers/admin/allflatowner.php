@@ -88,8 +88,8 @@ class Allflatowner extends CI_Controller {
             foreach ($success_record as $val) {
                 $name = explode(" ", $val->name);
                 $password = $name[0] . "123";
-                $username = $name[0] . ".";
-                $username .= isset($name[1]) ? $name[1] : "";
+              //  $username = $name[0] . ".";
+                $username = $val->email_address;
                 $insert_flat_owner = array(
                     "utype" => 3,
                     "email" => $val->email_address,

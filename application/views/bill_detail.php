@@ -37,6 +37,12 @@ $this->load->view('header');
     .previous_bill{width: auto!important;}
     .bill_text{  display: block;float: right;margin-right: 5px;margin-top: -53px;max-width: 90px;}
 
+    @media screen and (max-width: 900px) {
+      .bill_year{ margin-top: 25px; float: none; text-align: center;  }
+      .main-form select { margin-left: 0px;}
+      
+}
+
 </style>
 <script>
     function get_bill(val) {
@@ -129,16 +135,16 @@ $this->load->view('header');
                     <table align="center">
                         <tr><td></td></tr>
                         <tr>
-                            <td width="152">BILL GENERATED ON :</td>
+                            <td width="152">BILL GENERATED ON:</td>
                             <td width="209"><b> <?php echo DateTime::createFromFormat('d/m/Y', $bill->sdate)->format('l, jS \of F, Y'); ?> </b></td>
                         </tr>
                         <tr>
-                            <td width="144">PAYMENT DUE :</td>
+                            <td width="144">PAYMENT DUE:</td>
                             <td width="209"><b> <?php echo DateTime::createFromFormat('d/m/Y', $bill->edate)->format('l, jS \of F, Y'); ?> </b></td>
                         </tr>
                         <?php if ($paid_amount > 0) { ?>
                         <tr>
-                            <td width="144">Paid Amount :</td>
+                            <td width="144">Paid Amount:</td>
                             <td width="209" align='left'><span  style='margin-left:12px'>INR <?php echo $paid_amount; ?> </span></td>
                         </tr>
                         <?php } ?>

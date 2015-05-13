@@ -60,4 +60,12 @@ class Allchargehead extends CI_Controller {
         redirect("admin/allchargehead");
     }
 
+    public function check_charge_head() {
+        $society_data = $this->db->select("id")->where("society_user_id", $this->session->userdata('admin_id'))->get("ci_society")->result();
+        $society_id = $society_data[0]->id;
+        $name = $this->input->post("charge_head_name");
+        $data = $this->db->where("bill_name", $name)->join("ci_society_chargehead", "ci_society_chargehead.chargehead_id = ci_bill.id")->where("society_id",$society_id)->get("ci_bill")->result();
+        echo !empty($data) ? "false" : "true";
+    }
+
 }
