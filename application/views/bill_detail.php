@@ -129,7 +129,7 @@ $this->load->view('header');
                     <table align="center">
                         <tr><td></td></tr>
                         <tr>
-                            <td width="149">BILL GENERATED ON :</td>
+                            <td width="152">BILL GENERATED ON :</td>
                             <td width="209"><b> <?php echo DateTime::createFromFormat('d/m/Y', $bill->sdate)->format('l, jS \of F, Y'); ?> </b></td>
                         </tr>
                         <tr>

@@ -275,6 +275,8 @@ class Allresidence extends CI_Controller {
         }
         if (!empty($insert_data)) {
             $this->db->insert_batch("ci_bill_charge", $insert_data);
+        }
+        if(!empty($email_data)){
             $this->residence_model->send_mail($email_data);
             $this->session->set_flashdata('msg_error', "Bill generated successfully.");
             redirect("admin/login/dashboard/?&bill=details");

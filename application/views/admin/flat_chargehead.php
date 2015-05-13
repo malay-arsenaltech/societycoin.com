@@ -35,7 +35,7 @@
             $.post("<?php echo base_url(); ?>admin/allchargehead/addchargehead", {"is_ajax": "1", charge_head_name: $(".charge_head_form").find("[name='custom_charge_head']").val()}, function(result) {
                 result = $.parseJSON(result);
                 if (result != "0") {
-                    var html = '<tr><td colspan="2"><input type="checkbox" name="charge_head[]" id="' + result.id + '" value="' + result.id + '"><b><label class="checkbox_label" for="' + result.id + '">' + result.name + '</label></b></td></tr>'
+                    var html = '<tr><td colspan="2"><b><input type="checkbox" name="charge_head[]" id="' + result.id + '" value="' + result.id + '"><label class="checkbox_label" for="' + result.id + '">' + result.name + '</label></b></td></tr>'
                     if ($(".checkbox:last").length > 0)
                         $(html).insertAfter($(".checkbox:last"));
                     else
