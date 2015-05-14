@@ -141,7 +141,7 @@ class Residence_model extends CI_Model {
 
             $this->db->where("(c.address like  '$s%' OR u.fname like '$s%'  OR u.lname like '$s%' OR u.email like '$s'  OR a.sdate like '$s%'  OR a.edate like '$s%' OR a.totalamount like '$s%' OR s.fname like '$s%' OR s.lname like '$s%'  OR sd.society_title like '$s%') ");
         }
-        $this->db->select('SQL_CALC_FOUND_ROWS a.id as billid,c.address as flat,u.id as userid,u.fname as fname, u.lname as lname,u.email as email,a.sdate,a.edate,a.totalamount as total,concat(s.fname," ",s.lname) as society_admin,sd.society_title', false);
+        $this->db->select('SQL_CALC_FOUND_ROWS a.id as billid,a.related_id as related_id,c.address as flat,u.id as userid,u.fname as fname, u.lname as lname,u.email as email,a.sdate,a.edate,a.totalamount as total,concat(s.fname," ",s.lname) as society_admin,sd.society_title', false);
         $this->db->from('ci_bill_charge  as a');
         $this->db->join('ci_bill as b', 'a.bill_id=b.id');
         $this->db->join('ci_propertys as c', 'a.property_id=c.id');

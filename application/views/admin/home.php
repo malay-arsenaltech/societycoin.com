@@ -489,7 +489,7 @@
                                                 <td><?php echo "INR ".$data['total']; ?></td>
                                                 <td><?php echo DateTime::createFromFormat('d/m/Y', $data['sdate'])->format('l, jS \of F, Y'); ?></td>
                                                 <td><?php echo DateTime::createFromFormat('d/m/Y', $data['edate'])->format('l, jS \of F, Y'); ?></td>
-                                                <td><a href="<?php echo base_url(); ?>admin/allresidence/bill_detail/<?php echo $data['billid']; ?>"  class=" icon-3 info-tooltip" title="Bill Details"></a></td>
+                                                <td><a href="<?php echo base_url(); ?>admin/allresidence/bill_detail/<?php echo $data['related_id']; ?>"  class=" icon-3 info-tooltip" title="Bill Details"></a></td>
                                             </tr>
                                             <?php
                                             $k++;
