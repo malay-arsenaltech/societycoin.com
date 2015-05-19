@@ -113,19 +113,7 @@ class Residence_model extends CI_Model {
         $this->load->helper('email');
 
         foreach ($data as $val) {
-            $html = "<style>table.bill_data {border-collapse: collapse;}table.bill_data, table.bill_data th,table.bill_data td {border: 1px solid black;}</style>
-                Hi {$val['name']}, <br> <br>
-                Your bill detail for {$val['sdate']} to {$val['edate']} is as follows:<br><br>
-                <table class='bill_data' cellpadding='10px'>
-                <tr><td><b>Bill</b></td><td><b>Amount</b></td>";
-            foreach ($val['charge_head'] as $_k => $_v) {
-                $html .= "<tr><td>{$_k}</td><td>$_v</td></tr>";
-            }
-            $html .="</table>
-                <br><br>Best regards,
-		<br>The SocietyCoin.com team.
-		<br>www.societycoin.com
-		<br>support@societycoin.com";
+            $html = $this->load->view("admin/bill_detail_email",$val,true);
             $this->email->from("no-reply@societycoin.com", "societycoin.com");
             $this->email->subject("Bill Information for {$val['sdate']} to {$val['edate']}");
             $this->email->message($html);

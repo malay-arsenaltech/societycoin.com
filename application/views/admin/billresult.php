@@ -11,6 +11,7 @@
             -webkit-sizing: border-box;
             -moz-sizing: border-box;
         }
+        #id-form th {line-height: 15px;}
 
         .table-header-repeat span {
             color: #fff;

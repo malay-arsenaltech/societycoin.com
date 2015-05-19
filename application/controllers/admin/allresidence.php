@@ -108,7 +108,7 @@ class Allresidence extends CI_Controller {
         $data[2] = array("Bill Generated On", $this->input->post("bill_generates_on"));
         $data[3] = array("Bill Due Date", $this->input->post("bill_due_on"));
         $data[4] = array("");
-        $data[5] = array_merge(array("FLAT", "OWNER", "EMAIL"), array_map("strtoupper", $charge_head), array("TAX", "TOTAL"));
+        $data[5] = array_merge(array("FLAT", "OWNER", "EMAIL"), array_map("strtoupper", $charge_head), array("TAX"));
         $i = 6;
         foreach ($residencedata['rows'] as $val) {
             $data[$i] = array($val["address"], $val["fname"] . " " . $val["lname"], $val["email"]);
@@ -200,11 +200,14 @@ class Allresidence extends CI_Controller {
                         $tax = $post_data[$_k];
                     } else {
                         $selected_charge_head[strtolower($key_array[$_k])] = $post_data[$_k];
-                        if ($post_data[$_k] == "") {
+                        if ($post_data[$_k] == ""  || !is_numeric($post_data[$_k])) {
                             $success = 0;
                         }
                     }
                     $total += $post_data[$_k];
+                }
+                if(!empty($tax) && !is_numeric($tax)){
+                    $success = 0;
                 }
                 $property_id = $this->residence_model->get_property_id($society_id, $post_data[0], $post_data[2]);
                 if (empty($property_id))
@@ -244,7 +247,7 @@ class Allresidence extends CI_Controller {
         $insert_data = array();
         $email_data = array();
         foreach ($success_data as $val) {
-            $email_data[] = array_merge($val['data'], array("charge_head" => $val['charge_head']));
+            $email_data[] = array_merge($val['data'], array("charge_head" => $val['charge_head'],"society_name"=>$society_data[0]->society_title));
             $property_id = $this->residence_model->get_property_id($society_id, $val['data']['address'], $val['data']['email']);
             $related_id = 0;
             $i = 0;

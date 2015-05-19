@@ -12,13 +12,18 @@
         e.preventDefault();
         e.stopPropagation();
         var val = $(this).parents("tr:first").find(".charge_head_val input").val();
-        var $this = $(this);
-        $.post($this.attr("href"), {"charge_head_name": val}, function(result) {
-            $this.parents("tr:first").find(".charge_head_text").html(result).show();
-            $this.parents("tr:first").find(".charge_head_val").hide();
-        })
+        if (val != "" && val == val.match(/^[a-zA-Z]+$/)) {
+            var $this = $(this);
+            $.post($this.attr("href"), {"charge_head_name": val}, function(result) {
+                $this.parents("tr:first").find(".charge_head_text").html(result).show();
+                $this.parents("tr:first").find(".charge_head_val").hide();
+            })
+        }
     })
 </script>
+<style>
+    .charge_head_text {  word-break: break-word;}
+</style>
 <div class="clear"></div>
 <div id="content-outer">
     <!-- start content -->

@@ -105,11 +105,11 @@
                             <thead>
                                 <tr>
                                     <td>Bill Generated On</td>
-                                    <td><input type="text" name="bill_generates_on" class="required from-date" id="sdate" autocomplete="off"></td>
+                                    <td><input type="text" name="bill_generates_on" class="required from-date" id="sdate" autocomplete="off" readonly="true"></td>
                                 </tr>
                                 <tr>
                                     <td>Bill Due Date</td>
-                                    <td><input type="text" name="bill_due_on" class="required to-date" id="edate" autocomplete="off"></td>
+                                    <td><input type="text" name="bill_due_on" class="required to-date" id="edate" autocomplete="off" readonly="true"></td>
                                 </tr>
                                 <?php
                                 foreach ($charge_head as $key => $val) {

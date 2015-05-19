@@ -106,7 +106,7 @@ class Allflatowner extends CI_Controller {
                 );
                 $success = $this->db->insert("ci_users", $insert_flat_owner);
                 $user_id = $this->db->insert_id();
-                $this->send_mail($username, $password,$val->email_address,$val->name);
+                $this->send_mail($username, $password, $val->email_address, $val->name);
 
                 $insert_flat_property = array(
                     "countryid" => $society_data[0]->countryid,
@@ -163,21 +163,28 @@ class Allflatowner extends CI_Controller {
         }
     }
 
-    function send_mail($username, $password,$email,$name) {
+    function send_mail($username, $password, $email, $name) {
         $this->load->library('email');
 
         $this->email->from("no-reply@societycoin.com", "societycoin.com");
         $this->email->to($email);
-        
+        //$html = $this->load->view("admin/flat_owner_detail_email","",true);
+
         $html = 'Hello ' . $name . ',  <br><br>Welcome to societycoin.com! <br><br>Please find below the login details of the site as a Role of "Flat Owner" <br> <br>---------------------------<br><br><b>User ID:</b> ' . $username . '  <br><b> Password:</b> ' . $password . ' <br> <br> <a href="' . base_url() . '" >Click to login</a> <br><br>---------------------------<br><br>Best regards,
 		<br>The SocietyCoin.com team.
 		<br>www.societycoin.com
 		<br>support@societycoin.com';
-
         $this->email->subject('Account Created for Society Coin');
         $this->email->message($html);
         $this->email->set_mailtype("html");
         $this->email->send();
+    }
+
+    function downloadcsv() {
+        $data = array();
+        $data[0] = array("Flat Address", "Email Address", "Name");
+        $this->load->helper('csv');
+        echo array_to_csv($data, "flatowner_sample.csv");
     }
 
 }
