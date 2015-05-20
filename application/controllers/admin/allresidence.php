@@ -43,9 +43,9 @@ class Allresidence extends CI_Controller {
         $this->load->view('admin/allresidence', $data);
     }
 
-    public function editresidence($id = '') {
+    public function editresidence($id = '',$property_id = "") {
 
-        $result = $this->residence_model->residence_by_id($id);
+        $result = $this->residence_model->residence_by_id($id,$property_id);
 
         if (count($result) > 0) {
             $data['data'] = $result;
@@ -80,9 +80,15 @@ class Allresidence extends CI_Controller {
         }
     }
 
-    public function delete($id) {
-        $this->db->where("id", $id)->delete("ci_userpropertys");
-        if ($this->db->where("id", $id)->delete("ci_users"))
+    public function delete($id,$property_id) {
+        $this->db->where("addressid", $property_id)->delete("ci_userpropertys");
+        $delete = $this->db->where("id", $property_id)->delete("ci_propertys");
+        
+        $data = $this->db->select("id")->where("userid",$id)->get("ci_userpropertys")->result();
+        if(empty($data)){
+            $this->db->where("id", $id)->delete("ci_users");
+        }
+        if ($delete)
             $this->session->set_flashdata('msg_error', "Residence deleted successfully.");
         else
             $this->session->set_flashdata('msg_error_red', "Residence not deleted successfully.");
@@ -111,7 +117,7 @@ class Allresidence extends CI_Controller {
         $data[5] = array_merge(array("FLAT", "OWNER", "EMAIL"), array_map("strtoupper", $charge_head), array("TAX"));
         $i = 6;
         foreach ($residencedata['rows'] as $val) {
-            $data[$i] = array($val["address"], $val["fname"] . " " . $val["lname"], $val["email"]);
+            $data[$i] = array($val["flat_address"], $val["fname"] . " " . $val["lname"], $val["email"]);
             $i++;
         }
 

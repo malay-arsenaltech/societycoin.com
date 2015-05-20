@@ -45,16 +45,7 @@
                 <table border="0" width="100%" cellpadding="0" cellspacing="0"  class="reference" id="product-table">
                     <tr>
                         <th class="table-header-repeat line-left minwidth-1"><span>Society</span></th>
-                        <?php foreach ($charge_head as $key => $val) {
-                            ?>
-                            <th class="table-header-repeat line-left minwidth-1"><span><?php echo humanize($val); ?></span></th>
-                        <?php }
-                        ?>
-                        <?php foreach ($charge_head as $key => $val) {
-                            ?>
-                            <th class="table-header-repeat line-left minwidth-1"><span><?php echo humanize($val); ?></span></th>
-                        <?php }
-                        ?>
+                        <th class="table-header-repeat line-left minwidth-1"><span>Address</span></th>
                         <?php foreach ($charge_head as $key => $val) {
                             ?>
                             <th class="table-header-repeat line-left minwidth-1"><span><?php echo humanize($val); ?></span></th>
@@ -80,16 +71,7 @@
 
                             <tr>
                                 <td><?php echo$val->society_title ?></td>
-                                <?php foreach ($charge_head as $key => $head) {
-                                    ?>
-                                    <td><?php echo isset($charge_head_data[$head]) ? "INR " . $charge_head_data[$head] : " - "; ?></td>
-                                <?php }
-                                ?>
-                                <?php foreach ($charge_head as $key => $head) {
-                                    ?>
-                                    <td><?php echo isset($charge_head_data[$head]) ? "INR " . $charge_head_data[$head] : " - "; ?></td>
-                                <?php }
-                                ?>
+                                <td><?php echo$val->flat_address ?></td>
                                 <?php foreach ($charge_head as $key => $head) {
                                     ?>
                                     <td><?php echo isset($charge_head_data[$head]) ? "INR " . $charge_head_data[$head] : " - "; ?></td>
@@ -101,11 +83,12 @@
                                 <td><?php echo DateTime::createFromFormat('d/m/Y', $val->edate)->format('jS \of F, Y'); ?></td>                
                                 <td class="options-width">
                                     <?php if (!in_array($val->billid, $paid_bill)) { ?>
-                                        <a title="View Details" href='<?php echo base_url() ."property/bills/$year/{$val->billid}"; ?>'>Pay</a>
-                                    <?php } else {
+                                        <a title="View Details" href='<?php echo base_url() . "property/bills/$year/{$val->billid}"; ?>'>Pay</a>
+                                    <?php
+                                    } else {
                                         echo " - ";
                                     }
-?>
+                                    ?>
                                 </td></tr>
 
                             <?php

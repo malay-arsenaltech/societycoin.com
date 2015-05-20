@@ -87,12 +87,12 @@ function newPopup(url) {
                                                 <td><?php echo $k; ?></td>
                                                 <td><?php echo $data['fname'] . " " . $data['lname']; ?></td>
                                                 <td><?php echo $data['email']; ?></td>
-                                                <td><?php echo $data['address']; ?></td>
+                                                <td><?php echo $data['flat_address']; ?></td>
                                                 <td><?php echo $data['city']; ?></td>
                                                 <td><?php echo $data['state']; ?></td>
                                                 <td>
-                                                    <a href="<?php echo base_url(); ?>admin/allresidence/editresidence/<?php echo $data['id']; ?>" title="Edit Residence" class="icon-1 info-tooltip"></a>
-                                                    <a href="<?php echo base_url(); ?>admin/allresidence/delete/<?php echo $data['id']; ?>" title="Delete Residence" onclick="return confirm('Are you sure to delete?');"  class=" info-tooltip icon-2"></a>
+                                                    <a href="<?php echo base_url(); ?>admin/allresidence/editresidence/<?php echo $data['id']."/".$data['property_id']; ?>" title="Edit Residence" class="icon-1 info-tooltip"></a>
+                                                    <a href="<?php echo base_url(); ?>admin/allresidence/delete/<?php echo $data['id']."/".$data['property_id']; ?>" title="Delete Residence" onclick="return confirm('Are you sure to delete?');"  class=" info-tooltip icon-2"></a>
                                                 </td>
                                             </tr>
                                             <?php

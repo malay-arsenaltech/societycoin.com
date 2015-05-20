@@ -137,6 +137,7 @@ function goBack() {
                     <!--  start content-table-inner ...................................................................... START -->
                     <form method="post" id="addnewresidence" name="addnewresidence"    action="<?php echo base_url(); ?>admin/allresidence/update" >
                         <input type="hidden" id="id" name="id" value="<?php echo $data['id']; ?>" >
+                        <input type="hidden" id="id" name="property_id" value="<?php echo $data['property_id']; ?>" >
                         <input type="hidden" id="utype" name="utype" value="<?php echo $data['utype']; ?>" >
                         <input type="hidden"   id="country" name="country" class="inp-form" value="1" > 
                         <table id="id-form" class="table table-bordered" >
@@ -161,7 +162,7 @@ function goBack() {
 
                                 </tr>
                                 <tr>                          
-                                    <th>Address</th><td><input   type="text" id="address" class="inp-form" name="address" value="<?php echo $data['address']; ?>" ></td></tr><tr>
+                                    <th>Address</th><td><input   type="text" id="address" class="inp-form" name="address" value="<?php echo $data['flat_address']; ?>" ></td></tr><tr>
                                     <th>City</th><td><input type="text" maxlength="25"  id="city" name="city" class="inp-form" value="<?php echo $data['city']; ?>" ></td>
                                 </tr>
                                 <tr>    

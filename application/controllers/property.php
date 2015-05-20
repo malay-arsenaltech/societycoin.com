@@ -375,6 +375,7 @@ class Property extends CI_Controller {
         $data['min_year'] = 0;
         $data['max_year'] = 0;
         $data['charge_head'] = array();
+        $i = 0;
         foreach ($data['bill'] as $val) {
             $year = DateTime::createFromFormat('d/m/Y', $val->sdate)->format('Y');
             $date = strtotime(DateTime::createFromFormat('d/m/Y', $val->sdate)->format('Y-m-d H:i:s'));
@@ -382,7 +383,8 @@ class Property extends CI_Controller {
                 $data['max_year'] = $year;
             if ($data['min_year'] == 0 || $year < $data['min_year'])
                 $data['min_year'] = $year;
-            $array_for_sorting[$date] = $val;
+            $array_for_sorting[$date."_$i"] = $val;
+            $i++;
             $data['charge_head'] = array_merge($data['charge_head'], explode(",", $val->bill_name));
         }
         $data['charge_head'] = array_map("strtolower", $data['charge_head']);

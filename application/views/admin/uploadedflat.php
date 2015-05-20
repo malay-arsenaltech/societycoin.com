@@ -8,6 +8,10 @@
         text-align: left;
         height:100%;
     }
+    .duplicate_checkbox{
+        text-align: right!important;
+        width: 10px!important; min-width: 10px!important;
+    }
     .table-header-repeat span {
         color: #fff;
         font-family: Arial,Helvetica,sans-serif;
@@ -77,11 +81,12 @@
                                             <table  cellspacing="0" cellpadding="0" border="0" width="100%">
                                                 <tbody>
                                                     <tr>
-                                                        <td class="green-left">Total <b><?php echo count($success_record); ?></b> flat owner(s) will be added successfully out of <b><?php echo count($success_record) + count($failure_data); ?></b> flat owner(s). Following is the list of the flat owner(s) which will be added.</td>
+                                                        <td class="green-left">Total <b><?php echo count($success_record); ?></b> flat owner(s) will be added successfully out of <b><?php echo count($success_record) + count($failure_data) + count($duplicate_data); ?></b> flat owner(s). <?php if(count($success_record) > 0 ) { ?>Following is the list of the flat owner(s) which will be added.<?php } ?></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <?php if(count($success_record) > 0 ) { ?>
                                         <table border="0" width="100%" cellpadding="0" cellspacing="0" class="reference" id="product-table">
                                             <tr>
                                                 <th class="table-header-repeat line-left minwidth-1"><span>Flat Address</span>	</th>
@@ -96,6 +101,7 @@
                                                 </tr>
                                             <?php } ?>
                                         </table>
+                                        <?php } ?>
                                     </td>
                                 </tr>
                                 <?php if (!empty($failure_data)) { ?>
@@ -104,7 +110,7 @@
                                             <div id="message-red">
                                                 <table border="0" width="100%" cellpadding="0" cellspacing="0">
                                                     <tbody><tr>
-                                                            <td class="red-left">Total <b><?php echo count($failure_data); ?></b> flat owner(s) will not be added out of <b><?php echo count($success_record) + count($failure_data); ?></b> flat owner(s) as they contains error. Following is the list of the flat owner(s) which will not be added.</td>
+                                                            <td class="red-left">Total <b><?php echo count($failure_data); ?></b> flat owner(s) will not be added out of <b><?php echo count($success_record) + count($failure_data) + count($duplicate_data); ?></b> flat owner(s) as they contains error. Following is the list of the flat owner(s) which will not be added.</td>
                                                         </tr>
                                                     </tbody></table>
                                             </div>
@@ -125,6 +131,38 @@
                                         </td>
                                     </tr>
                                 <?php } ?>
+                                    
+                                    <?php if (!empty($duplicate_data)) { ?>
+                                    <tr>    
+                                        <td colspan="2">
+                                            <div id="message-red">
+                                                <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="red-left" style="padding-top: 1px;line-height: 13px">Total <b><?php echo count($duplicate_data); ?></b> flat owner(s) will not be added out of <b><?php echo count($success_record) + count($failure_data) + count($duplicate_data); ?></b> flat owner(s) as they have the same email address which exist in system, are you sure you want to proceed with the same owner for all of them. If you want to Proceed with any of the following flat owners then please checked the following check box.</td>
+                                                        </tr>
+                                                    </tbody></table>
+                                            </div>
+                                            <table border="0" width="100%" cellpadding="0" cellspacing="0" class="reference" id="product-table">
+                                                <tr>
+                                                    <th class="table-header-repeat line-left duplicate_checkbox"><span></span></th>
+                                                    <th class="table-header-repeat line-left minwidth-1"><span>Flat Address</span>	</th>
+                                                    <th class="table-header-repeat line-left"><span>Owner's Name</span></th>
+                                                    <th class="table-header-repeat line-left"><span>Email</span></th>
+                                                </tr>
+                                                <?php
+                                                foreach ($duplicate_data as $val) { ?>
+                                                    <tr>
+                                                        <td class="duplicate_checkbox" width="10%"><input  class="no-checkbox" type="checkbox" name="duplicate_data[]" value='<?php echo json_encode($val);?>'> </td>
+                                                        <td><?php echo $val['address']; ?></td>
+                                                        <td><?php echo $val['name']; ?></td>
+                                                        <td><?php echo $val['email_address']; ?></td>
+                                                    </tr>
+                                                <?php } ?>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
 
                                 <tr>
                                     <td colspan="2"><b><center>Please check above Information is correct.</center></b></td>
@@ -135,9 +173,10 @@
                             <center>
                                 <input type="hidden" name="success_record" value='<?php echo json_encode($success_record) ?>'>
                                 <input type="hidden" name="failure_record" value='<?php echo json_encode($failure_data) ?>'>
+                                <input type="hidden" name="duplicate_record" value='<?php echo json_encode($duplicate_record) ?>'>
                                 <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" >
 
-                                <?php if (!empty($success_record)) { ?>
+                                <?php if (!empty($success_record) || !empty($duplicate_data)) { ?>
                                     <input type="submit" class="form-proceed form-button" value="Yes">
                                 <?php } ?>
                                 <input class="form-back form-button-gray" type="reset" value="No" onclick="add_flat()" >&nbsp;

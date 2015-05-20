@@ -31,13 +31,15 @@ class Residence_model extends CI_Model {
             $alls = implode(',', $soid);
         }
         //   $all_society_u = $this->db->query("SELECT u.* FROM ci_users u inner join ci_transaction tr on tr.userid=u.id WHERE u.utype = 3 and  tr.society_id in ($alls) $where group by u.id limit  $limit,$start");
-        $this->db->select("SQL_CALC_FOUND_ROWS u.*", false);
+        $this->db->select("SQL_CALC_FOUND_ROWS u.*,p.address as flat_address,p.id as property_id", false);
         $this->db->join("ci_userpropertys up", " up.userid = u.id", "left");
+        $this->db->join("ci_propertys p", "up.addressid = p.id", "left");
         $this->db->where("u.utype", "3");
         $this->db->where("up.societyid IN($alls)");
         if (!empty($where))
             $this->db->where($where);
-        $this->db->group_by("u.id");
+//        $this->db->group_by("u.id");
+        $this->db->group_by("up.id");
         if ($start != 0 || $limit != 0) {
             $this->db->limit($start, $limit);
         }
@@ -51,10 +53,12 @@ class Residence_model extends CI_Model {
         return $return_data;
     }
 
-    public function residence_by_id($id) {
-        $query = $this->db->get_where('ci_users', array(
-            'id' => "$id"
-        ));
+    public function residence_by_id($id,$property_id) {
+        $this->db->select("u.*,p.address as flat_address,p.id as property_id", false);
+        $this->db->join("ci_userpropertys up", " up.userid = u.id", "left");
+        $this->db->join("ci_propertys p", "up.addressid = p.id", "left");
+        $this->db->where("u.id", "$id")->where("p.id", $property_id);
+        $query = $this->db->get("ci_users u");
         return $query->row_array();
     }
 
@@ -72,7 +76,6 @@ class Residence_model extends CI_Model {
         }
         $data['fname'] = $_POST['username'];
         $data['mobile'] = $_POST['mobile'];
-        $data['address'] = $_POST['address'];
         $data['city'] = $_POST['city'];
         $data['state'] = $_POST['state'];
         $data['country'] = $_POST['country'];
@@ -82,6 +85,11 @@ class Residence_model extends CI_Model {
 
         $this->db->where('id', $id);
         $this->db->update('ci_users', $data);
+        $data = array();
+        $data['address'] = $_POST['address'];
+        $this->db->where('id', $_POST['property_id']);
+        $this->db->update('ci_propertys', $data);
+        
         $eero = $this->db->_error_number();
         if ($eero === 1062) {
             return $eero;
@@ -113,7 +121,7 @@ class Residence_model extends CI_Model {
         $this->load->helper('email');
 
         foreach ($data as $val) {
-            $html = $this->load->view("admin/bill_detail_email",$val,true);
+            $html = $this->load->view("admin/bill_detail_email", $val, true);
             $this->email->from("no-reply@societycoin.com", "societycoin.com");
             $this->email->subject("Bill Information for {$val['sdate']} to {$val['edate']}");
             $this->email->message($html);
@@ -191,7 +199,8 @@ class Residence_model extends CI_Model {
         $all_society_u = $this->db->get("ci_users u");
         return $all_society_u->result();
     }
-    function print_all_bills($s = '',$society_admin_id = 0) {
+
+    function print_all_bills($s = '', $society_admin_id = 0) {
         if ($s != "") {
             $this->db->where("(c.address like  '$s%' OR u.fname like '$s%'  OR u.lname like '$s%' OR u.email like '$s'  OR a.sdate like '$s%'  OR a.edate like '$s%' OR a.totalamount like '$s%' OR s.fname like '$s%' OR s.lname like '$s%'  OR sd.society_title like '$s%') ");
         }
@@ -208,8 +217,8 @@ class Residence_model extends CI_Model {
         $this->db->order_by("a.id", "desc");
         if ($society_admin_id > 0)
             $this->db->where('a.addbyid', $this->session->userdata('admin_id'));
-        $query = $this->db->get(); 
-        
+        $query = $this->db->get();
+
         return $query->result();
     }
 

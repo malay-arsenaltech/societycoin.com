@@ -25,6 +25,7 @@ class Allflatowner extends CI_Controller {
             $handle = fopen($file, "r");
             $success_record = array();
             $failure_data = array();
+            $duplicate_data = array();
             $validate_email = array();
 
             //loop through the csv file and insert into database 
@@ -41,19 +42,22 @@ class Allflatowner extends CI_Controller {
                 if ($post_data[0] == "" && $post_data[1] == "" && $post_data[2] == "") {
                     continue;
                 }
-                if ($post_data[0] != "" && $post_data[1] != "" && $post_data[2] != "" && valid_email($post_data[1]) && !in_array($post_data[1], $validate_email)) {
-                    $success_record[] = array("address" => $post_data[0], "email_address" => $post_data[1], "name" => $post_data[2]);
-                    $validate_email[] = $post_data[1];
+                if ($post_data[0] != "" && $post_data[1] != "" && $post_data[2] != "" && valid_email($post_data[1]) && !in_array($post_data[1] . '|' . $post_data[0], $validate_email)) {
+                    if (array_key_exists($post_data[1], $validate_email) || $this->is_email_exist($post_data[1])) {
+                        $duplicate_data[] = array("address" => $post_data[0], "email_address" => $post_data[1], "name" => $post_data[2]);
+                    } else {
+                        $success_record[] = array("address" => $post_data[0], "email_address" => $post_data[1], "name" => $post_data[2]);
+                    }
+                    $validate_email[$post_data[1]] = $post_data[1] . '|' . $post_data[0];
                 } else {
                     $failure_data[] = array("address" => $post_data[0], "email_address" => $post_data[1], "name" => $post_data[2]);
                 }
             }
             if (!empty($validate_email)) {
                 $response = $this->flat_model->get_existing_email($validate_email);
-                if (!empty($response->email_address)) {
-                    $response = explode(",", $response->email_address);
+                if (!empty($response)) {
                     foreach ($success_record as $key => $val) {
-                        if (in_array($val['email_address'], $response)) {
+                        if (in_array($val['email_address'] . "|" . $val['address'], $response)) {
                             $failure_data[] = $val;
                             unset($success_record[$key]);
                         }
@@ -62,13 +66,21 @@ class Allflatowner extends CI_Controller {
             }
             $data['success_record'] = $success_record;
             $data['failure_data'] = $failure_data;
+            $data['duplicate_data'] = $duplicate_data;
             $this->load->view('admin/uploadedflat', $data);
         }
     }
 
     function chargehead() {
-        if ($this->input->post('success_record')) {
+        if ($this->input->post('success_record') || $this->input->post('duplicate_data')) {
             $data['success_record'] = $this->input->post("success_record");
+            if ($this->input->post('duplicate_data')) {
+                $duplicate_data = $this->input->post('duplicate_data');
+                foreach ($duplicate_data as $val) {
+                    $data['duplicate_data'][] = json_decode($val);
+                }
+                $data['duplicate_data'] = json_encode($data['duplicate_data']);
+            }
 
             $society_data = $this->db->select("id")->where("society_user_id", $this->session->userdata('admin_id'))->get("ci_society")->result();
             $society_id = $society_data[0]->id;
@@ -82,6 +94,7 @@ class Allflatowner extends CI_Controller {
     function process() {
         if ($this->input->post('success_record')) {
             $success_record = json_decode($this->input->post("success_record"));
+            $duplicate_data = json_decode($this->input->post("duplicate_data"));
             $charge_head = $this->input->post("charge_head");
             $society_data = $this->db->select("ci_society.*,ci_country.countryname,ci_states.state,ci_city.cityname")->join("ci_country", "ci_country.id = ci_society.countryid")->join("ci_states", "ci_states.id = ci_society.stateid")->join("ci_city", "ci_city.id = ci_society.cityid")->where("society_user_id", $this->session->userdata('admin_id'))->get("ci_society")->result();
             $society_id = $society_data[0]->id;
@@ -108,34 +121,14 @@ class Allflatowner extends CI_Controller {
                 $user_id = $this->db->insert_id();
                 $this->send_mail($username, $password, $val->email_address, $val->name);
 
-                $insert_flat_property = array(
-                    "countryid" => $society_data[0]->countryid,
-                    "stateid" => $society_data[0]->stateid,
-                    "cityid" => $society_data[0]->cityid,
-                    "areaid" => $society_data[0]->areaid,
-                    "societyid" => $society_data[0]->id,
-                    "address" => $val->address,
-                    "status" => "1",
-                    "ip" => $this->input->post('ip'),
-                    "timestamp" => date("Y-m-d H:i:s")
-                );
-                $success = $this->db->insert("ci_propertys", $insert_flat_property);
-                $address_id = $this->db->insert_id();
-
-                $insert_user_flat_property = array(
-                    "userid" => $user_id,
-                    "countryid" => $society_data[0]->countryid,
-                    "stateid" => $society_data[0]->stateid,
-                    "cityid" => $society_data[0]->cityid,
-                    "areaid" => $society_data[0]->areaid,
-                    "societyid" => $society_data[0]->id,
-                    "addressid" => $address_id,
-                    "status" => "1",
-                    "sadminid" => $this->session->userdata('admin_id')
-                );
-                $success = $this->db->insert("ci_userpropertys", $insert_user_flat_property);
+                $success = $this->insert_property($society_data, $val, $user_id);
                 if (!$success)
                     break;
+            }
+            foreach ($duplicate_data as $val) {
+                $user_id = $this->db->select("id")->where("email", $val->email_address)->get("ci_users")->result();
+                $user_id = $user_id[0]->id;
+                $success = $this->insert_property($society_data, $val, $user_id);
             }
             if (!$success) {
                 $this->session->set_flashdata('msg_error_red', "Flat owner data not added successflly.");
@@ -163,6 +156,36 @@ class Allflatowner extends CI_Controller {
         }
     }
 
+    function insert_property($society_data, $val, $user_id) {
+        $insert_flat_property = array(
+            "countryid" => $society_data[0]->countryid,
+            "stateid" => $society_data[0]->stateid,
+            "cityid" => $society_data[0]->cityid,
+            "areaid" => $society_data[0]->areaid,
+            "societyid" => $society_data[0]->id,
+            "address" => $val->address,
+            "status" => "1",
+            "ip" => $this->input->post('ip'),
+            "timestamp" => date("Y-m-d H:i:s")
+        );
+        $success = $this->db->insert("ci_propertys", $insert_flat_property);
+        $address_id = $this->db->insert_id();
+
+        $insert_user_flat_property = array(
+            "userid" => $user_id,
+            "countryid" => $society_data[0]->countryid,
+            "stateid" => $society_data[0]->stateid,
+            "cityid" => $society_data[0]->cityid,
+            "areaid" => $society_data[0]->areaid,
+            "societyid" => $society_data[0]->id,
+            "addressid" => $address_id,
+            "status" => "1",
+            "sadminid" => $this->session->userdata('admin_id')
+        );
+        $success = $this->db->insert("ci_userpropertys", $insert_user_flat_property);
+        return $success;
+    }
+
     function send_mail($username, $password, $email, $name) {
         $this->load->library('email');
 
@@ -185,6 +208,11 @@ class Allflatowner extends CI_Controller {
         $data[0] = array("Flat Address", "Email Address", "Name");
         $this->load->helper('csv');
         echo array_to_csv($data, "flatowner_sample.csv");
+    }
+
+    function is_email_exist($email) {
+        $data = $this->db->select("id")->where("email", $email)->get("ci_users")->result();
+        return (!empty($data)) ? true : false;
     }
 
 }

@@ -116,6 +116,7 @@
                                 <tr>
                                     <td colspan="2">
                                         <input type="hidden" name="success_record" value='<?php echo $success_record ?>'>
+                                        <input type="hidden" name="duplicate_data" value='<?php echo $duplicate_data ?>'>
                                         <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" >
                                         <input type="submit" class="form-proceed form-button btnb" onclick="$(form).submit()" value="Confirm">
                                     </td>

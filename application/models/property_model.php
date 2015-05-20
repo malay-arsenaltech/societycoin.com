@@ -549,7 +549,7 @@ class Property_model extends CI_Model {
     }
 
     function get_bill_detail($year = 0,$bill_id = 0) {
-        $this->db->select('SQL_CALC_FOUND_ROWS up.addressid as address_id,a.id as billid,c.address as flat,u.id as userid,u.fname as fname, u.lname as lname,u.email as email,a.sdate,a.edate,a.totalamount as total,concat(s.fname," ",s.lname) as society_admin,sd.society_title,sd.id as society_id,group_concat(b.bill_name) as bill_name,group_concat(a.amount) as amount,a.taxamount as tax', false);
+        $this->db->select('SQL_CALC_FOUND_ROWS c.address as flat_address,up.addressid as address_id,a.id as billid,c.address as flat,u.id as userid,u.fname as fname, u.lname as lname,u.email as email,a.sdate,a.edate,a.totalamount as total,concat(s.fname," ",s.lname) as society_admin,sd.society_title,sd.id as society_id,group_concat(b.bill_name) as bill_name,group_concat(a.amount) as amount,a.taxamount as tax', false);
         $this->db->from('ci_bill_charge  as a');
         $this->db->join('ci_bill as b', 'a.bill_id=b.id', "left");
         $this->db->join('ci_propertys as c', 'a.property_id=c.id', "left");
