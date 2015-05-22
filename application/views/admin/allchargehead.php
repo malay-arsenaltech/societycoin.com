@@ -30,7 +30,7 @@
     <div id="content">
         <!--  start page-heading -->
         <div id="page-heading">
-            <h1>Your Society's Charge Heads</h1><br />
+            <h1>Charge heads for your complex</h1><br />
             <?php
             $msg_error_red = $this->session->flashdata('msg_error_red');
 

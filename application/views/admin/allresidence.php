@@ -10,7 +10,7 @@ function newPopup(url) {
     <!-- start content -->
     <div id="content">
         <!--  start page-heading -->
-        <div id="page-heading"><h1>Your Society Residence Directory</h1><br />
+        <div id="page-heading"><h1>Complex Occupant Directory</h1><br />
             <?php
             $msg_error_red = $this->session->flashdata('msg_error_red');
             if ($msg_error_red != '') {
@@ -91,8 +91,8 @@ function newPopup(url) {
                                                 <td><?php echo $data['city']; ?></td>
                                                 <td><?php echo $data['state']; ?></td>
                                                 <td>
-                                                    <a href="<?php echo base_url(); ?>admin/allresidence/editresidence/<?php echo $data['id']."/".$data['property_id']; ?>" title="Edit Residence" class="icon-1 info-tooltip"></a>
-                                                    <a href="<?php echo base_url(); ?>admin/allresidence/delete/<?php echo $data['id']."/".$data['property_id']; ?>" title="Delete Residence" onclick="return confirm('Are you sure to delete?');"  class=" info-tooltip icon-2"></a>
+                                                    <a href="<?php echo base_url(); ?>admin/allresidence/editresidence/<?php echo $data['id']."/".$data['property_id']; ?>" title="Edit Occupant" class="icon-1 info-tooltip"></a>
+                                                    <a href="<?php echo base_url(); ?>admin/allresidence/delete/<?php echo $data['id']."/".$data['property_id']; ?>" title="Delete Occupant" onclick="return confirm('Are you sure to delete Occupant?');"  class=" info-tooltip icon-2"></a>
                                                 </td>
                                             </tr>
                                             <?php

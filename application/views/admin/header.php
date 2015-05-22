@@ -994,16 +994,16 @@ $url = $url[0];
                                         <div class="nav-divider">&nbsp;</div>
 
                                         <ul class="select  dropdown">
-                                            <li><a href="javascript:void(0);"><b>Registration</b></a>
+                                            <li><a href="javascript:void(0);"><b>Upload Property Addresses</b></a>
 
                                                 <div class="select_sub show">
 
                                                     <ul class="sub">
                                                         <li>
-                                                            <a class="" href="<?php echo base_url(); ?>admin/allflatowner/downloadcsv">Download Flat Owner CSV</a>
+                                                            <a class="" href="<?php echo base_url(); ?>admin/allflatowner/downloadcsv">Download Occupant CSV</a>
                                                         </li>
                                                         <li>
-                                                            <a class="" href="<?php echo base_url(); ?>admin/allflatowner/addflatowner">Flat Owners</a>
+                                                            <a class="" href="<?php echo base_url(); ?>admin/allflatowner/addflatowner">Upload Occupant CSV</a>
                                                         </li>
 
                                                     </ul>
@@ -1015,7 +1015,7 @@ $url = $url[0];
                                         </ul>
                                         <div class="nav-divider">&nbsp;</div>
                                         <ul class="select  dropdown">
-                                            <li><a href="javascript:void(0);"><b>Flat Owner Bills</b></a>
+                                            <li><a href="javascript:void(0);"><b>Billing</b></a>
 
                                                 <div class="select_sub show">
                                                     <ul class="sub">

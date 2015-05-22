@@ -119,7 +119,7 @@ function goBack() {
 
         <!--  start page-heading -->
         <div id="page-heading">
-            <h1>Edit Your Society's Resident</h1>
+            <h1>Edit Your Society's Occupant</h1>
         </div>
         <!-- end page-heading -->
 

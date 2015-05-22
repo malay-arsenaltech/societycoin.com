@@ -246,7 +246,7 @@
                             <table width="100%" cellspacing="0" cellpadding="0" border="0" id="product-table">
                                 <tbody><tr>
                                         <th class="table-header-repeat line-left" style="width:20px;"><span>S.No</span>	</th>
-                                        <th class="table-header-repeat line-left minwidth-1"><span>Society Name</span>	</th>
+                                        <th class="table-header-repeat line-left minwidth-1"><span>Complex Name</span>	</th>
                                         <th class="table-header-repeat line-left minwidth-1"><span>Property Address</span></th>	
                                         <th class="table-header-repeat line-left minwidth-1"><span>Amount</span></th>	
 
