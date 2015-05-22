@@ -41,7 +41,7 @@ class Allchargehead extends CI_Controller {
         }
         else
             $this->session->set_flashdata('msg_error_red', "charge Head not added successfully.");
-        redirect("admin/allchargehead");
+        redirect(base_url()."admin/allchargehead");
     }
 
     public function editchargehead($id) {
@@ -57,7 +57,7 @@ class Allchargehead extends CI_Controller {
             $this->session->set_flashdata('msg_error', "charge Head deleted successfully.");
         else
             $this->session->set_flashdata('msg_error_red', "charge Head not deleted successfully.");
-        redirect("admin/allchargehead");
+        redirect(base_url()."admin/allchargehead");
     }
 
     public function check_charge_head() {

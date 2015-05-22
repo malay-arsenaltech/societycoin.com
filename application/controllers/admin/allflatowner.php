@@ -87,7 +87,7 @@ class Allflatowner extends CI_Controller {
             $data['charge_head'] = $this->chargehead_model->get_selected_data($society_id);
             $this->load->view('admin/flat_chargehead', $data);
         } else {
-            redirect("admin/allflats/addflatowner");
+            redirect(base_url() . "admin/allflats/addflatowner");
         }
     }
 
@@ -95,6 +95,9 @@ class Allflatowner extends CI_Controller {
         if ($this->input->post('success_record')) {
             $success_record = json_decode($this->input->post("success_record"));
             $duplicate_data = json_decode($this->input->post("duplicate_data"));
+            if (empty($duplicate_data)) {
+                $duplicate_data = array();
+            }
             $charge_head = $this->input->post("charge_head");
             $society_data = $this->db->select("ci_society.*,ci_country.countryname,ci_states.state,ci_city.cityname")->join("ci_country", "ci_country.id = ci_society.countryid")->join("ci_states", "ci_states.id = ci_society.stateid")->join("ci_city", "ci_city.id = ci_society.cityid")->where("society_user_id", $this->session->userdata('admin_id'))->get("ci_society")->result();
             $society_id = $society_data[0]->id;
@@ -149,10 +152,12 @@ class Allflatowner extends CI_Controller {
                     );
                 }
             }
-            $this->db->insert_batch("ci_society_chargehead", $insert_batch_charge_head);
+            if (!empty($insert_batch_charge_head)) {
+                $this->db->insert_batch("ci_society_chargehead", $insert_batch_charge_head);
+            }
             $this->db->where("society_id", $society_id)->where_not_in("chargehead_id", $active_data)->update("ci_society_chargehead", array("status" => "0"));
 
-            redirect("admin/allresidence");
+            redirect(base_url() . "/admin/allresidence");
         }
     }
 

@@ -92,7 +92,7 @@ class Allresidence extends CI_Controller {
             $this->session->set_flashdata('msg_error', "Residence deleted successfully.");
         else
             $this->session->set_flashdata('msg_error_red', "Residence not deleted successfully.");
-        redirect("admin/allresidence");
+        redirect(base_url()."admin/allresidence");
     }
 
     function generatebill() {
@@ -124,7 +124,7 @@ class Allresidence extends CI_Controller {
         $headers = $data;
         $this->session->set_userdata("bill_header", json_encode($headers));
         $this->session->set_userdata("bill_file_name", $society_name . "_Bill_" . $this->input->post("bill_generates_on") . ".csv");
-        redirect("admin/allresidence/uploadbill");
+        redirect(base_url()."admin/allresidence/uploadbill");
     }
 
     function uploadbill() {
@@ -190,7 +190,7 @@ class Allresidence extends CI_Controller {
                     }
                 }
                 if ($i < 6 && $success == 0) {
-                    redirect("admin/allresidence/uploadbill");
+                    redirect(base_url()."admin/allresidence/uploadbill");
                     exit;
                 }
                 if ($i < 6) {
@@ -235,13 +235,13 @@ class Allresidence extends CI_Controller {
                 $this->load->view('admin/billresult', $data);
             }
         } else {
-            redirect("admin/allresidence/uploadbill");
+            redirect(base_url()."admin/allresidence/uploadbill");
         }
     }
 
     public function processbill() {
         if (!$this->input->post("success_data"))
-            redirect("admin/allresidence/uploadbill");
+            redirect(base_url()."admin/allresidence/uploadbill");
         $this->load->model("chargehead_model");
         $success_data = json_decode($this->input->post("success_data"), true);
         $society_data = $this->db->select("id,society_title")->where("society_user_id", $this->session->userdata('admin_id'))->get("ci_society")->result();
@@ -288,7 +288,7 @@ class Allresidence extends CI_Controller {
         if(!empty($email_data)){
             $this->residence_model->send_mail($email_data);
             $this->session->set_flashdata('msg_error', "Bill generated successfully.");
-            redirect("admin/login/dashboard/?&bill=details");
+            redirect(base_url()."admin/login/dashboard/?&bill=details");
         }
     }
 
