@@ -1,9 +1,6 @@
 
 <?php $this->load->view('admin/header'); ?>
 <script>
-    $.validator.addMethod("alpha", function(value, element) {
-        return this.optional(element) || value == value.match(/^[a-zA-Z]+$/);
-    });
     var base_url = "<?php echo base_url(); ?>";
     $(document).ready(function() {
         focusInvalid: false,
@@ -20,13 +17,11 @@
                                     }
                                 }
                             },
-                    alpha: true
                 }
             },
             messages: {
                 charge_head_name: {
                     required: "This field is required",
-                    alpha: "Only Alphabetical Characters are allowed.",
                     remote: "This charge head is already associated with your society."
                 }
             },

@@ -441,7 +441,7 @@ td.checkbox-width {
 }
 
 .table-header-repeat {
-    background: url(../images/table/table_header_repeat.jpg) repeat-x;
+    background:#676767 url(../images/table/table_header_repeat.jpg) bottom repeat-x;
     border: none;
     font-size: 0px;
     line-height: 0;
@@ -1226,7 +1226,7 @@ Copyright (c) 2005-2007 Stu Nicholls. All rights reserved. This stylesheet and t
     text-align: left;
     top: 37px;
 	/*width: 750px;*/
-    width: 200px;
+    width: 220px;
     margin: 0;
     z-index: 100;
 }

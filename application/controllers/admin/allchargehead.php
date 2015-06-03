@@ -20,7 +20,7 @@ class Allchargehead extends CI_Controller {
 
     public function addchargehead() {
         if ($this->input->post("is_ajax")) {
-            $name = $this->input->post("charge_head_name");
+            $name = trim($this->input->post("charge_head_name"));
             $data = array("bill_name" => $name, "status" => "1");
             echo ($this->db->insert("ci_bill", $data)) ? json_encode(array("name" => $name, "id" => $this->db->insert_id())) : json_encode(array("name" => "", "id" => 0));
         } else {
@@ -29,7 +29,7 @@ class Allchargehead extends CI_Controller {
     }
 
     public function process() {
-        $name = $this->input->post("charge_head_name");
+        $name = trim($this->input->post("charge_head_name"));
 
         $data = array("bill_name" => $name, "status" => "1");
         if ($this->db->insert("ci_bill", $data)) {
@@ -45,7 +45,7 @@ class Allchargehead extends CI_Controller {
     }
 
     public function editchargehead($id) {
-        $name = $this->input->post("charge_head_name");
+        $name = trim($this->input->post("charge_head_name"));
         if ($this->db->where("id", $id)->update("ci_bill", array("bill_name" => $name)))
             echo $name;
         else
@@ -63,7 +63,7 @@ class Allchargehead extends CI_Controller {
     public function check_charge_head() {
         $society_data = $this->db->select("id")->where("society_user_id", $this->session->userdata('admin_id'))->get("ci_society")->result();
         $society_id = $society_data[0]->id;
-        $name = $this->input->post("charge_head_name");
+        $name = trim($this->input->post("charge_head_name"));
         $data = $this->db->where("bill_name", $name)->join("ci_society_chargehead", "ci_society_chargehead.chargehead_id = ci_bill.id")->where("society_id",$society_id)->get("ci_bill")->result();
         echo !empty($data) ? "false" : "true";
     }

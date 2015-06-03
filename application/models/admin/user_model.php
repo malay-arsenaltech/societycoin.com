@@ -43,13 +43,20 @@ class User_model extends CI_Model {
             $alls = implode(',', $soid);
         }
         if ($alls != '') {
-            $all_society_u = $this->db->query("SELECT u.*,tr.societyname FROM ci_users u inner join ci_transaction tr on tr.userid=u.id WHERE u.utype = 3 and  tr.society_id in ($alls)  $where group by u.id limit  $limit,$start");
+            $all_society_u = $this->db->query("SELECT SQL_CALC_FOUND_ROWS u.*,s.society_title as societyname FROM ci_users u 
+                        left join ci_transaction tr on tr.userid=u.id
+                        left join `ci_userpropertys` up on up.userid = u.id
+                        left join `ci_society` s on s.id = up.societyid
+                        WHERE u.utype = 3 and  up.societyid in ($alls)  $where group by u.id limit  $limit,$start");
+           $query = $this->db->query('SELECT FOUND_ROWS() AS `Count`');
+           $return_data = array();
+           $return_data['num_rows'] = $query->row()->Count;
             if ($all_society_u->num_rows() > 0) {
 
-                return $all_society_u->result_array();
+                $return_data['rows']  = $all_society_u->result_array();
             }
         }
-        return array();
+        return $return_data;
     }
 
     function getCountsocietycustomer() {
@@ -73,11 +80,18 @@ class User_model extends CI_Model {
             }
             $alls = implode(',', $soid);
         }
-        $all_society_u = $this->db->query("SELECT u.* FROM ci_users u inner join ci_transaction tr on tr.userid=u.id WHERE u.utype = 3 and  tr.society_id in ($alls) $where group by u.id limit  $limit,$start");
+        $all_society_u = $this->db->query("SELECT SQL_CALC_FOUND_ROWS u.* FROM ci_users u 
+            left join ci_transaction tr on tr.userid=u.id 
+            left join `ci_userpropertys` up on up.userid = u.id
+            WHERE u.utype = 3 and  up.societyid in ($alls) $where group by u.id limit  $limit,$start");
+        $query = $this->db->query('SELECT FOUND_ROWS() AS `Count`');
+        $return_data = array();
+        $return_data['num_rows'] = $query->row()->Count;
         if ($all_society_u->num_rows() > 0) {
-            return $all_society_u->result_array();
+            $return_data['rows'] = $all_society_u->result_array();
         }
-        return array();
+        
+        return $return_data;
     }
 
     public function getCountcustomer() {

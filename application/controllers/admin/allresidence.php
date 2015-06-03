@@ -34,8 +34,8 @@ class Allresidence extends CI_Controller {
 
         $page = (isset($_GET['per_page']) && $_GET['per_page'] != '') ? $_GET['per_page'] : 0;
         $response = $this->residence_model->all_residence($config["per_page"], $page);
-        $data['data'] = $response['rows'];
-        $config["total_rows"] = $response['num_rows'];
+        $data['data'] = isset($response['rows']) ? $response['rows'] : array();
+        $config["total_rows"] = isset($response['num_rows']) ? $response['num_rows']: 0;
 
         $this->pagination->initialize($config);
         $data["links"] = $this->pagination->create_links();
@@ -109,13 +109,15 @@ class Allresidence extends CI_Controller {
         $charge_head = $this->input->post("charge_head");
         $society_name = $this->input->post("society_name");
         $data = array();
-        $data[0] = array($society_name);
-        $data[1] = array("");
-        $data[2] = array("Bill Generated On", $this->input->post("bill_generates_on"));
-        $data[3] = array("Bill Due Date", $this->input->post("bill_due_on"));
-        $data[4] = array("");
-        $data[5] = array_merge(array("FLAT", "OWNER", "EMAIL"), array_map("strtoupper", $charge_head), array("TAX"));
-        $i = 6;
+        $data[0] = array("Bill Upload for Societycoin.com");
+        $data[1] = array($society_name);
+        $data[2] = array("");
+        
+        $data[3] = array("Bill Generated On", "=\"" . $this->input->post("bill_generates_on") . "\"");
+        $data[4] = array("Bill Generated On", "=\"" . $this->input->post("bill_due_on") . "\"");
+        $data[5] = array("");
+        $data[6] = array_merge(array("Complex Name", "OWNER", "EMAIL"), array_map("strtoupper", $charge_head), array("TAX"));
+        $i = 7;
         foreach ($residencedata['rows'] as $val) {
             $data[$i] = array($val["flat_address"], $val["fname"] . " " . $val["lname"], $val["email"]);
             $i++;
@@ -143,6 +145,7 @@ class Allresidence extends CI_Controller {
 
     function billpreview() {
         $this->load->helper("inflector");
+        
         if ($_FILES) {
             $file = $_FILES['bill_data']['tmp_name'];
             $handle = fopen($file, "r");
@@ -156,13 +159,18 @@ class Allresidence extends CI_Controller {
             $success = 1;
             $society_data = $this->db->select("id,society_title")->where("society_user_id", $this->session->userdata('admin_id'))->get("ci_society")->result();
             $society_id = $society_data[0]->id;
-            while ($post_data = fgetcsv($handle, 1000, ",", "'")) {
+            while ($post_data = fgetcsv($handle, 1000, ",", '"')) {
                 $post_data = array_map("trim", $post_data);
-                if ($i == 0 && $society_data[0]->society_title != $post_data[0]) {
+                if($i == 0){
+                    $i++;
+                    continue;
+                }
+                if ($i == 1 && $society_data[0]->society_title != $post_data[0]) {
                     $this->session->set_flashdata("msg_error_red", "Bill is not associated with your society");
                     $success = 0;
                 }
-                if ($i == 2) {
+                if ($i == 3) {
+                   $post_data[1] = trim($post_data[1],'="');
                     if (!$this->valid_date($post_data[1])) {
                         $this->session->set_flashdata("msg_error_red", "Invalid Bill Generated On date");
                         $success = 0;
@@ -170,13 +178,14 @@ class Allresidence extends CI_Controller {
                         $success = 0;
                     }
                     $start_date = $post_data[1];
-                } else if ($i == 3) {
+                } else if ($i == 4) {
+                  $post_data[1] =   trim($post_data[1],'="');
                     if (!$this->valid_date($post_data[1])) {
                         $this->session->set_flashdata("msg_error_red", "Invalid Bill Generated On date");
                         $success = 0;
                     }
                     $end_date = $post_data[1];
-                } else if ($i == 5) {
+                } else if ($i == 6) {
                     $key_array = array_map("strtolower", $post_data);
                     unset($key_array[0]);
                     unset($key_array[1]);
@@ -184,16 +193,16 @@ class Allresidence extends CI_Controller {
                     $chargehead = $this->chargehead_model->get_current_charge_head_name($society_id);
                     $chargehead = array_map("strtolower", array_merge($chargehead, array("Tax", "Total")));
                     $diff_array = array_diff($key_array, $chargehead);
-                    if (strtolower($post_data[0]) != "flat" || strtolower($post_data[1]) != "owner" || strtolower($post_data[2]) != "email" || !empty($diff_array)) {
+                    if (strtolower($post_data[0]) != "complex name" || strtolower($post_data[1]) != "owner" || strtolower($post_data[2]) != "email" || !empty($diff_array)) {
                         $this->session->set_flashdata("msg_error_red", "Invalid bill");
                         $success = 0;
                     }
                 }
-                if ($i < 6 && $success == 0) {
+                if ($i < 7 && $success == 0) {
                     redirect(base_url()."admin/allresidence/uploadbill");
                     exit;
                 }
-                if ($i < 6) {
+                if ($i < 7) {
                     $i++;
                     continue;
                 }
@@ -201,7 +210,7 @@ class Allresidence extends CI_Controller {
                 $total = 0;
                 $success = 1;
                 $tax = "";
-                for ($_k = 3; $_k < count($post_data) - 1; $_k++) {
+                for ($_k = 3; $_k < count($post_data); $_k++) {
                     if ($key_array[$_k] == "tax") {
                         $tax = $post_data[$_k];
                     } else {
@@ -220,15 +229,15 @@ class Allresidence extends CI_Controller {
                     $success = 0;
                 $extra_data = array("address" => $post_data[0], "name" => $post_data[1], "email" => $post_data[2]);
                 if ($success) {
-                    $success_data[] = array_merge($extra_data, $selected_charge_head, array("Tax" => $tax, "TOTAL" => $total));
+                    $success_data[] = array_merge($extra_data, $selected_charge_head, array( "TOTAL" => $total));
                     $success_post_data[] = array("data" => array_merge($extra_data, array("sdate" => $start_date, "edate" => $end_date, "tax" => $tax, "total" => $total)), "charge_head" => $selected_charge_head);
                 }
                 else
-                    $failure_data[] = array_merge($extra_data, $selected_charge_head, array("Tax" => $tax, "TOTAL" => $total));
+                    $failure_data[] = array_merge($extra_data, $selected_charge_head, array( "TOTAL" => $total));
             }
             if (!empty($success_data) || !empty($failure_data)) {
                 $data['header'] = !empty($success_data) ? array_keys($success_data[0]) : array_keys($failure_data[0]);
-                $data['header'][0] = "Flat";
+                $data['header'][0] = "Complex Name";
                 $data['success_data'] = $success_data;
                 $data['success_post_data'] = $success_post_data;
                 $data['failure_data'] = $failure_data;

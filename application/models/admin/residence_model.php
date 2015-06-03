@@ -123,7 +123,7 @@ class Residence_model extends CI_Model {
         foreach ($data as $val) {
             $html = $this->load->view("admin/bill_detail_email", $val, true);
             $this->email->from("no-reply@societycoin.com", "societycoin.com");
-            $this->email->subject("Bill Information for {$val['sdate']} to {$val['edate']}");
+            $this->email->subject("Your latest Bill is Now Available");
             $this->email->message($html);
             $this->email->set_mailtype("html");
             $this->email->to(array($val['email']));

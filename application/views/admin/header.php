@@ -935,7 +935,7 @@ $url = $url[0];
 
 
                                         <ul class="select  dropdown">
-                                            <li><a href="<?php echo base_url(); ?>admin/allresidence"><b>Residence Directory</b></a></li>
+                                            <li><a href="<?php echo base_url(); ?>admin/allresidence"><b>Occupant Directory</b></a></li>
                                         </ul>
                                         <div class="nav-divider">&nbsp;</div>
                                         <ul class="select  dropdown">
@@ -948,7 +948,7 @@ $url = $url[0];
                                                             <a class="" href="<?php echo base_url(); ?>admin/allchargehead/addchargehead">Add Charge Head</a>
                                                         </li>
                                                         <li>
-                                                            <a class="" href="<?php echo base_url(); ?>admin/allchargehead">View Society's Charge Head</a>
+                                                            <a class="" href="<?php echo base_url(); ?>admin/allchargehead">View Complex's Charge Head</a>
                                                         </li>
                                                     </ul>
 

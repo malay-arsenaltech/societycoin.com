@@ -24,28 +24,41 @@
 </style>
 <script>
     function display_charge_head_form() {
-        $(".charge_head_form").slideToggle("slow").find("input").val("");
-    }
-    $(".add_charge_head").live("click", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if ($(".charge_head_form").find("[name='custom_charge_head']").val() == "") {
-            return false;
-        } else {
-            $.post("<?php echo base_url(); ?>admin/allchargehead/addchargehead", {"is_ajax": "1", charge_head_name: $(".charge_head_form").find("[name='custom_charge_head']").val()}, function(result) {
-                result = $.parseJSON(result);
-                if (result != "0") {
-                    var html = '<tr><td colspan="2"><b><input type="checkbox" name="charge_head[]" id="' + result.id + '" value="' + result.id + '"><label class="checkbox_label" for="' + result.id + '">' + result.name + '</label></b></td></tr>'
-                    if ($(".checkbox:last").length > 0)
-                        $(html).insertAfter($(".checkbox:last"));
-                    else
-                        $(html).insertAfter($(".chargehead_title"));
-                    $(".charge_head_form").find("[name='custom_charge_head']").val("");
-                    $(".chargehead_or").show();
-                }
-            })
+            $(".charge_head_form").slideToggle("slow").find("input").val("");
         }
-    });
+        $(".add_charge_head").live("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if ($.trim($(".charge_head_form").find("[name='custom_charge_head']").val()) == "") {
+                return false;
+            } else {
+                $.post("<?php echo base_url(); ?>admin/allchargehead/addchargehead", {"is_ajax": "1", charge_head_name: $(".charge_head_form").find("[name='custom_charge_head']").val()}, function(result) {
+                    result = $.parseJSON(result);
+                    if (result != "0") {
+                        var html = '<tr><td colspan="2"><b><input type="checkbox" name="charge_head[]" id="' + result.id + '" value="' + result.id + '"><label class="checkbox_label" for="' + result.id + '">' + result.name + '</label></b></td></tr>'
+                        if ($(".checkbox:last").length > 0)
+                            $(html).insertAfter($(".checkbox:last"));
+                        else
+                            $(html).insertAfter($(".chargehead_title"));
+                        $(".charge_head_form").find("[name='custom_charge_head']").val("");
+                        $(".chargehead_or").show();
+                    }
+                })
+            }
+        });
+
+    $(document).ready( function() {
+        
+        $("form").submit(function(e) {
+            if ($(this).find("input[type='checkbox']:checked").length == 0) {
+                $("label.error").remove();
+                $("tr.checkbox:last td:last").append("<label class='error'><br>Please Select at least One Charge Head</label>");
+                $("label.error").show();
+                return false;
+            }
+        })
+    })
+
 </script>
 
 <div class="clear"></div>
@@ -86,7 +99,7 @@
                         <div class="step-dark-round">&nbsp;</div>
                         <div class="clear"></div>
                     </div>
-                    <form id="mainform" method='post' action="<?php echo base_url(); ?>admin/allflatowner/process">
+                    <form id="mainform" class="flat_chargehead" method='post' action="<?php echo base_url(); ?>admin/allflatowner/process">
                         <table id="id-form" class="table table-bordered">
                             <thead>
                                 <tr class="chargehead_title">    
@@ -97,7 +110,7 @@
                                     ?>
                                     <tr class="checkbox">    
                                         <td colspan="2">
-                                            <b><input type="checkbox" class="no-checkbox" name="charge_head[]" id="<?php echo $val->chargehead_id; ?>" value="<?php echo $val->chargehead_id; ?>" checked='checked'><label class="checkbox_label" for="<?php echo $val->chargehead_id; ?>"><?php echo $val->charge_head_name; ?></label></b>
+                                            <b><input type="checkbox" class="no-checkbox charge_head_checkbox" name="charge_head[]" id="<?php echo $val->chargehead_id; ?>" value="<?php echo $val->chargehead_id; ?>" checked='checked'><label class="checkbox_label" for="<?php echo $val->chargehead_id; ?>"><?php echo $val->charge_head_name; ?></label></b>
                                         </td>
                                     </tr>
                                 <?php } ?>

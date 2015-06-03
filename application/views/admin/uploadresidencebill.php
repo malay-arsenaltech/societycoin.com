@@ -117,7 +117,7 @@
                                 <tr>
                                     <td>&nbsp;</td>
                                     <td>
-                                        <input type="submit" class="form-proceed form-button" value="Upload">&nbsp;
+                                        <input type="submit" class="form-proceed form-button" value="Upload Bil">&nbsp;
                                         <input class="form-button-gray" type="reset" value="Reset">
                                         <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>">
                                     </td>

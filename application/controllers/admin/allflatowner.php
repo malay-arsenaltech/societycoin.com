@@ -87,7 +87,7 @@ class Allflatowner extends CI_Controller {
             $data['charge_head'] = $this->chargehead_model->get_selected_data($society_id);
             $this->load->view('admin/flat_chargehead', $data);
         } else {
-            redirect(base_url() . "admin/allflats/addflatowner");
+            redirect(base_url() . "admin/allflatowner/addflatowner");
         }
     }
 

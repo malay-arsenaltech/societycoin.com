@@ -34,7 +34,7 @@
     $(".add_charge_head").live("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
-        if ($(".charge_head_form").find("[name='custom_charge_head']").val() == "") {
+        if ($.trim($(".charge_head_form").find("[name='custom_charge_head']").val()) == "") {
             return false;
         } else {
             $.post("<?php echo base_url(); ?>admin/allchargehead/addchargehead", {"is_ajax": "1", charge_head_name: $(".charge_head_form").find("[name='custom_charge_head']").val()}, function(result) {
@@ -61,17 +61,26 @@
                     endDate: '31/12/2020'
 
                 });
-            $('#downloadbill').validate({// initialize the plugin
-                rules: {
-                    bill_generates_on: {
-                        required: true
-                    },
-                     bill_due_on: {
-                        required: true
-                    }
+        $('#downloadbill').validate({// initialize the plugin
+            rules: {
+                bill_generates_on: {
+                    required: true
+                },
+                bill_due_on: {
+                    required: true
                 }
+            }
         });
     });
+    $(".form-proceed").live("click", function(e) {
+        if ($(this).parents("form").find("input[type='checkbox']:checked").length == 0) {
+            $("label.error").remove();
+            $("tr.checkbox:last td:last").append("<label class='error'><br>Please Select at least One Charge Head</label>");
+            $(this).parents("form").valid();
+            $("label.error").show();
+            return false;
+        }
+    })
 </script>
 <div class="clear"></div>
 <div id="content-outer">
@@ -80,7 +89,7 @@
 
         <!--  start page-heading -->
         <div id="page-heading">
-            <h1>Bill Download</h1><br>
+            <h1>Download Bill Format</h1><br>
         </div>
         <!-- end page-heading -->
 
@@ -138,7 +147,7 @@
                                     <td colspan="2">
                             <center>
                                 <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" >
-                                <input type="submit" class="form-proceed form-button btnb" onclick="$(form).submit()" value="Download Bill">
+                                <input type="submit" class="form-proceed form-button btnb" onclick="$(form).submit()" value="Download Bill Format">
                             </center>
                             </td>
                             </tr>

@@ -95,8 +95,8 @@ class Login extends CI_Controller {
             $page = (isset($_GET['per_page']) && isset($_GET['bill'])) ? $_GET['per_page'] : 0;
 
             $response = $this->residence_model->billdata($config2["per_page"], $page);
-            $data['bill_data'] = $response['rows'];
-            $config2["total_rows"] = $response['num_rows'];
+            $data['bill_data'] = isset($response['rows']) ? $response['rows'] : array();
+            $config2["total_rows"] = isset($response['num_rows']) ? $response['num_rows'] : 0;
 
             $this->pagination->initialize($config2);
             $data["links3"] = $this->pagination->create_links();

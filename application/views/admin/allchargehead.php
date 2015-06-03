@@ -12,7 +12,7 @@
         e.preventDefault();
         e.stopPropagation();
         var val = $(this).parents("tr:first").find(".charge_head_val input").val();
-        if (val != "" && val == val.match(/^[a-zA-Z]+$/)) {
+        if ($.trim(val) != "") {
             var $this = $(this);
             $.post($this.attr("href"), {"charge_head_name": val}, function(result) {
                 $this.parents("tr:first").find(".charge_head_text").html(result).show();
