@@ -2,7 +2,6 @@
 <style type="text/css">
     #id-form th, #id-form td {
         font-size: 12px;
-        line-height: 28px;
         padding: 10px;
         text-align: left;
         height: 100%;
@@ -19,7 +18,11 @@
         display: none;
     }
     .green-left{line-height:16px!important;}
+    #message-green td{padding: 0px;}
+    #message-green .green-left{padding-left: 20px;}
     #uploadbill{margin-top: -90px;}
+    .form-proceed{font-weight: bold;}
+    .bill_label{font-size:15px!important;vertical-align: top; padding-top: 19px !important;}
 </style>
 <script>
     $(document).ready(function() {
@@ -94,30 +97,29 @@
                 <td id="table-content">
                     <form enctype="multipart/form-data" id="uploadbill" method='post' action="<?php echo base_url(); ?>admin/allresidence/billpreview">
 
-                        <table id="id-form" class="table table-bordered" width='100%'>
+                        <table id="id-form" class="table table-bordered" width='80%'>
                             <thead>
                                 <tr>
-                                    <td colspan='2'>
+                                    <td colspan='2' style="line-height:0px;">
                                         <div id="message-green">
-                                            <table  cellspacing="0" cellpadding="0" border="0" width="100%">
-                                                <tbody>
-                                                    <tr>
+                                            <table border="0" width="100%" cellpadding="0" cellspacing="0">
+                                                <tbody><tr>
                                                         <td class="green-left">You can submit bill and tax amount details only, please note that modification in format of CSV file will not be accepted by system.</td>
+                                                        <td class="green-right"><a class="close-green"><img src="<?php echo AdminThemeUrl; ?>images/table/icon_close_green.gif" alt=""></a></td>
                                                     </tr>
-                                                </tbody>
-                                            </table>
+                                                </tbody></table>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td width="5%">Bill</td>
+                                    <td width="5%" class="bill_label">Bill</td>
                                     <td><input type="file" name="bill_data" id="flat_data" accept=".csv"></td>
                                 </tr>
 
                                 <tr>
                                     <td>&nbsp;</td>
                                     <td>
-                                        <input type="submit" class="form-proceed form-button" value="Upload Bil">&nbsp;
+                                        <input type="submit" class="form-proceed form-button" value="Upload Bill">&nbsp;
                                         <input class="form-button-gray" type="reset" value="Reset">
                                         <input type="hidden" id="ip" name="ip" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>">
                                     </td>

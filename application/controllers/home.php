@@ -183,6 +183,36 @@ class Home extends CI_Controller {
         $this->load->view('successful', $data);
     }
 
+    public function relate_property_to_user() {
+        $email = $this->session->userdata("email");
+        $user_id = $this->session->userdata("userid");
+        $this->db->select("p.*");
+        $this->db->join("ci_flatowner f", "f.id = p.flatowner_id");
+        $this->db->where("email_address", $email);
+        $unassigned_propertys = $this->db->where("p.id NOT IN(select addressid from ci_userpropertys)",false,false)->get("ci_propertys p")->result();
+      if (!empty($unassigned_propertys)) {
+            $property = array();
+            foreach ($unassigned_propertys as $val) {
+                $society_data = $this->db->select("society_user_id")->where("id", $val->societyid)->get("ci_society")->result();
+                
+                $property[] = array(
+                    "userid" => $user_id,
+                    "countryid" => $val->countryid,
+                    "stateid" => $val->stateid,
+                    "cityid" => $val->cityid,
+                    "areaid" => $val->areaid,
+                    "societyid" => $val->societyid,
+                    "addressid" => $val->id,
+                    "status" => "1",
+                    "sadminid" => $society_data[0]->society_user_id,
+                );
+            }
+            if(!empty($property)){
+                $this->db->insert_batch("ci_userpropertys",$property);
+            } 
+        }
+    }
+
     public function login() {
         $this->load->model('home_model');
         if ($this->input->post('task') == 'payment') {
@@ -190,6 +220,7 @@ class Home extends CI_Controller {
 
             $this->home_model->activity('login');
             if ($data == 1) {
+                $this->relate_property_to_user();
                 redirect(base_url() . 'property/payment');
             } elseif ($data == 0) {
                 //redirect(base_url().'home?vmsg=10');
@@ -202,6 +233,7 @@ class Home extends CI_Controller {
 
             $this->home_model->activity('login');
             if ($data == 1) {
+                $this->relate_property_to_user();
                 $url = base_url() . "user";
                 redirect($url);
             } elseif ($data == 0) {

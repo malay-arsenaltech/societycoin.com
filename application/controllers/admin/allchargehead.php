@@ -37,10 +37,10 @@ class Allchargehead extends CI_Controller {
             $society_data = $this->db->select("id")->where("society_user_id", $this->session->userdata('admin_id'))->get("ci_society")->result();
             $society_id = $society_data[0]->id;
             $this->db->insert("ci_society_chargehead", array("society_id" => $society_id, "chargehead_id" => $insert_id, "added_on" => date("Y-m-d H:i:s")));
-            $this->session->set_flashdata('msg_error', "charge Head added successfully.");
+            $this->session->set_flashdata('msg_error', "Charge Head Added Successfully.");
         }
         else
-            $this->session->set_flashdata('msg_error_red', "charge Head not added successfully.");
+            $this->session->set_flashdata('msg_error_red', "Charge Head Not Added Successfully.");
         redirect(base_url()."admin/allchargehead");
     }
 
@@ -54,9 +54,9 @@ class Allchargehead extends CI_Controller {
 
     public function deletechargehead($id) {
         if ($this->db->where("id", $id)->delete("ci_bill"))
-            $this->session->set_flashdata('msg_error', "charge Head deleted successfully.");
+            $this->session->set_flashdata('msg_error', "Charge Head Deleted Successfully.");
         else
-            $this->session->set_flashdata('msg_error_red', "charge Head not deleted successfully.");
+            $this->session->set_flashdata('msg_error_red', "Charge Head Not Deleted Successfully.");
         redirect(base_url()."admin/allchargehead");
     }
 

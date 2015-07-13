@@ -71,36 +71,6 @@
                     required: true,
                     email: true
                 },
-                city: {
-                    required: true
-
-                },
-                address: {
-                    required: true
-
-                },
-                country: {
-                    required: true
-
-             },
-                mobile: {
-                    required: true,
-                    number: true,
-                    minlength: 10,
-                    maxlength: 10
-                },
-                state: {
-                    required: true
-
-                },
-                newpassword: {
-                    minlength: 8,
-                    maxlength: 15
-
-                },
-                cpassword: {
-                    equalTo: '#newpassword'
-                }
             }
         });
 
@@ -136,40 +106,38 @@ function goBack() {
                 <td>
                     <!--  start content-table-inner ...................................................................... START -->
                     <form method="post" id="addnewresidence" name="addnewresidence"    action="<?php echo base_url(); ?>admin/allresidence/update" >
-                        <input type="hidden" id="id" name="id" value="<?php echo $data['id']; ?>" >
                         <input type="hidden" id="id" name="property_id" value="<?php echo $data['property_id']; ?>" >
-                        <input type="hidden" id="utype" name="utype" value="<?php echo $data['utype']; ?>" >
-                        <input type="hidden"   id="country" name="country" class="inp-form" value="1" > 
+                        <input type="hidden"   id="flatowner_id" name="flatowner_id" class="inp-form" value="<?php echo $data['flatowner_id']; ?>" > 
                         <table id="id-form" class="table table-bordered" >
                             <thead>
                                 <tr>
                                     <th>First Name </th>
-                                    <td><input maxlength="25"  type="text" class="inp-form" id="username" name="username" value="<?php echo $data['fname']; ?>" ></td>
+                                    <td><input maxlength="25"  type="text" class="inp-form" id="username" name="username" value="<?php echo $data['first_name']; ?>" ></td>
                                 </tr>
                                 <tr>
-                                    <th>Last Name</th><td><input maxlength="25"  class="inp-form" type="text" id="lname" name="name" value="<?php echo $data['lname']; ?>" ></td>
+                                    <th>Last Name</th><td><input maxlength="25"  class="inp-form" type="text" id="lname" name="name" value="<?php echo $data['last_name']; ?>" ></td>
 
                                 </tr>
                                 <tr>    
-                                    <th>E-mail</th><td><input   type="text" class="inp-form" id="email" name="email" value="<?php echo $data['email']; ?>" ></td>
+                                    <th>E-mail</th><td><input   type="text" class="inp-form" id="email" name="email" value="<?php echo $data['email_address']; ?>" ></td>
                                 </tr>
-                                <tr>    
+<!--                                <tr>    
                                     <th>Login id</th><td><input   type="text" disabled class="inp-form" id="login_id" name="login_id" value="<?php echo $data['username']; ?>" ></td>
                                 </tr>
 
                                 <tr>
                                     <th>Mobile</th><td><input type="text"   class="inp-form" id="mobile" name="mobile" value="<?php echo $data['mobile']; ?>" ></td>
 
-                                </tr>
+                                </tr>-->
                                 <tr>                          
                                     <th>Address</th><td><input   type="text" id="address" class="inp-form" name="address" value="<?php echo $data['flat_address']; ?>" ></td></tr><tr>
-                                    <th>City</th><td><input type="text" maxlength="25"  id="city" name="city" class="inp-form" value="<?php echo $data['city']; ?>" ></td>
+                                    <th>City</th><td><input type="text" maxlength="25"  id="city" name="city" class="inp-form" disabled value="<?php echo $data['city']; ?>" ></td>
                                 </tr>
                                 <tr>    
-                                    <th>State</th><td><input type="text" id="state"   name="state" class="inp-form" value="<?php echo $data['state']; ?>" ></td></tr>
-                                <tr><th>New Password</th><td><input maxlength="15"  type="password" class="inp-form" id="newpassword" name="newpassword" value="" ></td></tr><tr>
+                                    <th>State</th><td><input type="text" id="state" disabled  name="state" class="inp-form" value="<?php echo $data['state']; ?>" ></td></tr>
+<!--                                <tr><th>New Password</th><td><input maxlength="15"  type="password" class="inp-form" id="newpassword" name="newpassword" value="" ></td></tr><tr>
                                     <th>Confirm New Password</th><td><input  maxlength="15"  type="password" class="inp-form" id="cpassword" name="cpassword" value="" ></td>
-                                </tr>
+                                </tr>-->
                                 <tr>
                                     <th>   </th>
                                     <td><input type="submit" class="form-button form-proceed"  value="Update" >

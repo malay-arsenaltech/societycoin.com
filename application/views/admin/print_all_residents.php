@@ -69,11 +69,10 @@
     <body  onLoad="window.print();">
         <div id="logo" style="margin-left:25px;"><img src="<?php echo base_url(); ?>front/images/society-coin-logo-white.png" alt="society coin logo"></div>
 
-        <table border="1" class="reference">
+        <table border="1" class="reference" width="95%">
 
             <tr>
-                <th>Name</th>    <th>Email Address</th>	 <th>Address</th>	  <th>City</th> <th>State</th>    <th>Mobile</th>
-                <th>Login ID</th> 
+                <th>Name</th>    <th>Email Address</th>	 <th>Address</th>	  <th>City</th> <th>State</th>  
             </tr>
 
             <?php
@@ -82,14 +81,11 @@
                 foreach ($records AS $r) {
                     ?>
                     <tr> 
-                        <td><?php echo (isset($r->fname)) ? $r->fname ." ". $r->lname : ""; ?></td>
-                        <td><?php echo (isset($r->email)) ? $r->email : ""; ?></td>
-                        <td><?php echo (isset($r->address)) ? $r->address : ""; ?></td>
+                        <td><?php echo (isset($r->first_name)) ? $r->first_name ." ". $r->last_name : ""; ?></td>
+                        <td><?php echo (isset($r->email_address)) ? $r->email_address : ""; ?></td>
+                        <td><?php echo (isset($r->flat_address)) ? $r->flat_address : ""; ?></td>
                         <td><?php echo (isset($r->city)) ? $r->city : ""; ?></td>
                         <td><?php echo (isset($r->state)) ? $r->state : ""; ?></td>
-                        <td><?php echo (isset($r->mobile)) ? $r->mobile : ""; ?></td>
-                        <td><?php echo (isset($r->username)) ? $r->username : ""; ?></td>
-
                     </tr>
                 <?php }
             }

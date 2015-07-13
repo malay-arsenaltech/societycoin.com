@@ -70,7 +70,7 @@ class User_model extends CI_Model {
         $where = '';
         if (isset($_GET['search_text']) && $_GET['search_text'] != '') {
             $s = trim($this->input->get_post('search_text'));
-            $where = "(u.fname='$s' OR u.lname='$s' OR u.mobile='$s' OR u.email='$s' OR u.city='$s') ";
+            $where = "AND (u.fname='$s' OR u.lname='$s' OR u.mobile='$s' OR u.email='$s' OR u.city='$s') ";
         }
 
         $query = $this->db->query("select distinct id  from ci_society where society_user_id='$subadmiid'");

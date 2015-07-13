@@ -1,6 +1,6 @@
 <?php $this->load->view('admin/header'); ?>
 <script>
-function newPopup(url) {
+    function newPopup(url) {
         popupWindow = window.open(
                 url, 'popUpWindow', 'height=700,width=700,left=100,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
     }
@@ -49,6 +49,7 @@ function newPopup(url) {
                 <input name="task"  value="search" type="hidden"  >
 
             </form>
+            <?php if (!empty($data))  ?>
             <a  style=" float: right; margin-bottom:3px;" class="btnb" href="javascript:newPopup('<?php echo base_url(); ?>admin/allresidence/print_all_residence/<?php echo $this->input->get_post('search_text'); ?>');"  >Print All</a>
         </div>
         <table border="0" width="100%" cellpadding="0" cellspacing="0" id="content-table">
@@ -85,14 +86,14 @@ function newPopup(url) {
                                             ?>              
                                             <tr>
                                                 <td><?php echo $k; ?></td>
-                                                <td><?php echo $data['fname'] . " " . $data['lname']; ?></td>
-                                                <td><?php echo $data['email']; ?></td>
+                                                <td><?php echo $data['first_name'] . " " . $data['last_name']; ?></td>
+                                                <td><?php echo $data['email_address']; ?></td>
                                                 <td><?php echo $data['flat_address']; ?></td>
                                                 <td><?php echo $data['city']; ?></td>
                                                 <td><?php echo $data['state']; ?></td>
                                                 <td>
-                                                    <a href="<?php echo base_url(); ?>admin/allresidence/editresidence/<?php echo $data['id']."/".$data['property_id']; ?>" title="Edit Occupant" class="icon-1 info-tooltip"></a>
-                                                    <a href="<?php echo base_url(); ?>admin/allresidence/delete/<?php echo $data['id']."/".$data['property_id']; ?>" title="Delete Occupant" onclick="return confirm('Are you sure to delete Occupant?');"  class=" info-tooltip icon-2"></a>
+                                                    <a href="<?php echo base_url(); ?>admin/allresidence/editresidence/<?php echo $data['property_id']; ?>" title="Edit Occupant" class="icon-1 info-tooltip"></a>
+                                                    <a href="<?php echo base_url(); ?>admin/allresidence/delete/<?php echo $data['flatowner_id']."/".$data['property_id']; ?>" title="Delete Occupant" onclick="return confirm('Are you sure to delete Occupant?');"  class=" info-tooltip icon-2"></a>
                                                 </td>
                                             </tr>
                                             <?php

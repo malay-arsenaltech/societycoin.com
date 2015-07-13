@@ -188,8 +188,8 @@
             $('#tab1').removeClass('active');
             $('#tab2').addClass('active');
             $('#tab3').removeClass('active');
-            $('#search,#bsearch').hide();
-            $('#psearch').show();
+            $('#search,#psearch').hide();
+            $('#bsearch').show();
             $('.box-seven').hide();
             $('.box-eight').show();
             $('.box-nine').hide();
@@ -451,7 +451,9 @@
                             </div>
 
                             <div class="box-eight">
-                                <a  style=" float: right; margin-bottom:3px;" class="btnb" href="javascript:newPopup('<?php echo base_url(); ?>admin/allresidence/print_all_bill/0/<?php echo $this->input->get_post('search_text'); ?>');"  >Print All</a>
+                                <?php if (!empty($bill_data)) { ?>
+                                    <a  style=" float: right; margin-bottom:3px;" class="btnb" href="javascript:newPopup('<?php echo base_url(); ?>admin/allresidence/print_all_bill/0/<?php echo $this->input->get_post('search_text'); ?>');"  >Print All</a>
+                                <?php } ?>
                                 <table width="100%" cellspacing="0" cellpadding="0" border="0" id="product-table">
                                     <tbody><tr>
                                             <th class="table-header-repeat line-left" style="width:20px;"><span>S.No</span>	</th>
@@ -470,29 +472,32 @@
                                         if (isset($_GET['per_page']))
                                             $k = $_GET['per_page'] + 1;
 
+                                        if (!empty($bill_data)) {
+                                            foreach ($bill_data as $data) {
+                                                $i++;
 
-                                        foreach ($bill_data as $data) {
-                                            $i++;
-
-                                            if ($i % 2 == 1) {
-                                                $style = 'alternate-row';
-                                            } else {
-                                                $style = '';
+                                                if ($i % 2 == 1) {
+                                                    $style = 'alternate-row';
+                                                } else {
+                                                    $style = '';
+                                                }
+                                                ?>
+                                                <tr class="<?php echo $style; ?>">
+                                                    <td><?php echo $k; ?></td>
+                                                    <td><a href="<?php echo base_url(); ?>admin/allresidence/editresidence/<?php echo $data['property_id']; ?>" ><?php echo $data['fname'] . " " . $data['lname']; ?></a></td>
+                                                    <td><?php echo $data['email']; ?></td>
+                                                    <td><?php echo $data['society_title']; ?></td>
+                                                    <td><?php echo $data['flat']; ?></td>
+                                                    <td><?php echo "INR " . $data['total']; ?></td>
+                                                    <td><?php echo DateTime::createFromFormat('d/m/Y', $data['sdate'])->format('l, jS \of F, Y'); ?></td>
+                                                    <td><?php echo DateTime::createFromFormat('d/m/Y', $data['edate'])->format('l, jS \of F, Y'); ?></td>
+                                                    <td><a href="<?php echo base_url(); ?>admin/allresidence/bill_detail/<?php echo $data['related_id']; ?>"  class=" icon-3 info-tooltip" title="Bill Details"></a></td>
+                                                </tr>
+                                                <?php
+                                                $k++;
                                             }
-                                            ?>
-                                            <tr class="<?php echo $style; ?>">
-                                                <td><?php echo $k; ?></td>
-                                                <td><a href="<?php echo base_url(); ?>admin/allusers/view/<?php echo $data['userid']; ?>" ><?php echo $data['fname'] . " " . $data['lname']; ?></a></td>
-                                                <td><?php echo $data['email']; ?></td>
-                                                <td><?php echo $data['society_title']; ?></td>
-                                                <td><?php echo $data['flat']; ?></td>
-                                                <td><?php echo "INR ".$data['total']; ?></td>
-                                                <td><?php echo DateTime::createFromFormat('d/m/Y', $data['sdate'])->format('l, jS \of F, Y'); ?></td>
-                                                <td><?php echo DateTime::createFromFormat('d/m/Y', $data['edate'])->format('l, jS \of F, Y'); ?></td>
-                                                <td><a href="<?php echo base_url(); ?>admin/allresidence/bill_detail/<?php echo $data['related_id']; ?>"  class=" icon-3 info-tooltip" title="Bill Details"></a></td>
-                                            </tr>
-                                            <?php
-                                            $k++;
+                                        } else {
+                                            echo "<tr><td colspan='8'><strong> No Records Found!</strong></td></tr>";
                                         }
                                         ?>
 
